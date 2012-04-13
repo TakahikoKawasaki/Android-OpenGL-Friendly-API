@@ -1,0 +1,22 @@
+This project provides Java API for Android that is much more
+intuitively understandable than the low-level OpenGL API.
+
+To be concrete, for example, creating a shader and compiling
+it with the Java API provided by this project looks like the
+following:
+
+    Shader shader = new VertexShader("......").compile();
+
+If you like this style than the code below with the low-level
+OpenGL API, try to use the outcome of this project.
+
+    int shaderId = GLES20.glCreateShader(GLES20.GL_VERTEX_SHADER);
+    GLES20.glShaderSource(shaderId, "......");
+    GLES20.glCompileShader(shaderId);
+
+This project assumes OpenGL ES 2.0, so the minimum Android API
+level is 8 (Android 2.2).
+
+
+2012-Apr-14
+Takahiko Kawasaki
