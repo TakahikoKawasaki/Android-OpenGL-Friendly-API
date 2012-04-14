@@ -4,6 +4,8 @@
 package com.neovisionaries.android.opengl;
 
 
+import java.util.LinkedList;
+import java.util.List;
 import android.opengl.GLES20;
 import static com.neovisionaries.android.opengl.ShaderState.COMPILED;
 import static com.neovisionaries.android.opengl.ShaderState.CREATED;
@@ -18,11 +20,11 @@ import static com.neovisionaries.android.opengl.ShaderState.SOURCE_SET;
  * <span style="color: darkgreen;">// <b>E X A M P L E   1</b></span>
  *
  * <span style="color: darkgreen;">// Create a shader.</span>
- * Shader shader = new {@link VertexShader}();
+ * {@link Shader} shader = new {@link VertexShader}();
  * <span style="color: darkgreen;">//Shader shader = new {@link FragmentShader}();</span>
  *
  * <span style="color: darkgreen;">// Set a shader source code.</span> 
- * String shaderSource = <span style="color: brown;">"......"</span>;
+ * String shaderSource = <span style="color: brown;">"..."</span>;
  * shader.{@link #setSource(String) setSource}(shaderSource);
  *
  * <span style="color: darkgreen;">// Compile the shader source code.</span>
@@ -33,10 +35,12 @@ import static com.neovisionaries.android.opengl.ShaderState.SOURCE_SET;
  * <span style="color: darkgreen;">// <b>E X A M P L E   2</b></span>
  *
  * <span style="color: darkgreen;">// Just one line.</span>
- * Shader shader = new {@link VertexShader}(<span style="color: brown;">"......"</span>).{@link #compile() compile}();
+ * {@link Shader} shader = new {@link VertexShader}(<span style="color: brown;">"..."</span>).{@link #compile() compile}();
  * </pre>
  *
  * @author Takahiko Kawasaki
+ *
+ * @see Program
  */
 public class Shader
 {
@@ -53,13 +57,20 @@ public class Shader
 
 
     /**
+     * Programs that this shader is attached to.
+     */
+    private List<Program> programList = new LinkedList<Program>();
+
+
+    /**
      * A constructor with a shader ID. The state of this instance
      * is set up according to the state of the given shader.
      *
      * <p>
      * Use this constructor only if you already have a shader ID
      * that has been assigned by glCreateShader(). Otherwise,
-     * use {@link VertexShader} or {@link FragmentShader}.
+     * use {@link VertexShader#VertexShader() VertexShader()} or
+     * {@link FragmentShader#FragmentShader() FragmentShader()}.
      * </p>
      *
      * @param id
@@ -207,6 +218,11 @@ public class Shader
      * nothing is executed. After this method returns, the state of
      * this instance is {@link ShaderState#DELETED}.
      *
+     * <p>
+     * This shader is detached from, if any, all the programs that
+     * this shader is currently attached to.
+     * </p>
+     *
      * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glDeleteShader.xml">glDeleteShader</a>
      */
     public void delete()
@@ -223,6 +239,17 @@ public class Shader
 
         // This shader was deleted.
         state = DELETED;
+
+        // For each program that this shader is attached to.
+        for (Program program : programList)
+        {
+            // Notify the program that this shader was deleted.
+            program.onShaderDeleted(this);
+        }
+
+        // Not keep track of programs any more.
+        programList.clear();
+        programList = null;
     }
 
 
@@ -286,7 +313,7 @@ public class Shader
      *         been deleted.
      *
      * @throws GLESException
-     *         Failed to compile the source (glCompileShader() failed).
+     *         glCompileShader() failed.
      *
      * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glCompileShader.xml">glCompileShader</a>
      */
@@ -304,7 +331,7 @@ public class Shader
 
             case DELETED:
                 // Already deleted.
-                throw new IllegalArgumentException("Shader has already been deleted.");
+                throw new IllegalStateException("Shader has already been deleted.");
         }
 
         // Compile the source code.
@@ -314,7 +341,7 @@ public class Shader
         if (getCompileStatus() == false)
         {
             // Failed to compile the shader source.
-            throw new GLESException(getLog());
+            throw new GLESException("glCompileShader() failed: " + getLog());
         }
 
         // Compiled successfully.
@@ -382,5 +409,37 @@ public class Shader
     public static void releaseCompiler()
     {
         GLES20.glReleaseShaderCompiler();
+    }
+
+
+    /**
+     * This method is called when this shader was attached
+     * to a {@link Program}.
+     *
+     * @param program
+     *         A {@link Program} that this shader was attached to.
+     */
+    void onAttached(Program program)
+    {
+        if (programList != null)
+        {
+            programList.add(program);
+        }
+    }
+
+
+    /**
+     * This method is called when this shader was detached
+     * from a {@link Program}.
+     *
+     * @param program
+     *         A {@link Program} that this shader was detached from.
+     */
+    void onDetached(Program program)
+    {
+        if (programList != null)
+        {
+            programList.remove(program);
+        }
     }
 }
