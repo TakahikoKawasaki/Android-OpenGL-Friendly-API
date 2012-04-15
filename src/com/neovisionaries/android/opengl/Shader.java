@@ -63,56 +63,6 @@ public class Shader
 
 
     /**
-     * A constructor with a shader ID. The state of this instance
-     * is set up according to the state of the given shader.
-     *
-     * <p>
-     * Use this constructor only if you already have a shader ID
-     * that has been assigned by glCreateShader(). Otherwise,
-     * use {@link VertexShader#VertexShader() VertexShader()} or
-     * {@link FragmentShader#FragmentShader() FragmentShader()}.
-     * </p>
-     *
-     * @param id
-     *         A return value from glCreateShader().
-     *
-     * @throws IllegalArgumentException
-     *         The given number is not a shader ID.
-     *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glCreateShader.xml">glCreateShader</a>
-     */
-    public Shader(int id)
-    {
-        // Check if the given ID is a shader ID.
-        if (GLES20.glIsShader(id) == false)
-        {
-            // The given integer is not a shader ID.
-            throw new IllegalArgumentException("Not a shader.");
-        }
-
-        // Shader ID
-        this.id = id;
-
-        // Check if the shader is marked as deleted.
-        if (getDeleteStatus())
-        {
-            // The given shader has already been deleted.
-            state = DELETED;
-        }
-        // Check the compilation status of the shader.
-        else if (getCompileStatus())
-        {
-            // The shader has already been compiled.
-            state = COMPILED;
-        }
-        else
-        {
-            state = CREATED;
-        }
-    }
-
-
-    /**
      * A constructor with a shader type. After this constructor
      * returns, the state of this instance is {@link ShaderState#CREATED}.
      *
@@ -219,11 +169,19 @@ public class Shader
      * this instance is {@link ShaderState#DELETED}.
      *
      * <p>
-     * This shader is detached from, if any, all the programs that
-     * this shader is currently attached to.
+     * Note that calling this method detaches this shader from all
+     * the programs that this shader is currently attached to.
+     * </p>
+     *
+     * <p>
+     * If this shader is attached to a {@link Program} instance
+     * whose setting of 'deleteShaderOnDelete' is true, delete()
+     * method of this Shader instance is called automatically when
+     * the {@link Program} instance is deleted.
      * </p>
      *
      * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glDeleteShader.xml">glDeleteShader</a>
+     * @see Program#setDeleteShadersOnDelete(boolean)
      */
     public void delete()
     {
@@ -365,23 +323,6 @@ public class Shader
         GLES20.glGetShaderiv(id, GLES20.GL_COMPILE_STATUS, status, 0);
 
         // GL_TRUE is returned if the compilation has succeeded.
-        return (status[0] == GLES20.GL_TRUE);
-    }
-
-
-    /**
-     * Check the deletion status.
-     *
-     * @return True if this shader is marked as deleted.
-     */
-    private boolean getDeleteStatus()
-    {
-        int[] status = new int[1];
-
-        // Get the deletion status.
-        GLES20.glGetShaderiv(id, GLES20.GL_DELETE_STATUS, status, 0);
-
-        // GL_TRUE is returned if this shader is marked as deleted.
         return (status[0] == GLES20.GL_TRUE);
     }
 
