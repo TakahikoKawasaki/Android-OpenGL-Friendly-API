@@ -13,9 +13,11 @@ import com.neovisionaries.android.opengl.GLES;
 /**
  * The base implementation of {@link GLES} interface.
  *
- * <p>
- * All methods throw UnsupportedOperationException.
- * </p>
+ * <ol>
+ * <li>All gl* methods throw UnsupportedOperationException.
+ * <li>All GL_* methods except {@link GL_TRUE()} return 0.
+ * <li>{@link #GL_TRUE()} return 1.
+ * </ol>
  * 
  * @author Takahiko Kawasaki
  */
@@ -29,8 +31,13 @@ public abstract class GLESImplBase implements GLES
     @Override
     public int GL_ARRAY_BUFFER()
     {
-        unsupported("GL_ARRAY_BUFFER");
+        return 0;
+    }
 
+
+    @Override
+    public int GL_BLEND()
+    {
         return 0;
     }
 
@@ -38,8 +45,6 @@ public abstract class GLESImplBase implements GLES
     @Override
     public int GL_COLOR_BUFFER_BIT()
     {
-        unsupported("GL_COLOR_BUFFER_BIT");
-
         return 0;
     }
 
@@ -47,8 +52,13 @@ public abstract class GLESImplBase implements GLES
     @Override
     public int GL_COMPILE_STATUS()
     {
-        unsupported("GL_COMPILE_STATUS");
+        return 0;
+    }
 
+
+    @Override
+    public int GL_CULL_FACE()
+    {
         return 0;
     }
 
@@ -56,8 +66,20 @@ public abstract class GLESImplBase implements GLES
     @Override
     public int GL_DEPTH_BUFFER_BIT()
     {
-        unsupported("GL_DEPTH_BUFFER_BIT");
+        return 0;
+    }
 
+
+    @Override
+    public int GL_DEPTH_TEST()
+    {
+        return 0;
+    }
+
+
+    @Override
+    public int GL_DITHER()
+    {
         return 0;
     }
 
@@ -65,8 +87,6 @@ public abstract class GLESImplBase implements GLES
     @Override
     public int GL_DYNAMIC_DRAW()
     {
-        unsupported("GL_DYNAMIC_DRAW");
-
         return 0;
     }
 
@@ -74,8 +94,13 @@ public abstract class GLESImplBase implements GLES
     @Override
     public int GL_ELEMENT_ARRAY_BUFFER()
     {
-        unsupported("GL_ELEMENT_ARRAY_BUFFER");
+        return 0;
+    }
 
+
+    @Override
+    public int GL_FALSE()
+    {
         return 0;
     }
 
@@ -83,8 +108,6 @@ public abstract class GLESImplBase implements GLES
     @Override
     public int GL_FRAGMENT_SHADER()
     {
-        unsupported("GL_FRAGMENT_SHADER");
-
         return 0;
     }
 
@@ -92,8 +115,34 @@ public abstract class GLESImplBase implements GLES
     @Override
     public int GL_LINK_STATUS()
     {
-        unsupported("GL_LINK_STATUS");
+        return 0;
+    }
 
+
+    @Override
+    public int GL_POLYGON_OFFSET_FILL()
+    {
+        return 0;
+    }
+
+
+    @Override
+    public int GL_SAMPLE_ALPHA_TO_COVERAGE()
+    {
+        return 0;
+    }
+
+
+    @Override
+    public int GL_SAMPLE_COVERAGE()
+    {
+        return 0;
+    }
+
+
+    @Override
+    public int GL_SCISSOR_TEST()
+    {
         return 0;
     }
 
@@ -101,8 +150,6 @@ public abstract class GLESImplBase implements GLES
     @Override
     public int GL_STATIC_DRAW()
     {
-        unsupported("GL_STATIC_DRAW");
-
         return 0;
     }
 
@@ -110,8 +157,13 @@ public abstract class GLESImplBase implements GLES
     @Override
     public int GL_STENCIL_BUFFER_BIT()
     {
-        unsupported("GL_STENCIL_BUFFER_BIT");
+        return 0;
+    }
 
+
+    @Override
+    public int GL_STENCIL_TEST()
+    {
         return 0;
     }
 
@@ -119,8 +171,6 @@ public abstract class GLESImplBase implements GLES
     @Override
     public int GL_STREAM_DRAW()
     {
-        unsupported("GL_STREAM_DRAW");
-
         return 0;
     }
 
@@ -128,17 +178,13 @@ public abstract class GLESImplBase implements GLES
     @Override
     public int GL_TRUE()
     {
-        unsupported("GL_TRUE");
-
-        return 0;
+        return 1;
     }
 
 
     @Override
     public int GL_VERTEX_SHADER()
     {
-        unsupported("GL_VERTEX_SHADER");
-
         return 0;
     }
 
@@ -253,6 +299,20 @@ public abstract class GLESImplBase implements GLES
 
 
     @Override
+    public void glDisable(int capability)
+    {
+        unsupported("glDisable");
+    }
+
+
+    @Override
+    public void glEnable(int capability)
+    {
+        unsupported("glEnable");
+    }
+
+
+    @Override
     public void glGenBuffers(int vertexBufferType, int[] vertexBufferIds, int offset)
     {
         unsupported("glGenBuffers");
@@ -325,6 +385,15 @@ public abstract class GLESImplBase implements GLES
         unsupported("glGetUniformLocation");
 
         return 0;
+    }
+
+
+    @Override
+    public boolean glIsEnabled(int capability)
+    {
+        unsupported("glDisable");
+
+        return false;
     }
 
 

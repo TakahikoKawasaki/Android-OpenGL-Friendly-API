@@ -27,6 +27,13 @@ public class GLESImpl11 extends GLESImplBase
 
 
     @Override
+    public int GL_BLEND()
+    {
+        return GLES11.GL_BLEND;
+    }
+
+
+    @Override
     public int GL_COLOR_BUFFER_BIT()
     {
         return GLES11.GL_COLOR_BUFFER_BIT;
@@ -34,9 +41,30 @@ public class GLESImpl11 extends GLESImplBase
 
 
     @Override
+    public int GL_CULL_FACE()
+    {
+        return GLES11.GL_CULL_FACE;
+    }
+
+
+    @Override
     public int GL_DEPTH_BUFFER_BIT()
     {
         return GLES11.GL_DEPTH_BUFFER_BIT;
+    }
+
+
+    @Override
+    public int GL_DEPTH_TEST()
+    {
+        return GLES11.GL_DEPTH_TEST;
+    }
+
+
+    @Override
+    public int GL_DITHER()
+    {
+        return GLES11.GL_DITHER;
     }
 
 
@@ -55,6 +83,41 @@ public class GLESImpl11 extends GLESImplBase
 
 
     @Override
+    public int GL_FALSE()
+    {
+        return GLES11.GL_FALSE;
+    }
+
+
+    @Override
+    public int GL_POLYGON_OFFSET_FILL()
+    {
+        return GLES11.GL_POLYGON_OFFSET_FILL;
+    }
+
+
+    @Override
+    public int GL_SAMPLE_ALPHA_TO_COVERAGE()
+    {
+        return GLES11.GL_SAMPLE_ALPHA_TO_COVERAGE;
+    }
+
+
+    @Override
+    public int GL_SAMPLE_COVERAGE()
+    {
+        return GLES11.GL_SAMPLE_COVERAGE;
+    }
+
+
+    @Override
+    public int GL_SCISSOR_TEST()
+    {
+        return 0;
+    }
+
+
+    @Override
     public int GL_STATIC_DRAW()
     {
         return GLES11.GL_STATIC_DRAW;
@@ -65,6 +128,13 @@ public class GLESImpl11 extends GLESImplBase
     public int GL_STENCIL_BUFFER_BIT()
     {
         return GLES11.GL_STENCIL_BUFFER_BIT;
+    }
+
+
+    @Override
+    public int GL_STENCIL_TEST()
+    {
+        return GLES11.GL_STENCIL_TEST;
     }
 
 
@@ -132,8 +202,29 @@ public class GLESImpl11 extends GLESImplBase
 
 
     @Override
+    public void glDisable(int capability)
+    {
+        GLES11.glDisable(capability);
+    }
+
+
+    @Override
+    public void glEnable(int capability)
+    {
+        GLES11.glEnable(capability);
+    }
+
+
+    @Override
     public void glGenBuffers(int vertexBufferType, int[] vertexBufferIds, int offset)
     {
         GLES11.glGenBuffers(vertexBufferType, vertexBufferIds, offset);
+    }
+
+
+    @Override
+    public boolean glIsEnabled(int capability)
+    {
+        return GLES11.glIsEnabled(capability);
     }
 }

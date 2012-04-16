@@ -24,15 +24,25 @@ import java.nio.IntBuffer;
 public interface GLES
 {
     int GL_ARRAY_BUFFER();
+    int GL_BLEND();
     int GL_COLOR_BUFFER_BIT();
     int GL_COMPILE_STATUS();
+    int GL_CULL_FACE();
     int GL_DEPTH_BUFFER_BIT();
+    int GL_DEPTH_TEST();
+    int GL_DITHER();
     int GL_DYNAMIC_DRAW();
     int GL_ELEMENT_ARRAY_BUFFER();
+    int GL_FALSE();
     int GL_FRAGMENT_SHADER();
     int GL_LINK_STATUS();
+    int GL_POLYGON_OFFSET_FILL();
+    int GL_SAMPLE_ALPHA_TO_COVERAGE();
+    int GL_SAMPLE_COVERAGE();
+    int GL_SCISSOR_TEST();
     int GL_STATIC_DRAW();
     int GL_STENCIL_BUFFER_BIT();
+    int GL_STENCIL_TEST();
     int GL_STREAM_DRAW();
     int GL_TRUE();
     int GL_VERTEX_SHADER();
@@ -123,9 +133,21 @@ public interface GLES
 
 
     /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glDisable.xml">glDisable</a>
+     */
+    void glDisable(int capability);
+
+
+    /**
      * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glDetachShader.xml">glDetachShader</a>
      */
     void glDetachShader(int programId, int shaderId);
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glEnable.xml">glEnable</a>
+     */
+    void glEnable(int capability);
 
 
     /**
@@ -186,6 +208,12 @@ public interface GLES
      * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetUniformLocation.xml">glGetUniformLocation</a>
      */
     int glGetUniformLocation(int programId, String variableName);
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glIsEnabled.xml">glIsEnabled</a>
+     */
+    boolean glIsEnabled(int capability);
 
 
     /**
