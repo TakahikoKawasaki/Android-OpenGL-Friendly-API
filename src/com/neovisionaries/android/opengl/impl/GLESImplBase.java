@@ -179,6 +179,27 @@ public abstract class GLESImplBase implements GLES
 
 
     @Override
+    public void glClearColor(float red, float green, float blue, float alpha)
+    {
+        unsupported("glClearColor");
+    }
+
+
+    @Override
+    public void glClearDepthf(float depth)
+    {
+        unsupported("glClearDepthf");
+    }
+
+
+    @Override
+    public void glClearStencil(int stencil)
+    {
+        unsupported("glClearStencil");
+    }
+
+
+    @Override
     public void glCompileShader(int shaderId)
     {
         unsupported("glCompileShader");

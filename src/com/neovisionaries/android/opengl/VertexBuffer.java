@@ -70,7 +70,7 @@ public class VertexBuffer
      *
      * @see ArrayBuffer#ArrayBuffer()
      * @see ElementArrayBuffer#ElementArrayBuffer()
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glGenBuffers.xml">glGenBuffers</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGenBuffers.xml">glGenBuffers</a>
      */
     protected VertexBuffer(VertexBufferType type) throws GLESException
     {
@@ -121,7 +121,7 @@ public class VertexBuffer
      * @return
      *         The ID of the buffer object assigned by glGenBuffers().
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glGenBuffers.xml">glGenBuffers</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGenBuffers.xml">glGenBuffers</a>
      */
     public int getId()
     {
@@ -146,7 +146,7 @@ public class VertexBuffer
      *
      * @throws IllegalStateException
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glBindBuffer.xml">glBindBuffer</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBindBuffer.xml">glBindBuffer</a>
      */
     public void bind()
     {
@@ -167,7 +167,7 @@ public class VertexBuffer
      * the state of this instance is {@link
      * VertexBufferState#DELETED}.
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glDeleteBuffers.xml">glDeleteBuffers</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glDeleteBuffers.xml">glDeleteBuffers</a>
      */
     public void delete()
     {
@@ -209,7 +209,7 @@ public class VertexBuffer
      * @throws IllegalArgumentException
      *         'data' is null, or 'count' exceeds data.remaining().
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glBufferData.xml">glBufferData</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBufferData.xml">glBufferData</a>
      */
     public void setData(Buffer data, int count, VertexBufferUsage usage)
     {
@@ -313,7 +313,7 @@ public class VertexBuffer
      * @throws IllegalArgumentException
      *         'data' is null, or 'count' exceeds data.remaining().
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glBufferSubData.xml">glBufferSubData</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBufferSubData.xml">glBufferSubData</a>
      */
     public void setSubData(Buffer data, int count, int offset)
     {

@@ -24,7 +24,7 @@ public class ElementArrayBuffer extends VertexBuffer
      *         glGenBuffers() failed.
      *
      * @see VertexBuffer#VertexBuffer(VertexBufferType)
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glGenBuffers.xml">glGenBuffers</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGenBuffers.xml">glGenBuffers</a>
      */
     public ElementArrayBuffer() throws GLESException
     {
@@ -36,7 +36,7 @@ public class ElementArrayBuffer extends VertexBuffer
      * Unbind the element array buffer (call
      * glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0)).
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glBindBuffer.xml">glBindBuffer</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBindBuffer.xml">glBindBuffer</a>
      */
     public static void unbind()
     {

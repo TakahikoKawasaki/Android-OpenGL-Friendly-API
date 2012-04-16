@@ -47,7 +47,7 @@ public class Uniform
      * @throws GLESException
      *         There is no such a uniform variable having the specified name.
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glGetUniformLocation.xml">glGetUniformLocation</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetUniformLocation.xml">glGetUniformLocation</a>
      * @see Program#getUniform(String)
      */
     public Uniform(Program program, String name) throws GLESException
@@ -74,7 +74,7 @@ public class Uniform
      *
      * @return The location of this uniform.
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glGetUniformLocation.xml">glGetUniformLocation</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetUniformLocation.xml">glGetUniformLocation</a>
      */
     public int getLocation()
     {
@@ -97,7 +97,7 @@ public class Uniform
      * @throws IllegalStateException
      *         The state of the program is not {@link ProgramState#LINKED LINKED}.
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glGetUniform.xml">glGetUniformfv</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetUniform.xml">glGetUniformfv</a>
      */
     public FloatBuffer get(Program program, FloatBuffer params)
     {
@@ -136,7 +136,7 @@ public class Uniform
      * @throws IllegalStateException
      *         The state of the program is not {@link ProgramState#LINKED LINKED}.
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glGetUniform.xml">glGetUniformfv</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetUniform.xml">glGetUniformfv</a>
      */
     public float[] get(Program program, float[] params, int offset)
     {
@@ -196,7 +196,7 @@ public class Uniform
      * @throws IllegalStateException
      *         The state of the program is not {@link ProgramState#LINKED LINKED}.
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glGetUniform.xml">glGetUniformiv</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetUniform.xml">glGetUniformiv</a>
      */
     public IntBuffer get(Program program, IntBuffer params)
     {
@@ -235,7 +235,7 @@ public class Uniform
      * @throws IllegalStateException
      *         The state of the program is not {@link ProgramState#LINKED LINKED}.
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glGetUniform.xml">glGetUniformiv</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetUniform.xml">glGetUniformiv</a>
      */
     public int[] get(Program program, int[] params, int offset)
     {
@@ -285,7 +285,7 @@ public class Uniform
      *
      * @param x
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glUniform.xml">glUniform1f</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml">glUniform1f</a>
      */
     public void set1(float x)
     {
@@ -299,7 +299,7 @@ public class Uniform
      * @param count
      * @param values
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glUniform.xml">glUniform1fv</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml">glUniform1fv</a>
      */
     public void set1(int count, FloatBuffer values)
     {
@@ -314,7 +314,7 @@ public class Uniform
      * @param values
      * @param offset
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glUniform.xml">glUniform1fv</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml">glUniform1fv</a>
      */
     public void set1(int count, float[] values, int offset)
     {
@@ -342,7 +342,7 @@ public class Uniform
      *
      * @param x
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glUniform.xml">glUniform1i</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml">glUniform1i</a>
      */
     public void set1(int x)
     {
@@ -356,7 +356,7 @@ public class Uniform
      * @param count
      * @param values
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glUniform.xml">glUniform1iv</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml">glUniform1iv</a>
      */
     public void set1(int count, IntBuffer values)
     {
@@ -371,7 +371,7 @@ public class Uniform
      * @param values
      * @param offset
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glUniform.xml">glUniform1iv</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml">glUniform1iv</a>
      */
     public void set1(int count, int[] values, int offset)
     {
@@ -400,7 +400,7 @@ public class Uniform
      * @param x
      * @param y
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glUniform.xml">glUniform2f</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml">glUniform2f</a>
      */
     public void set2(float x, float y)
     {
@@ -414,7 +414,7 @@ public class Uniform
      * @param count
      * @param values
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glUniform.xml">glUniform2fv</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml">glUniform2fv</a>
      */
     public void set2(int count, FloatBuffer values)
     {
@@ -429,7 +429,7 @@ public class Uniform
      * @param values
      * @param offset
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glUniform.xml">glUniform2fv</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml">glUniform2fv</a>
      */
     public void set2(int count, float[] values, int offset)
     {
@@ -458,7 +458,7 @@ public class Uniform
      * @param x
      * @param y
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glUniform.xml">glUniform2i</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml">glUniform2i</a>
      */
     public void set2(int x, int y)
     {
@@ -472,7 +472,7 @@ public class Uniform
      * @param count
      * @param values
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glUniform.xml">glUniform2iv</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml">glUniform2iv</a>
      */
     public void set2(int count, IntBuffer values)
     {
@@ -487,7 +487,7 @@ public class Uniform
      * @param values
      * @param offset
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glUniform.xml">glUniform2iv</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml">glUniform2iv</a>
      */
     public void set2(int count, int[] values, int offset)
     {
@@ -517,7 +517,7 @@ public class Uniform
      * @param y
      * @param z
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glUniform.xml">glUniform3f</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml">glUniform3f</a>
      */
     public void set3(float x, float y, float z)
     {
@@ -531,7 +531,7 @@ public class Uniform
      * @param count
      * @param values
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glUniform.xml">glUniform3fv</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml">glUniform3fv</a>
      */
     public void set3(int count, FloatBuffer values)
     {
@@ -546,7 +546,7 @@ public class Uniform
      * @param values
      * @param offset
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glUniform.xml">glUniform3fv</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml">glUniform3fv</a>
      */
     public void set3(int count, float[] values, int offset)
     {
@@ -576,7 +576,7 @@ public class Uniform
      * @param y
      * @param z
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glUniform.xml">glUniform3i</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml">glUniform3i</a>
      */
     public void set3(int x, int y, int z)
     {
@@ -590,7 +590,7 @@ public class Uniform
      * @param count
      * @param values
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glUniform.xml">glUniform3iv</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml">glUniform3iv</a>
      */
     public void set3(int count, IntBuffer values)
     {
@@ -605,7 +605,7 @@ public class Uniform
      * @param values
      * @param offset
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glUniform.xml">glUniform3iv</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml">glUniform3iv</a>
      */
     public void set3(int count, int[] values, int offset)
     {
@@ -636,7 +636,7 @@ public class Uniform
      * @param z
      * @param w
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glUniform.xml">glUniform4f</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml">glUniform4f</a>
      */
     public void set4(float x, float y, float z, float w)
     {
@@ -650,7 +650,7 @@ public class Uniform
      * @param count
      * @param values
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glUniform.xml">glUniform4fv</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml">glUniform4fv</a>
      */
     public void set4(int count, FloatBuffer values)
     {
@@ -665,7 +665,7 @@ public class Uniform
      * @param values
      * @param offset
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glUniform.xml">glUniform4fv</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml">glUniform4fv</a>
      */
     public void set4(int count, float[] values, int offset)
     {
@@ -696,7 +696,7 @@ public class Uniform
      * @param z
      * @param w
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glUniform.xml">glUniform4i</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml">glUniform4i</a>
      */
     public void set4(int x, int y, int z, int w)
     {
@@ -710,7 +710,7 @@ public class Uniform
      * @param count
      * @param values
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glUniform.xml">glUniform4iv</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml">glUniform4iv</a>
      */
     public void set4(int count, IntBuffer values)
     {
@@ -725,7 +725,7 @@ public class Uniform
      * @param values
      * @param offset
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glUniform.xml">glUniform4iv</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml">glUniform4iv</a>
      */
     public void set4(int count, int[] values, int offset)
     {
@@ -754,7 +754,7 @@ public class Uniform
      * @param count
      * @param values
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glUniform.xml">glUniformMatrix2fv</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml">glUniformMatrix2fv</a>
      */
     public void setMatrix2(int count, FloatBuffer values)
     {
@@ -769,7 +769,7 @@ public class Uniform
      * @param values
      * @param offset
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glUniform.xml">glUniformMatrix2fv</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml">glUniformMatrix2fv</a>
      */
     public void setMatrix2(int count, float[] values, int offset)
     {
@@ -798,7 +798,7 @@ public class Uniform
      * @param count
      * @param values
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glUniform.xml">glUniformMatrix3fv</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml">glUniformMatrix3fv</a>
      */
     public void setMatrix3(int count, FloatBuffer values)
     {
@@ -813,7 +813,7 @@ public class Uniform
      * @param values
      * @param offset
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glUniform.xml">glUniformMatrix3fv</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml">glUniformMatrix3fv</a>
      */
     public void setMatrix3(int count, float[] values, int offset)
     {
@@ -842,7 +842,7 @@ public class Uniform
      * @param count
      * @param values
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glUniform.xml">glUniformMatrix4fv</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml">glUniformMatrix4fv</a>
      */
     public void setMatrix4(int count, FloatBuffer values)
     {
@@ -857,7 +857,7 @@ public class Uniform
      * @param values
      * @param offset
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glUniform.xml">glUniformMatrix4fv</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUniform.xml">glUniformMatrix4fv</a>
      */
     public void setMatrix4(int count, float[] values, int offset)
     {

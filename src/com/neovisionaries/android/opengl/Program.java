@@ -114,8 +114,8 @@ public class Program
      * @throws GLESException
      *        glCreateProgram() failed. 
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glCreateProgram.xml">glCreateProgram</a>
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glAttachShader.xml">glAttachShader</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glCreateProgram.xml">glCreateProgram</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glAttachShader.xml">glAttachShader</a>
      */
     public Program(Shader... shaders) throws GLESException
     {
@@ -149,7 +149,7 @@ public class Program
      * @return
      *         The program ID assigned to this program.
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glCreateProgram.xml">glCreateProgram</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glCreateProgram.xml">glCreateProgram</a>
      */
     public int getId()
     {
@@ -179,7 +179,7 @@ public class Program
      * explicitly before this method returns.
      * </p>
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glDeleteProgram.xml">glDeleteProgram</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glDeleteProgram.xml">glDeleteProgram</a>
      */
     public void delete()
     {
@@ -254,7 +254,7 @@ public class Program
      * @throws IllegalStateException
      *         This program has already been deleted.
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glAttachShader.xml">glAttachShader</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glAttachShader.xml">glAttachShader</a>
      */
     public Program attach(Shader shader)
     {
@@ -328,7 +328,7 @@ public class Program
      * @throws IllegalStateException
      *         This program has already been deleted.
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glDetachShader.xml">glDetachShader</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glDetachShader.xml">glDetachShader</a>
      */
     public Program detach(Shader shader)
     {
@@ -410,7 +410,7 @@ public class Program
      * @throws GLESException
      *         glLinkProgram() or glCompileShader() failed.
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glLinkProgram.xml">glLinkProgram</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glLinkProgram.xml">glLinkProgram</a>
      */
     public Program link() throws GLESException
     {
@@ -476,7 +476,7 @@ public class Program
      * @return
      *         A log text.
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glGetProgramInfoLog.xml">glGetProgramInfoLog</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetProgramInfoLog.xml">glGetProgramInfoLog</a>
      */
     private String getLog()
     {
@@ -497,7 +497,7 @@ public class Program
      * @throws GLESException
      *         Linking failed.
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glUseProgram.xml">glUseProgram</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUseProgram.xml">glUseProgram</a>
      */
     public Program use() throws GLESException
     {
@@ -517,7 +517,7 @@ public class Program
     /**
      * Call glUseProgram(0).
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glUseProgram.xml">glUseProgram</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUseProgram.xml">glUseProgram</a>
      */
     public static void unuse()
     {

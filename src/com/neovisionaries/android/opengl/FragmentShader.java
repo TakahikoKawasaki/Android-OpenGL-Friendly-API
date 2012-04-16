@@ -21,7 +21,7 @@ public class FragmentShader extends Shader
      *         glCreateShader() failed.
      *
      * @see Shader#Shader(ShaderType)
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glCreateShader.xml">glCreateShader</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glCreateShader.xml">glCreateShader</a>
      */
     public FragmentShader() throws GLESException
     {
@@ -46,8 +46,8 @@ public class FragmentShader extends Shader
      *         glCreateShader() failed.
      *
      * @see Shader#Shader(ShaderType, String)
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glCreateShader.xml">glCreateShader</a>
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glShaderSource.xml">glShaderSource</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glCreateShader.xml">glCreateShader</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glShaderSource.xml">glShaderSource</a>
      */
     public FragmentShader(String source) throws GLESException
     {

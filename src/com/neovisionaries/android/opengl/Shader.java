@@ -76,7 +76,7 @@ public class Shader
      *
      * @see VertexShader#VertexShader()
      * @see FragmentShader#FragmentShader()
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glCreateShader.xml">glCreateShader</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glCreateShader.xml">glCreateShader</a>
      */
     protected Shader(ShaderType type) throws GLESException
     {
@@ -118,8 +118,8 @@ public class Shader
      *
      * @see VertexShader#VertexShader(String)
      * @see FragmentShader#FragmentShader(String)
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glCreateShader.xml">glCreateShader</a>
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glShaderSource.xml">glShaderSource</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glCreateShader.xml">glCreateShader</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glShaderSource.xml">glShaderSource</a>
      */
     protected Shader(ShaderType type, String source) throws GLESException
     {
@@ -146,7 +146,7 @@ public class Shader
      * @return
      *         The shader ID assigned to this shader.
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glCreateShader.xml">glCreateShader</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glCreateShader.xml">glCreateShader</a>
      */
     public int getId()
     {
@@ -183,7 +183,7 @@ public class Shader
      * the {@link Program} instance is deleted.
      * </p>
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glDeleteShader.xml">glDeleteShader</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glDeleteShader.xml">glDeleteShader</a>
      * @see Program#setDeleteShadersOnDelete(boolean)
      */
     public void delete()
@@ -231,7 +231,7 @@ public class Shader
      * @throws IllegalStateException
      *         This shader has already been deleted.
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glShaderSource.xml">glShaderSource</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glShaderSource.xml">glShaderSource</a>
      */
     public Shader setSource(String source)
     {
@@ -276,7 +276,7 @@ public class Shader
      * @throws GLESException
      *         glCompileShader() failed.
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glCompileShader.xml">glCompileShader</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glCompileShader.xml">glCompileShader</a>
      */
     public Shader compile() throws GLESException
     {
@@ -338,7 +338,7 @@ public class Shader
      * @return
      *         A log text.
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glGetShaderInfoLog.xml">glGetShaderInfoLog</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetShaderInfoLog.xml">glGetShaderInfoLog</a>
      */
     private String getLog()
     {
@@ -350,7 +350,7 @@ public class Shader
      * Tell the GLES implementation that resources used by the shader
      * compiler can be released.
      *
-     * @see <a href="http://www.opengl.org/sdk/docs/man4/xhtml/glReleaseShaderCompiler.xml">glReleaseShaderCompiler</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glReleaseShaderCompiler.xml">glReleaseShaderCompiler</a>
      */
     public static void releaseCompiler()
     {

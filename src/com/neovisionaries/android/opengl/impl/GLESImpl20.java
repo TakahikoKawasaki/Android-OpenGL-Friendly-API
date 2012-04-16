@@ -147,6 +147,27 @@ public class GLESImpl20 extends GLESImplBase
 
 
     @Override
+    public void glClearColor(float red, float green, float blue, float alpha)
+    {
+        GLES20.glClearColor(red, green, blue, alpha);
+    }
+
+
+    @Override
+    public void glClearDepthf(float depth)
+    {
+        GLES20.glClearDepthf(depth);
+    }
+
+
+    @Override
+    public void glClearStencil(int stencil)
+    {
+        GLES20.glClearStencil(stencil);
+    }
+
+
+    @Override
     public void glCompileShader(int shaderId)
     {
         GLES20.glCompileShader(shaderId);
