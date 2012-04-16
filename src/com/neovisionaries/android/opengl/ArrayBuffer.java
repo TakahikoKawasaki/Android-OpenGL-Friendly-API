@@ -5,7 +5,7 @@ package com.neovisionaries.android.opengl;
 
 
 /**
- * OpenGL vertex buffer of array type.
+ * OpenGL ES vertex buffer of array type.
  *
  * @author Takahiko Kawasaki
  */

@@ -14,8 +14,7 @@ import com.neovisionaries.android.opengl.GLES;
  * 
  * @author Takahiko Kawasaki
  * 
- * @see <a
- *      href="http://developer.android.com/reference/android/opengl/GLES11.html">android.opengl.GLES11</a>
+ * @see <a href="http://developer.android.com/reference/android/opengl/GLES11.html">android.opengl.GLES11</a>
  */
 public class GLESImpl11 extends GLESImplBase
 {

@@ -5,7 +5,7 @@ package com.neovisionaries.android.opengl;
 
 
 /**
- * OpenGL vertex buffer usage.
+ * OpenGL ES vertex buffer usage.
  * 
  * @author Takahiko Kawasaki
  */

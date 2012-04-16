@@ -10,7 +10,7 @@ import static com.neovisionaries.android.opengl.VertexBufferState.DELETED;
 
 
 /**
- * OpenGL vertex buffer.
+ * OpenGL ES vertex buffer.
  *
  * <pre style="background: lightgray;">
  * <span style="color: darkgreen;">// <b>E X A M P L E   1</b></span>

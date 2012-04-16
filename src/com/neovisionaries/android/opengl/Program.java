@@ -14,7 +14,7 @@ import static com.neovisionaries.android.opengl.ProgramState.LINKED;
 
 
 /**
- * OpenGL Shader Program.
+ * OpenGL ES shader program.
  *
  * <pre style="background: lightgray;">
  * <span style="color: darkgreen;">// <b>E X A M P L E   1</b></span>

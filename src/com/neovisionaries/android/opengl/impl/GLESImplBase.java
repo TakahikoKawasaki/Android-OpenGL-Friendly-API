@@ -15,7 +15,7 @@ import com.neovisionaries.android.opengl.GLES;
  *
  * <ol>
  * <li>All gl* methods throw UnsupportedOperationException.
- * <li>All GL_* methods except {@link GL_TRUE()} return 0.
+ * <li>All GL_* methods except {@link #GL_TRUE()} return 0.
  * <li>{@link #GL_TRUE()} return 1.
  * </ol>
  * 

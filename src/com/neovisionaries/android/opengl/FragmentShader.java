@@ -5,7 +5,7 @@ package com.neovisionaries.android.opengl;
 
 
 /**
- * OpenGL fragment shader.
+ * OpenGL ES fragment shader.
  *
  * @author Takahiko Kawasaki
  */

@@ -5,7 +5,7 @@ package com.neovisionaries.android.opengl;
 
 
 /**
- * OpenGL vertex shader.
+ * OpenGL ES vertex shader.
  *
  * @author Takahiko Kawasaki
  */

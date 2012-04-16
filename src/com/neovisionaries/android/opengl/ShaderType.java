@@ -5,7 +5,7 @@ package com.neovisionaries.android.opengl;
 
 
 /**
- * OpenGL shader type.
+ * OpenGL ES shader type.
  *
  * @author Takahiko Kawasaki
  */
