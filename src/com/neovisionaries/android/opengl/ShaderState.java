@@ -13,13 +13,16 @@ public enum ShaderState
 {
     /**
      * The shader has been created.
+     *
+     * @see Shader#Shader(ShaderType)
      */
     CREATED,
 
 
     /**
      * A shader source has been set.
-     * 
+     *
+     * @see Shader#Shader(ShaderType, String)
      * @see Shader#setSource(String)
      */
     SOURCE_SET,

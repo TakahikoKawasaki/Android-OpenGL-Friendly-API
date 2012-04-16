@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import android.opengl.GLES20;
 import static com.neovisionaries.android.opengl.ProgramState.NEEDS_LINKING;
 import static com.neovisionaries.android.opengl.ProgramState.DELETED;
 import static com.neovisionaries.android.opengl.ProgramState.LINKED;
@@ -121,7 +120,7 @@ public class Program
     public Program(Shader... shaders) throws GLESException
     {
         // Create a program.
-        id = GLES20.glCreateProgram();
+        id = getGLES().glCreateProgram();
 
         // Check the result of glCreateProgram().
         if (id == 0)
@@ -227,7 +226,7 @@ public class Program
         }
 
         // Delete this program.
-        GLES20.glDeleteProgram(id);
+        getGLES().glDeleteProgram(id);
 
         // This program was deleted.
         state = DELETED;
@@ -285,10 +284,23 @@ public class Program
     }
 
 
+    /**
+     * Attach a shader to this program.
+     *
+     * <ol>
+     * <li>Call glAttachShader().
+     * <li>Put the shader into {@link #shaderMap}.
+     * <li>Change the {@link #state} to {@link ProgramState#NEEDS_LINKING}.
+     * <li>Call {@link Shader#onAttached(Program)} of the shader.
+     * </ol>
+     *
+     * @param shader
+     *         A shader to attach to this program.
+     */
     private void attachInternal(Shader shader)
     {
         // Attach the shader to this program.
-        GLES20.glAttachShader(id, shader.getId());
+        getGLES().glAttachShader(id, shader.getId());
 
         // The shader was attached.
         shaderMap.put(shader.getId(), shader);
@@ -347,10 +359,23 @@ public class Program
     }
 
 
+    /**
+     * Detach a shader from this program.
+     *
+     * <ol>
+     * <li>Call glDetachShader().
+     * <li>Remove the shader from {@link #shaderMap}.
+     * <li>Change the {@link #state} to {@link ProgramState#NEEDS_LINKING}.
+     * <li>Call {@link Shader#onDetached(Program)} of the shader.
+     * </ol>
+     *
+     * @param shader
+     *         A shader to detach from this program.
+     */
     private void detachInternal(Shader shader)
     {
         // Detach the shader from this program.
-        GLES20.glDetachShader(id, shader.getId());
+        getGLES().glDetachShader(id, shader.getId());
 
         // The shader was detached.
         shaderMap.remove(shader.getId());
@@ -410,7 +435,7 @@ public class Program
         }
 
         // Link the attached shaders.
-        GLES20.glLinkProgram(id);
+        getGLES().glLinkProgram(id);
 
         // Check if the shaders have been linked successfully.
         if (getLinkStatus() == false)
@@ -433,13 +458,15 @@ public class Program
      */
     private boolean getLinkStatus()
     {
+        GLES gles = getGLES();
+
         int[] status = new int[1];
 
         // Get the result of linking.
-        GLES20.glGetProgramiv(id, GLES20.GL_LINK_STATUS, status, 0);
+        gles.glGetProgramiv(id, gles.GL_LINK_STATUS(), status, 0);
 
         // GL_TRUE is returned if the linking has succeeded.
-        return (status[0] == GLES20.GL_TRUE);
+        return (status[0] == gles.GL_TRUE());
     }
 
 
@@ -453,7 +480,7 @@ public class Program
      */
     private String getLog()
     {
-        return GLES20.glGetProgramInfoLog(id);
+        return getGLES().glGetProgramInfoLog(id);
     }
 
 
@@ -481,7 +508,7 @@ public class Program
         }
 
         // Use this program.
-        GLES20.glUseProgram(id);
+        getGLES().glUseProgram(id);
 
         return this;
     }
@@ -494,7 +521,7 @@ public class Program
      */
     public static void unuse()
     {
-        GLES20.glUseProgram(0);
+        getGLES().glUseProgram(0);
     }
 
 
@@ -532,7 +559,7 @@ public class Program
         }
 
         // Detach the shader from this program.
-        GLES20.glDetachShader(id, shader.getId());
+        getGLES().glDetachShader(id, shader.getId());
 
         // The shader was detached.
         shaderMap.remove(shader.getId());
@@ -574,5 +601,17 @@ public class Program
         this.deleteShadersOnDelete = delete;
 
         return this;
+    }
+
+
+    /**
+     * Get an implementation of GLES interface.
+     *
+     * @return
+     *         An object implementing GLES interface.
+     */
+    private static GLES getGLES()
+    {
+        return GLESFactory.getInstance();
     }
 }

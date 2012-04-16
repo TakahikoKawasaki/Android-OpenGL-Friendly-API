@@ -4,9 +4,6 @@
 package com.neovisionaries.android.opengl;
 
 
-import android.opengl.GLES20;
-
-
 /**
  * OpenGL shader type.
  *
@@ -15,15 +12,15 @@ import android.opengl.GLES20;
 public enum ShaderType
 {
     /**
-     * Vertex shader.
+     * Vertex shader (GL_VERTEX_SHADER).
      */
-    VERTEX(GLES20.GL_VERTEX_SHADER),
+    VERTEX(GLESFactory.getInstance().GL_VERTEX_SHADER()),
 
 
     /**
-     * Fragment shader.
+     * Fragment shader (GL_FRAGMENT_SHADER).
      */
-    FRAGMENT(GLES20.GL_FRAGMENT_SHADER)
+    FRAGMENT(GLESFactory.getInstance().GL_FRAGMENT_SHADER())
     ;
 
 
@@ -37,7 +34,7 @@ public enum ShaderType
      * A constructor with a shader type.
      *
      * @param type
-     *         GLES20.GL_VERTEX_SHADER or GLES20.GL_FRAGMENT_SHADER.
+     *         GL_VERTEX_SHADER or GL_FRAGMENT_SHADER.
      */
     private ShaderType(int type)
     {
@@ -49,7 +46,7 @@ public enum ShaderType
      * Get the integer representing the type of this shader.
      *
      * @return
-     *         GLES20.GL_VERTEX_SHADER or GLES20.GL_FRAGMENT_SHADER.
+     *         GL_VERTEX_SHADER or GL_FRAGMENT_SHADER.
      */
     public int getType()
     {

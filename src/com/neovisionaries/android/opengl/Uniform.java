@@ -6,7 +6,6 @@ package com.neovisionaries.android.opengl;
 
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
-import android.opengl.GLES20;
 
 
 /**
@@ -60,7 +59,7 @@ public class Uniform
         }
 
         // Get the location of the uniform having the specified name.
-        location = GLES20.glGetUniformLocation(program.getId(), name);
+        location = getGLES().glGetUniformLocation(program.getId(), name);
 
         if (location == -1)
         {
@@ -114,7 +113,7 @@ public class Uniform
             throw new IllegalStateException("Program is not linked.");
         }
 
-        GLES20.glGetUniformfv(program.getId(), location, params);
+        getGLES().glGetUniformfv(program.getId(), location, params);
 
         return params;
     }
@@ -153,7 +152,7 @@ public class Uniform
             throw new IllegalStateException("Program is not linked.");
         }
 
-        GLES20.glGetUniformfv(program.getId(), location, params, offset);
+        getGLES().glGetUniformfv(program.getId(), location, params, offset);
 
         return params;
     }
@@ -213,7 +212,7 @@ public class Uniform
             throw new IllegalStateException("Program is not linked.");
         }
 
-        GLES20.glGetUniformiv(program.getId(), location, params);
+        getGLES().glGetUniformiv(program.getId(), location, params);
 
         return params;
     }
@@ -252,7 +251,7 @@ public class Uniform
             throw new IllegalStateException("Program is not linked.");
         }
 
-        GLES20.glGetUniformiv(program.getId(), location, params, offset);
+        getGLES().glGetUniformiv(program.getId(), location, params, offset);
 
         return params;
     }
@@ -290,7 +289,7 @@ public class Uniform
      */
     public void set1(float x)
     {
-        GLES20.glUniform1f(location, x);
+        getGLES().glUniform1f(location, x);
     }
 
 
@@ -304,7 +303,7 @@ public class Uniform
      */
     public void set1(int count, FloatBuffer values)
     {
-        GLES20.glUniform1fv(location, count, values);
+        getGLES().glUniform1fv(location, count, values);
     }
 
 
@@ -319,7 +318,7 @@ public class Uniform
      */
     public void set1(int count, float[] values, int offset)
     {
-        GLES20.glUniform1fv(location, count, values, offset);
+        getGLES().glUniform1fv(location, count, values, offset);
     }
 
 
@@ -347,7 +346,7 @@ public class Uniform
      */
     public void set1(int x)
     {
-        GLES20.glUniform1i(location, x);
+        getGLES().glUniform1i(location, x);
     }
 
 
@@ -361,7 +360,7 @@ public class Uniform
      */
     public void set1(int count, IntBuffer values)
     {
-        GLES20.glUniform1iv(location, count, values);
+        getGLES().glUniform1iv(location, count, values);
     }
 
 
@@ -376,7 +375,7 @@ public class Uniform
      */
     public void set1(int count, int[] values, int offset)
     {
-        GLES20.glUniform1iv(location, count, values, offset);
+        getGLES().glUniform1iv(location, count, values, offset);
     }
 
 
@@ -405,7 +404,7 @@ public class Uniform
      */
     public void set2(float x, float y)
     {
-        GLES20.glUniform2f(location, x, y);
+        getGLES().glUniform2f(location, x, y);
     }
 
 
@@ -419,7 +418,7 @@ public class Uniform
      */
     public void set2(int count, FloatBuffer values)
     {
-        GLES20.glUniform2fv(location, count, values);
+        getGLES().glUniform2fv(location, count, values);
     }
 
 
@@ -434,7 +433,7 @@ public class Uniform
      */
     public void set2(int count, float[] values, int offset)
     {
-        GLES20.glUniform2fv(location, count, values, offset);
+        getGLES().glUniform2fv(location, count, values, offset);
     }
 
 
@@ -463,7 +462,7 @@ public class Uniform
      */
     public void set2(int x, int y)
     {
-        GLES20.glUniform2i(location, x, y);
+        getGLES().glUniform2i(location, x, y);
     }
 
 
@@ -477,7 +476,7 @@ public class Uniform
      */
     public void set2(int count, IntBuffer values)
     {
-        GLES20.glUniform2iv(location, count, values);
+        getGLES().glUniform2iv(location, count, values);
     }
 
 
@@ -492,7 +491,7 @@ public class Uniform
      */
     public void set2(int count, int[] values, int offset)
     {
-        GLES20.glUniform2iv(location, count, values, offset);
+        getGLES().glUniform2iv(location, count, values, offset);
     }
 
 
@@ -522,7 +521,7 @@ public class Uniform
      */
     public void set3(float x, float y, float z)
     {
-        GLES20.glUniform3f(location, x, y, z);
+        getGLES().glUniform3f(location, x, y, z);
     }
 
 
@@ -536,7 +535,7 @@ public class Uniform
      */
     public void set3(int count, FloatBuffer values)
     {
-        GLES20.glUniform3fv(location, count, values);
+        getGLES().glUniform3fv(location, count, values);
     }
 
 
@@ -551,7 +550,7 @@ public class Uniform
      */
     public void set3(int count, float[] values, int offset)
     {
-        GLES20.glUniform3fv(location, count, values, offset);
+        getGLES().glUniform3fv(location, count, values, offset);
     }
 
 
@@ -581,7 +580,7 @@ public class Uniform
      */
     public void set3(int x, int y, int z)
     {
-        GLES20.glUniform3i(location, x, y, z);
+        getGLES().glUniform3i(location, x, y, z);
     }
 
 
@@ -595,7 +594,7 @@ public class Uniform
      */
     public void set3(int count, IntBuffer values)
     {
-        GLES20.glUniform3iv(location, count, values);
+        getGLES().glUniform3iv(location, count, values);
     }
 
 
@@ -610,7 +609,7 @@ public class Uniform
      */
     public void set3(int count, int[] values, int offset)
     {
-        GLES20.glUniform3iv(location, count, values, offset);
+        getGLES().glUniform3iv(location, count, values, offset);
     }
 
 
@@ -641,7 +640,7 @@ public class Uniform
      */
     public void set4(float x, float y, float z, float w)
     {
-        GLES20.glUniform4f(location, x, y, z, w);
+        getGLES().glUniform4f(location, x, y, z, w);
     }
 
 
@@ -655,7 +654,7 @@ public class Uniform
      */
     public void set4(int count, FloatBuffer values)
     {
-        GLES20.glUniform4fv(location, count, values);
+        getGLES().glUniform4fv(location, count, values);
     }
 
 
@@ -670,7 +669,7 @@ public class Uniform
      */
     public void set4(int count, float[] values, int offset)
     {
-        GLES20.glUniform4fv(location, count, values, offset);
+        getGLES().glUniform4fv(location, count, values, offset);
     }
 
 
@@ -701,7 +700,7 @@ public class Uniform
      */
     public void set4(int x, int y, int z, int w)
     {
-        GLES20.glUniform4i(location, x, y, z, w);
+        getGLES().glUniform4i(location, x, y, z, w);
     }
 
 
@@ -715,7 +714,7 @@ public class Uniform
      */
     public void set4(int count, IntBuffer values)
     {
-        GLES20.glUniform4iv(location, count, values);
+        getGLES().glUniform4iv(location, count, values);
     }
 
 
@@ -730,7 +729,7 @@ public class Uniform
      */
     public void set4(int count, int[] values, int offset)
     {
-        GLES20.glUniform4iv(location, count, values, offset);
+        getGLES().glUniform4iv(location, count, values, offset);
     }
 
 
@@ -759,7 +758,7 @@ public class Uniform
      */
     public void setMatrix2(int count, FloatBuffer values)
     {
-        GLES20.glUniformMatrix2fv(location, count, false, values);
+        getGLES().glUniformMatrix2fv(location, count, false, values);
     }
 
 
@@ -774,7 +773,7 @@ public class Uniform
      */
     public void setMatrix2(int count, float[] values, int offset)
     {
-        GLES20.glUniformMatrix2fv(location, count, false, values, offset);
+        getGLES().glUniformMatrix2fv(location, count, false, values, offset);
     }
 
 
@@ -803,7 +802,7 @@ public class Uniform
      */
     public void setMatrix3(int count, FloatBuffer values)
     {
-        GLES20.glUniformMatrix3fv(location, count, false, values);
+        getGLES().glUniformMatrix3fv(location, count, false, values);
     }
 
 
@@ -818,7 +817,7 @@ public class Uniform
      */
     public void setMatrix3(int count, float[] values, int offset)
     {
-        GLES20.glUniformMatrix3fv(location, count, false, values, offset);
+        getGLES().glUniformMatrix3fv(location, count, false, values, offset);
     }
 
 
@@ -847,7 +846,7 @@ public class Uniform
      */
     public void setMatrix4(int count, FloatBuffer values)
     {
-        GLES20.glUniformMatrix4fv(location, count, false, values);
+        getGLES().glUniformMatrix4fv(location, count, false, values);
     }
 
 
@@ -862,7 +861,7 @@ public class Uniform
      */
     public void setMatrix4(int count, float[] values, int offset)
     {
-        GLES20.glUniformMatrix4fv(location, count, false, values, offset);
+        getGLES().glUniformMatrix4fv(location, count, false, values, offset);
     }
 
 
@@ -1173,5 +1172,17 @@ public class Uniform
             default:
                 throw new IllegalArgumentException();
         }
+    }
+
+
+    /**
+     * Get an implementation of GLES interface.
+     *
+     * @return
+     *         An object implementing GLES interface.
+     */
+    private static GLES getGLES()
+    {
+        return GLESFactory.getInstance();
     }
 }

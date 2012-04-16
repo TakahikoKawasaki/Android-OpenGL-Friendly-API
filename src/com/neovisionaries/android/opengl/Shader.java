@@ -6,7 +6,6 @@ package com.neovisionaries.android.opengl;
 
 import java.util.LinkedList;
 import java.util.List;
-import android.opengl.GLES20;
 import static com.neovisionaries.android.opengl.ShaderState.COMPILED;
 import static com.neovisionaries.android.opengl.ShaderState.CREATED;
 import static com.neovisionaries.android.opengl.ShaderState.DELETED;
@@ -75,6 +74,8 @@ public class Shader
      * @throws GLESException
      *         glCreateShader() failed.
      *
+     * @see VertexShader#VertexShader()
+     * @see FragmentShader#FragmentShader()
      * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glCreateShader.xml">glCreateShader</a>
      */
     protected Shader(ShaderType type) throws GLESException
@@ -87,7 +88,7 @@ public class Shader
         }
 
         // Create a shader of the given type.
-        id = GLES20.glCreateShader(type.getType());
+        id = getGLES().glCreateShader(type.getType());
 
         // Check the result of glCreateShader().
         if (id == 0)
@@ -115,6 +116,8 @@ public class Shader
      * @throws GLESException
      *         glCreateShader() failed.
      *
+     * @see VertexShader#VertexShader(String)
+     * @see FragmentShader#FragmentShader(String)
      * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glCreateShader.xml">glCreateShader</a>
      * @see <a href="http://www.opengl.org/sdk/docs/man/xhtml/glShaderSource.xml">glShaderSource</a>
      */
@@ -130,7 +133,7 @@ public class Shader
         }
 
         // Set the given string as a shader source code.
-        GLES20.glShaderSource(id, source);
+        getGLES().glShaderSource(id, source);
 
         // A shader source was set.
         state = SOURCE_SET;
@@ -193,7 +196,7 @@ public class Shader
         }
 
         // Delete this shader.
-        GLES20.glDeleteShader(id);
+        getGLES().glDeleteShader(id);
 
         // This shader was deleted.
         state = DELETED;
@@ -247,7 +250,7 @@ public class Shader
         }
 
         // Set the given string as a shader source code.
-        GLES20.glShaderSource(id, source);
+        getGLES().glShaderSource(id, source);
 
         // A shader source was set.
         state = SOURCE_SET;
@@ -293,7 +296,7 @@ public class Shader
         }
 
         // Compile the source code.
-        GLES20.glCompileShader(id);
+        getGLES().glCompileShader(id);
 
         // Check if the source code has been compiled successfully.
         if (getCompileStatus() == false)
@@ -317,13 +320,15 @@ public class Shader
      */
     private boolean getCompileStatus()
     {
+        GLES gles = getGLES();
+
         int[] status = new int[1];
 
         // Get the result of compilation.
-        GLES20.glGetShaderiv(id, GLES20.GL_COMPILE_STATUS, status, 0);
+        gles.glGetShaderiv(id, gles.GL_COMPILE_STATUS(), status, 0);
 
         // GL_TRUE is returned if the compilation has succeeded.
-        return (status[0] == GLES20.GL_TRUE);
+        return (status[0] == gles.GL_TRUE());
     }
 
 
@@ -337,7 +342,7 @@ public class Shader
      */
     private String getLog()
     {
-        return GLES20.glGetShaderInfoLog(id);
+        return getGLES().glGetShaderInfoLog(id);
     }
 
 
@@ -349,7 +354,7 @@ public class Shader
      */
     public static void releaseCompiler()
     {
-        GLES20.glReleaseShaderCompiler();
+        getGLES().glReleaseShaderCompiler();
     }
 
 
@@ -382,5 +387,17 @@ public class Shader
         {
             programList.remove(program);
         }
+    }
+
+
+    /**
+     * Get an implementation of GLES interface.
+     *
+     * @return
+     *         An object implementing GLES interface.
+     */
+    private static GLES getGLES()
+    {
+        return GLESFactory.getInstance();
     }
 }

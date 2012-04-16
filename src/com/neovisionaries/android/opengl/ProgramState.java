@@ -13,6 +13,10 @@ public enum ProgramState
 {
     /**
      * The program needs linking before use.
+     *
+     * @see Program#Program(Shader...)
+     * @see Program#attach(Shader)
+     * @see Program#detach(Shader)
      */
     NEEDS_LINKING,
 
