@@ -1,22 +1,69 @@
-This project provides Java API for Android that is much more
-intuitively understandable than the low-level OpenGL API.
+                Android OpenGL Friendly API
 
-To be concrete, for example, creating a shader and compiling
-it with the Java API provided by this project looks like the
-following:
+Purpose
+-------
 
-    Shader shader = new VertexShader("......").compile();
+The purpose of this project is to provide Java API for Android
+that is much more intuitively understandable than the low-level
+OpenGL ES API.
 
-If you like this style than the code below with the low-level
-OpenGL API, try to use the outcome of this project.
+To be concrete, for example, creating a shader program with a
+vertex shader and a fragment shader and using the program can
+be written like the following with the API provided by this
+project:
 
-    int shaderId = GLES20.glCreateShader(GLES20.GL_VERTEX_SHADER);
-    GLES20.glShaderSource(shaderId, "......");
-    GLES20.glCompileShader(shaderId);
+    Program program = new Program(
+                              new VertexShader("..."),
+                              new FragmentShader("...")
+                      ).setDeleteShadersOnDelete(true);
 
-This project assumes OpenGL ES 2.0, so the minimum Android API
-level is 8 (Android 2.2).
+    program.use();
+    program.delete();
+
+instead of the code like below with the low-level OpenGL ES API.
+
+    int vShader = GLES20.glCreateShader(GLES20.GL_VERTEX_SHADER);
+    GLES20.glShaderSource(vShader, "...");
+    GLES20.glCompileShader(vShader);
+
+    int fShader = GLES20.glCreateShader(GLES20.GL_FRAGMENT_SHADER);
+    GLES20.glShaderSource(fShader, "...");
+    GLES20.glCompileShader(fShader);
+
+    int program = GLES20.glCreateProgram();
+    GLES20.glAttachShader(program, vShader);
+    GLES20.glAttachShader(program, fShader);
+    GLES20.glLinkProgram(program);
+
+    GLES20.glUseProgram(program);
+
+    GLES20.glDetachShader(program, vShader);
+    GLES20.glDeleteShader(vShader);
+
+    GLES20.glDetachShader(program, fShader);
+    GLES20.glDeleteShader(fShader);
+
+    GLES20.glDeleteProgram(program);
 
 
-2012-Apr-14
+Supported OpenGL ES Versions
+----------------------------
+
+OpenGL ES 1.1 and 2.0 are supported. The internal implementation
+carefully avoids referring to android.opengl.GLES11 and GLES20
+directly. See GLESFactory for details.
+
+OpenGL ES 1.1 and OpenGL ES 2.0 have been supported since Android
+1.6 (API Level 4) and Android 2.2 (API Level 8), respectively.
+
+
+Current Status of Development
+-----------------------------
+
+Just started, so there are many OpenGL ES features that are not
+covered by this project yet.
+
+
+--------------------
+2012-Apr-17
 Takahiko Kawasaki
