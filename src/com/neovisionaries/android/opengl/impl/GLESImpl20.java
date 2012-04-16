@@ -18,7 +18,7 @@ import com.neovisionaries.android.opengl.GLES;
  *
  * @see <a href="http://developer.android.com/reference/android/opengl/GLES20.html">android.opengl.GLES20</a>
  */
-public class GLESImpl20 extends GLESImplBase implements GLES
+public class GLESImpl20 extends GLESImplBase
 {
     @Override
     public int GL_ARRAY_BUFFER()
@@ -28,9 +28,23 @@ public class GLESImpl20 extends GLESImplBase implements GLES
 
 
     @Override
+    public int GL_COLOR_BUFFER_BIT()
+    {
+        return GLES20.GL_COLOR_BUFFER_BIT;
+    }
+
+
+    @Override
     public int GL_COMPILE_STATUS()
     {
         return GLES20.GL_COMPILE_STATUS;
+    }
+
+
+    @Override
+    public int GL_DEPTH_BUFFER_BIT()
+    {
+        return GLES20.GL_DEPTH_BUFFER_BIT;
     }
 
 
@@ -66,6 +80,13 @@ public class GLESImpl20 extends GLESImplBase implements GLES
     public int GL_STATIC_DRAW()
     {
         return GLES20.GL_STATIC_DRAW;
+    }
+
+
+    @Override
+    public int GL_STENCIL_BUFFER_BIT()
+    {
+        return GLES20.GL_STENCIL_BUFFER_BIT;
     }
 
 
@@ -119,9 +140,9 @@ public class GLESImpl20 extends GLESImplBase implements GLES
 
 
     @Override
-    public int glCreateProgram()
+    public void glClear(int mask)
     {
-        return GLES20.glCreateProgram();
+        GLES20.glClear(mask);
     }
 
 
@@ -129,6 +150,13 @@ public class GLESImpl20 extends GLESImplBase implements GLES
     public void glCompileShader(int shaderId)
     {
         GLES20.glCompileShader(shaderId);
+    }
+
+
+    @Override
+    public int glCreateProgram()
+    {
+        return GLES20.glCreateProgram();
     }
 
 

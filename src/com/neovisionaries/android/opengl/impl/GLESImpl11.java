@@ -17,12 +17,26 @@ import com.neovisionaries.android.opengl.GLES;
  * @see <a
  *      href="http://developer.android.com/reference/android/opengl/GLES11.html">android.opengl.GLES11</a>
  */
-public class GLESImpl11 extends GLESImplBase implements GLES
+public class GLESImpl11 extends GLESImplBase
 {
     @Override
     public int GL_ARRAY_BUFFER()
     {
         return GLES11.GL_ARRAY_BUFFER;
+    }
+
+
+    @Override
+    public int GL_COLOR_BUFFER_BIT()
+    {
+        return GLES11.GL_COLOR_BUFFER_BIT;
+    }
+
+
+    @Override
+    public int GL_DEPTH_BUFFER_BIT()
+    {
+        return GLES11.GL_DEPTH_BUFFER_BIT;
     }
 
 
@@ -44,6 +58,13 @@ public class GLESImpl11 extends GLESImplBase implements GLES
     public int GL_STATIC_DRAW()
     {
         return GLES11.GL_STATIC_DRAW;
+    }
+
+
+    @Override
+    public int GL_STENCIL_BUFFER_BIT()
+    {
+        return GLES11.GL_STENCIL_BUFFER_BIT;
     }
 
 
@@ -72,6 +93,13 @@ public class GLESImpl11 extends GLESImplBase implements GLES
     public void glBufferSubData(int vertexBufferType, int offset, int size, Buffer data)
     {
         GLES11.glBufferSubData(vertexBufferType, offset, size, data);
+    }
+
+
+    @Override
+    public void glClear(int mask)
+    {
+        GLES11.glClear(mask);
     }
 
 

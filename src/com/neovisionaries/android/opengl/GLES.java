@@ -24,12 +24,15 @@ import java.nio.IntBuffer;
 public interface GLES
 {
     int GL_ARRAY_BUFFER();
+    int GL_COLOR_BUFFER_BIT();
     int GL_COMPILE_STATUS();
+    int GL_DEPTH_BUFFER_BIT();
     int GL_DYNAMIC_DRAW();
     int GL_ELEMENT_ARRAY_BUFFER();
     int GL_FRAGMENT_SHADER();
     int GL_LINK_STATUS();
     int GL_STATIC_DRAW();
+    int GL_STENCIL_BUFFER_BIT();
     int GL_STREAM_DRAW();
     int GL_TRUE();
     int GL_VERTEX_SHADER();
@@ -57,6 +60,12 @@ public interface GLES
      * <a href="http://www.opengl.org/sdk/docs/man/xhtml/glBufferData.xml">glBufferSubData</a>
      */
     void glBufferSubData(int vertexBufferType, int offset, int size, Buffer data);
+
+
+    /**
+     * <a href="http://www.opengl.org/sdk/docs/man/xhtml/glClear.xml">glClear</a>
+     */
+    void glClear(int mask);
 
 
     /**

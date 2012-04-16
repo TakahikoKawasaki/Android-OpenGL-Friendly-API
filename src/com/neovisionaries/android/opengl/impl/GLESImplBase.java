@@ -36,9 +36,27 @@ public abstract class GLESImplBase implements GLES
 
 
     @Override
+    public int GL_COLOR_BUFFER_BIT()
+    {
+        unsupported("GL_COLOR_BUFFER_BIT");
+
+        return 0;
+    }
+
+
+    @Override
     public int GL_COMPILE_STATUS()
     {
         unsupported("GL_COMPILE_STATUS");
+
+        return 0;
+    }
+
+
+    @Override
+    public int GL_DEPTH_BUFFER_BIT()
+    {
+        unsupported("GL_DEPTH_BUFFER_BIT");
 
         return 0;
     }
@@ -84,6 +102,15 @@ public abstract class GLESImplBase implements GLES
     public int GL_STATIC_DRAW()
     {
         unsupported("GL_STATIC_DRAW");
+
+        return 0;
+    }
+
+
+    @Override
+    public int GL_STENCIL_BUFFER_BIT()
+    {
+        unsupported("GL_STENCIL_BUFFER_BIT");
 
         return 0;
     }
@@ -141,6 +168,13 @@ public abstract class GLESImplBase implements GLES
     public void glBufferSubData(int vertexBufferType, int offset, int size, Buffer data)
     {
         unsupported("glBufferSubData");
+    }
+
+
+    @Override
+    public void glClear(int mask)
+    {
+        unsupported("glClear");
     }
 
 
