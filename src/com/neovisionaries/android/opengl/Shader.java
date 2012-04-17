@@ -4,6 +4,8 @@
 package com.neovisionaries.android.opengl;
 
 
+import java.io.File;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import static com.neovisionaries.android.opengl.ShaderState.COMPILED;
@@ -111,7 +113,7 @@ public class Shader
      *         A shader source code.
      *
      * @throws IllegalArgumentException
-     *         The given shader source is null.
+     *         Either or both of the arguments are null.
      *
      * @throws GLESException
      *         glCreateShader() failed.
@@ -137,6 +139,37 @@ public class Shader
 
         // A shader source was set.
         state = SOURCE_SET;
+    }
+
+
+    /**
+     * A constructor with a shader type and a shader source file.
+     * After this constructor returns, the state of this instance
+     * is {@link ShaderState#SOURCE_SET}.
+     *
+     * @param type
+     *         {@link ShaderType#VERTEX} or {@link ShaderType#FRAGMENT}.
+     *
+     * @param file
+     *         A file whose content is a shader source code.
+     *
+     * @throws IllegalArgumentException
+     *         Either or both of the arguments are null.
+     *
+     * @throws IOException
+     *         Failed to read the content of the given file.
+     *
+     * @throws GLESException
+     *         glCreateShader() failed.
+     *
+     * @see VertexShader#VertexShader(File)
+     * @see FragmentShader#FragmentShader(File)
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glCreateShader.xml">glCreateShader</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glShaderSource.xml">glShaderSource</a>
+     */
+    protected Shader(ShaderType type, File file) throws IOException, GLESException
+    {
+        this(type, GLESHelper.toString(file));
     }
 
 

@@ -4,6 +4,10 @@
 package com.neovisionaries.android.opengl;
 
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
@@ -12,6 +16,7 @@ import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.nio.LongBuffer;
 import java.nio.ShortBuffer;
+import java.nio.charset.Charset;
 
 
 /**
@@ -148,6 +153,132 @@ public final class GLESHelper
         else
         {
             return 0;
+        }
+    }
+
+
+    /**
+     * Convert the content of the given file to a String instance.
+     * This method calls {@link #toString(File, Charset)
+     * toString}(file, null).
+     *
+     * @param file
+     *         A File instance.
+     *
+     * @return
+     *         The content of the file.
+     *
+     * @throws IOException
+     *         The file size is too big, or some other general I/O
+     *         error occurred.
+     */
+    public static String toString(File file) throws IOException
+    {
+        return toString(file, null);
+    }
+
+
+    /**
+     * Convert the content of the given file to a String instance.
+     *
+     * @param file
+     *         A File instance.
+     *
+     * @param charset
+     *         The character set of the content of the file. If null
+     *         is given, the default character set of the platform
+     *         is used.
+     *
+     * @return
+     *         The content of the file.
+     *
+     * @throws IllegalArgumentException
+     *         'file' argument is null.
+     *
+     * @throws IOException
+     *         The file size is too big, or some other general I/O
+     *         error occurred.
+     */
+    public static String toString(File file, Charset charset) throws IOException
+    {
+        if (file == null)
+        {
+            // Error. 'file' argument is mandatory.
+            throw new IllegalArgumentException("file is null.");
+        }
+
+        if (charset == null)
+        {
+            // Use the default charset of the platform.
+            charset = Charset.defaultCharset();
+        }
+
+        if (Integer.MAX_VALUE < file.length())
+        {
+            // The file size is too big.
+            throw tooBig(file, null);
+        }
+
+        // InputStream to read the content of the file from.
+        BufferedInputStream in = new BufferedInputStream(new FileInputStream(file));
+
+        try
+        {
+            // Create a byte array having the same size as the file.
+            byte[] content = new byte[(int)file.length()];
+
+            // Read all the bytes of the file into the byte array.
+            in.read(content);
+
+            // Convert the byte array into a String instance.
+            return new String(content, charset);
+        }
+        catch (OutOfMemoryError e)
+        {
+            // The file size is too big.
+            throw tooBig(file, e);
+        }
+        finally
+        {
+            try
+            {
+                // Close the file.
+                in.close();
+            }
+            catch (IOException e)
+            {
+            }
+        }
+    }
+
+
+    /**
+     * Create an IOException instance having a message to indicate
+     * that the given file is too big.
+     *
+     * @param file
+     *         The file related to the IOException.
+     *
+     * @param cause
+     *         The cause of the IOException. null is OK.
+     *
+     * @return
+     *         An IOException instance having a message to indicate
+     *         that the given file is too big.
+     */
+    private static IOException tooBig(File file, Throwable cause)
+    {
+        String format = "The file '%s' is too big (%,d bytes).";
+
+        String message = String.format(format, file.getAbsolutePath(), file.length());
+
+        if (cause != null)
+        {
+            return new IOException(message, cause);
+        }
+        else
+        {
+            return new IOException(message);
         }
     }
 }

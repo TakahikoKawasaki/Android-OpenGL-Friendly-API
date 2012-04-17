@@ -4,6 +4,10 @@
 package com.neovisionaries.android.opengl;
 
 
+import java.io.File;
+import java.io.IOException;
+
+
 /**
  * OpenGL ES vertex shader.
  *
@@ -52,5 +56,34 @@ public class VertexShader extends Shader
     public VertexShader(String source) throws GLESException
     {
         super(ShaderType.VERTEX, source);
+    }
+
+
+    /**
+     * A constructor with a shader source file. {@link
+     * Shader#Shader(ShaderType, File) super}({@link
+     * ShaderType#VERTEX}, file) is called. After
+     * this constructor returns, the state of this
+     * instance is {@link ShaderState#SOURCE_SET}.
+     *
+     * @param file
+     *         A file whose content is a shader source code.
+     *
+     * @throws IllegalArgumentException
+     *         The argument is null.
+     *
+     * @throws IOException
+     *         Failed to read the content of the given file.
+     *
+     * @throws GLESException
+     *         glCreateShader() failed.
+     *
+     * @see Shader#Shader(ShaderType, File)
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glCreateShader.xml">glCreateShader</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glShaderSource.xml">glShaderSource</a>
+     */
+    public VertexShader(File file) throws IOException, GLESException
+    {
+        super(ShaderType.VERTEX, file);
     }
 }
