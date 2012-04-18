@@ -5,6 +5,8 @@ package com.neovisionaries.android.opengl.impl;
 
 
 import java.nio.Buffer;
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
 import android.opengl.GLES11;
 import com.neovisionaries.android.opengl.GLES;
 
@@ -89,6 +91,20 @@ public class GLESImpl11 extends GLESImplBase
 
 
     @Override
+    public void glFinish()
+    {
+        GLES11.glFinish();
+    }
+
+
+    @Override
+    public void glFlush()
+    {
+        GLES11.glFlush();
+    }
+
+
+    @Override
     public void glGenBuffers(int vertexBufferType, int[] vertexBufferIds, int offset)
     {
         GLES11.glGenBuffers(vertexBufferType, vertexBufferIds, offset);
@@ -96,8 +112,71 @@ public class GLESImpl11 extends GLESImplBase
 
 
     @Override
+    public void glGetBooleanv(int parameterId, IntBuffer params)
+    {
+        GLES11.glGetBooleanv(parameterId, params);
+    }
+
+
+    @Override
+    public void glGetBooleanv(int parameterId, boolean[] params, int offset)
+    {
+        GLES11.glGetBooleanv(parameterId, params, offset);
+    }
+
+
+    @Override
+    public int glGetError()
+    {
+        return GLES11.glGetError();
+    }
+
+
+    @Override
+    public void glGetFloatv(int parameterId, FloatBuffer params)
+    {
+        GLES11.glGetFloatv(parameterId, params);
+    }
+
+
+    @Override
+    public void glGetFloatv(int parameterId, float[] params, int offset)
+    {
+        GLES11.glGetFloatv(parameterId, params, offset);
+    }
+
+
+    @Override
+    public void glGetIntegerv(int parameterId, IntBuffer params)
+    {
+        GLES11.glGetIntegerv(parameterId, params);
+    }
+
+
+    @Override
+    public void glGetIntegerv(int parameterId, int[] params, int offset)
+    {
+        GLES11.glGetIntegerv(parameterId, params, offset);
+    }
+
+
+    @Override
+    public String glGetString(int parameterId)
+    {
+        return GLES11.glGetString(parameterId);
+    }
+
+
+    @Override
     public boolean glIsEnabled(int capability)
     {
         return GLES11.glIsEnabled(capability);
+    }
+
+
+    @Override
+    public void glViewport(int x, int y, int width, int height)
+    {
+        GLES11.glViewport(x, y, width, height);
     }
 }

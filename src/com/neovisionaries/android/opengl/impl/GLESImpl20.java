@@ -28,6 +28,13 @@ public class GLESImpl20 extends GLESImplBase
 
 
     @Override
+    public void glBindAttribLocation(int programId, int attributeIndex, String attributeName)
+    {
+        GLES20.glBindAttribLocation(programId, attributeIndex, attributeName);
+    }
+
+
+    @Override
     public void glBindBuffer(int vertexBufferType, int vertexBufferId)
     {
         GLES20.glBindBuffer(vertexBufferType, vertexBufferId);
@@ -154,9 +161,79 @@ public class GLESImpl20 extends GLESImplBase
 
 
     @Override
+    public void glFinish()
+    {
+        GLES20.glFinish();
+    }
+
+
+    @Override
+    public void glFlush()
+    {
+        GLES20.glFlush();
+    }
+
+
+    @Override
     public void glGenBuffers(int vertexBufferType, int[] vertexBufferIds, int offset)
     {
         GLES20.glGenBuffers(vertexBufferType, vertexBufferIds, offset);
+    }
+
+
+    @Override
+    public int glGetAttribLocation(int programId, String attributeName)
+    {
+        return GLES20.glGetAttribLocation(programId, attributeName);
+    }
+
+
+    @Override
+    public void glGetBooleanv(int parameterId, IntBuffer params)
+    {
+        GLES20.glGetBooleanv(parameterId, params);
+    }
+
+
+    @Override
+    public void glGetBooleanv(int parameterId, boolean[] params, int offset)
+    {
+        GLES20.glGetBooleanv(parameterId, params, offset);
+    }
+
+
+    @Override
+    public int glGetError()
+    {
+        return GLES20.glGetError();
+    }
+
+
+    @Override
+    public void glGetFloatv(int parameterId, FloatBuffer params)
+    {
+        GLES20.glGetFloatv(parameterId, params);
+    }
+
+
+    @Override
+    public void glGetFloatv(int parameterId, float[] params, int offset)
+    {
+        GLES20.glGetFloatv(parameterId, params, offset);
+    }
+
+
+    @Override
+    public void glGetIntegerv(int parameterId, IntBuffer params)
+    {
+        GLES20.glGetIntegerv(parameterId, params);
+    }
+
+
+    @Override
+    public void glGetIntegerv(int parameterId, int[] params, int offset)
+    {
+        GLES20.glGetIntegerv(parameterId, params, offset);
     }
 
 
@@ -168,9 +245,9 @@ public class GLESImpl20 extends GLESImplBase
 
 
     @Override
-    public void glGetProgramiv(int programId, int parameterName, int[] params, int offset)
+    public void glGetProgramiv(int programId, int parameterId, int[] params, int offset)
     {
-        GLES20.glGetProgramiv(programId, parameterName, params, offset);
+        GLES20.glGetProgramiv(programId, parameterId, params, offset);
     }
 
 
@@ -182,9 +259,16 @@ public class GLESImpl20 extends GLESImplBase
 
 
     @Override
-    public void glGetShaderiv(int shaderId, int parameterName, int[] params, int offset)
+    public void glGetShaderiv(int shaderId, int parameterId, int[] params, int offset)
     {
-        GLES20.glGetShaderiv(shaderId, parameterName, params, offset);
+        GLES20.glGetShaderiv(shaderId, parameterId, params, offset);
+    }
+
+
+    @Override
+    public String glGetString(int parameterId)
+    {
+        return GLES20.glGetString(parameterId);
     }
 
 
@@ -465,5 +549,12 @@ public class GLESImpl20 extends GLESImplBase
     public void glUseProgram(int programId)
     {
         GLES20.glUseProgram(programId);
+    }
+
+
+    @Override
+    public void glViewport(int x, int y, int width, int height)
+    {
+        GLES20.glViewport(x, y, width, height);
     }
 }

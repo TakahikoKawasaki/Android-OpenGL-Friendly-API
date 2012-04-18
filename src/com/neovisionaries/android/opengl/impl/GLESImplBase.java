@@ -2744,6 +2744,13 @@ public abstract class GLESImplBase implements GLES
 
 
     @Override
+    public void glBindAttribLocation(int programId, int attributeIndex, String attributeName)
+    {
+        unsupported("glBindAttribLocation");
+    }
+
+
+    @Override
     public void glBindBuffer(int vertexBufferType, int vertexBufferId)
     {
         unsupported("glBindBuffer");
@@ -2874,9 +2881,83 @@ public abstract class GLESImplBase implements GLES
 
 
     @Override
+    public void glFinish()
+    {
+        unsupported("glFinish");
+    }
+
+
+    @Override
+    public void glFlush()
+    {
+        unsupported("glFlush");
+    }
+
+
+    @Override
     public void glGenBuffers(int vertexBufferType, int[] vertexBufferIds, int offset)
     {
         unsupported("glGenBuffers");
+    }
+
+
+    @Override
+    public int glGetAttribLocation(int programId, String attributeName)
+    {
+        unsupported("glGetAttribLocation");
+
+        return 0;
+    }
+
+
+    @Override
+    public void glGetBooleanv(int parameterId, boolean[] params, int offset)
+    {
+        unsupported("glGetBooleanv");
+    }
+
+
+    @Override
+    public void glGetBooleanv(int parameterId, IntBuffer params)
+    {
+        unsupported("glGetBooleanv");
+    }
+
+
+    @Override
+    public int glGetError()
+    {
+        unsupported("glGetError");
+
+        return 0;
+    }
+
+
+    @Override
+    public void glGetFloatv(int parameterId, FloatBuffer params)
+    {
+        unsupported("glGetFloatv");
+    }
+
+
+    @Override
+    public void glGetFloatv(int parameterId, float[] params, int offset)
+    {
+        unsupported("glGetFloatv");
+    }
+
+
+    @Override
+    public void glGetIntegerv(int parameterId, IntBuffer params)
+    {
+        unsupported("glGetIntegerv");
+    }
+
+
+    @Override
+    public void glGetIntegerv(int parameterId, int[] params, int offset)
+    {
+        unsupported("glGetIntegerv");
     }
 
 
@@ -2890,7 +2971,7 @@ public abstract class GLESImplBase implements GLES
 
 
     @Override
-    public void glGetProgramiv(int programId, int parameterName, int[] params, int offset)
+    public void glGetProgramiv(int programId, int parameterId, int[] params, int offset)
     {
         unsupported("glGetProgramiv");
     }
@@ -2906,9 +2987,18 @@ public abstract class GLESImplBase implements GLES
 
 
     @Override
-    public void glGetShaderiv(int shaderId, int parameterName, int[] params, int offset)
+    public void glGetShaderiv(int shaderId, int parameterId, int[] params, int offset)
     {
         unsupported("glGetShaderiv");
+    }
+
+
+    @Override
+    public String glGetString(int parameterId)
+    {
+        unsupported("glGetString");
+
+        return null;
     }
 
 
@@ -3193,6 +3283,13 @@ public abstract class GLESImplBase implements GLES
     public void glUseProgram(int programId)
     {
         unsupported("glUseProgram");
+    }
+
+
+    @Override
+    public void glViewport(int x, int y, int width, int height)
+    {
+        unsupported("glViewport");
     }
 
 

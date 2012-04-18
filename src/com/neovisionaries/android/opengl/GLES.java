@@ -419,6 +419,12 @@ public interface GLES
 
 
     /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBindAttribLocation.xml">glBindAttribLocation</a>
+     */
+    void glBindAttribLocation(int programId, int attributeIndex, String attributeName);
+
+
+    /**
      * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBindBuffer.xml">glBindBuffer</a>
      */
     void glBindBuffer(int vertexBufferType, int vertexBufferId);
@@ -527,9 +533,69 @@ public interface GLES
 
 
     /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glFinish.xml">glFinish</a>
+     */
+    void glFinish();
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glFlush.xml">glFlush</a>
+     */
+    void glFlush();
+
+
+    /**
      * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGenBuffers.xml">glGenBuffers</a>
      */
     void glGenBuffers(int vertexBufferType, int[] vertexBufferIds, int offset);
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetAttribLocation.xml">glGetAttribLocation</a>
+     */
+    int glGetAttribLocation(int programId, String attributeName);
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGet.xml">glGetBooleanv</a>
+     */
+    void glGetBooleanv(int parameterId, IntBuffer params);
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGet.xml">glGetBooleanv</a>
+     */
+    void glGetBooleanv(int parameterId, boolean[] params, int offset);
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetError.xml">glGetError</a>
+     */
+    int glGetError();
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGet.xml">glGetFloatv</a>
+     */
+    void glGetFloatv(int parameterId, FloatBuffer params);
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGet.xml">glGetFloatv</a>
+     */
+    void glGetFloatv(int parameterId, float[] params, int offset);
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGet.xml">glGetIntegerv</a>
+     */
+    void glGetIntegerv(int parameterId, IntBuffer params);
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGet.xml">glGetIntegerv</a>
+     */
+    void glGetIntegerv(int parameterId, int[] params, int offset);
 
 
     /**
@@ -541,7 +607,7 @@ public interface GLES
     /**
      * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetProgramiv.xml">glGetProgramiv</a>
      */
-    void glGetProgramiv(int programId, int parameterName, int[] params, int offset);
+    void glGetProgramiv(int programId, int parameterId, int[] params, int offset);
 
 
     /**
@@ -553,7 +619,13 @@ public interface GLES
     /**
      * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetShaderiv.xml">glGetShaderiv</a>
      */
-    void glGetShaderiv(int shaderId, int parameterName, int[] params, int offset);
+    void glGetShaderiv(int shaderId, int parameterId, int[] params, int offset);
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetString.xml">glGettring</a>
+     */
+    String glGetString(int parameterId);
 
 
     /**
@@ -794,4 +866,10 @@ public interface GLES
      * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUseProgram.xml">glUseProgram</a>
      */
     void glUseProgram(int programId);
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glViewport.xml">glViewport</a>
+     */
+    void glViewport(int x, int y, int width, int height);
 }
