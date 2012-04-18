@@ -63,6 +63,13 @@ public abstract class GLESImplBase implements GLES
 
 
     @Override
+    public int GL_ADD_SIGNED()
+    {
+        return 0x00008574;
+    }
+
+
+    @Override
     public int GL_ALIASED_LINE_WIDTH_RANGE()
     {
         return 0x0000846e;
@@ -87,6 +94,27 @@ public abstract class GLESImplBase implements GLES
     public int GL_ALPHA_BITS()
     {
         return 0x00000d55;
+    }
+
+
+    @Override
+    public int GL_ALPHA_SCALE()
+    {
+        return 0x00000d1c;
+    }
+
+
+    @Override
+    public int GL_ALPHA_TEST_FUNC()
+    {
+        return 0x00000bc1;
+    }
+
+
+    @Override
+    public int GL_ALPHA_TEST_REF()
+    {
+        return 0x00000bc2;
     }
 
 
@@ -140,6 +168,13 @@ public abstract class GLESImplBase implements GLES
 
 
     @Override
+    public int GL_BLEND_DST()
+    {
+        return 0x00000be0;
+    }
+
+
+    @Override
     public int GL_BLEND_DST_ALPHA()
     {
         return 0x000080ca;
@@ -171,6 +206,13 @@ public abstract class GLESImplBase implements GLES
     public int GL_BLEND_EQUATION_RGB()
     {
         return 0x00008009;
+    }
+
+
+    @Override
+    public int GL_BLEND_SRC()
+    {
+        return 0x00000be1;
     }
 
 
@@ -224,6 +266,13 @@ public abstract class GLESImplBase implements GLES
 
 
     @Override
+    public int GL_BUFFER_ACCESS()
+    {
+        return 0x000088bb;
+    }
+
+
+    @Override
     public int GL_BUFFER_SIZE()
     {
         return 0x00008764;
@@ -259,6 +308,90 @@ public abstract class GLESImplBase implements GLES
 
 
     @Override
+    public int GL_CLIENT_ACTIVE_TEXTURE()
+    {
+        return 0x000084e1;
+    }
+
+
+    @Override
+    public int GL_CLIP_PLANE0()
+    {
+        return 0x00003000;
+    }
+
+
+    @Override
+    public int GL_CLIP_PLANE1()
+    {
+        return 0x00003001;
+    }
+
+
+    @Override
+    public int GL_CLIP_PLANE2()
+    {
+        return 0x00003002;
+    }
+
+
+    @Override
+    public int GL_CLIP_PLANE3()
+    {
+        return 0x00003003;
+    }
+
+
+    @Override
+    public int GL_CLIP_PLANE4()
+    {
+        return 0x00003004;
+    }
+
+
+    @Override
+    public int GL_CLIP_PLANE5()
+    {
+        return 0x00003005;
+    }
+
+
+    @Override
+    public int GL_COLOR_ARRAY_BUFFER_BINDING()
+    {
+        return 0x00008898;
+    }
+
+
+    @Override
+    public int GL_COLOR_ARRAY_POINTER()
+    {
+        return 0x00008090;
+    }
+
+
+    @Override
+    public int GL_COLOR_ARRAY_SIZE()
+    {
+        return 0x00008081;
+    }
+
+
+    @Override
+    public int GL_COLOR_ARRAY_STRIDE()
+    {
+        return 0x00008083;
+    }
+
+
+    @Override
+    public int GL_COLOR_ARRAY_TYPE()
+    {
+        return 0x00008082;
+    }
+
+
+    @Override
     public int GL_COLOR_ATTACHMENT0()
     {
         return 0x00008ce0;
@@ -287,6 +420,27 @@ public abstract class GLESImplBase implements GLES
 
 
     @Override
+    public int GL_COMBINE()
+    {
+        return 0x00008570;
+    }
+
+
+    @Override
+    public int GL_COMBINE_ALPHA()
+    {
+        return 0x00008572;
+    }
+
+
+    @Override
+    public int GL_COMBINE_RGB()
+    {
+        return 0x00008571;
+    }
+
+
+    @Override
     public int GL_COMPILE_STATUS()
     {
         return 0x00008b81;
@@ -297,6 +451,13 @@ public abstract class GLESImplBase implements GLES
     public int GL_COMPRESSED_TEXTURE_FORMATS()
     {
         return 0x000086a3;
+    }
+
+
+    @Override
+    public int GL_CONSTANT()
+    {
+        return 0x00008576;
     }
 
 
@@ -315,6 +476,13 @@ public abstract class GLESImplBase implements GLES
 
 
     @Override
+    public int GL_COORD_REPLACE_OES()
+    {
+        return 0x00008862;
+    }
+
+
+    @Override
     public int GL_CULL_FACE()
     {
         return 0x00000b44;
@@ -329,9 +497,30 @@ public abstract class GLESImplBase implements GLES
 
 
     @Override
+    public int GL_CURRENT_COLOR()
+    {
+        return 0x00000b00;
+    }
+
+
+    @Override
+    public int GL_CURRENT_NORMAL()
+    {
+        return 0x00000b02;
+    }
+
+
+    @Override
     public int GL_CURRENT_PROGRAM()
     {
         return 0x00008b8d;
+    }
+
+
+    @Override
+    public int GL_CURRENT_TEXTURE_COORDS()
+    {
+        return 0x00000b03;
     }
 
 
@@ -451,6 +640,20 @@ public abstract class GLESImplBase implements GLES
     public int GL_DONT_CARE()
     {
         return 0x00001100;
+    }
+
+
+    @Override
+    public int GL_DOT3_RGB()
+    {
+        return 0x000086ae;
+    }
+
+
+    @Override
+    public int GL_DOT3_RGBA()
+    {
+        return 0x000086af;
     }
 
 
@@ -700,6 +903,13 @@ public abstract class GLESImplBase implements GLES
 
 
     @Override
+    public int GL_GENERATE_MIPMAP()
+    {
+        return 0x00008191;
+    }
+
+
+    @Override
     public int GL_GENERATE_MIPMAP_HINT()
     {
         return 0x00008192;
@@ -780,6 +990,13 @@ public abstract class GLESImplBase implements GLES
     public int GL_INT()
     {
         return 0x00001404;
+    }
+
+
+    @Override
+    public int GL_INTERPOLATE()
+    {
+        return 0x00008575;
     }
 
 
@@ -917,6 +1134,13 @@ public abstract class GLESImplBase implements GLES
 
 
     @Override
+    public int GL_LOGIC_OP_MODE()
+    {
+        return 0x00000bf0;
+    }
+
+
+    @Override
     public int GL_LOW_FLOAT()
     {
         return 0x00008df0;
@@ -941,6 +1165,20 @@ public abstract class GLESImplBase implements GLES
     public int GL_LUMINANCE_ALPHA()
     {
         return 0x0000190a;
+    }
+
+
+    @Override
+    public int GL_MATRIX_MODE()
+    {
+        return 0x00000ba0;
+    }
+
+
+    @Override
+    public int GL_MAX_CLIP_PLANES()
+    {
+        return 0x00000d32;
     }
 
 
@@ -1043,6 +1281,27 @@ public abstract class GLESImplBase implements GLES
 
 
     @Override
+    public int GL_MODELVIEW_MATRIX()
+    {
+        return 0x00000ba6;
+    }
+
+
+    @Override
+    public int GL_MODELVIEW_MATRIX_FLOAT_AS_INT_BITS_OES()
+    {
+        return 0x0000898d;
+    }
+
+
+    @Override
+    public int GL_MODELVIEW_STACK_DEPTH()
+    {
+        return 0x00000ba3;
+    }
+
+
+    @Override
     public int GL_NEAREST()
     {
         return 0x00002600;
@@ -1081,6 +1340,27 @@ public abstract class GLESImplBase implements GLES
     public int GL_NONE()
     {
         return 0x00000000;
+    }
+
+
+    @Override
+    public int GL_NORMAL_ARRAY_POINTER()
+    {
+        return 0x0000808f;
+    }
+
+
+    @Override
+    public int GL_NORMAL_ARRAY_STRIDE()
+    {
+        return 0x0000807f;
+    }
+
+
+    @Override
+    public int GL_NORMAL_ARRAY_TYPE()
+    {
+        return 0x0000807e;
     }
 
 
@@ -1162,6 +1442,48 @@ public abstract class GLESImplBase implements GLES
 
 
     @Override
+    public int GL_OPERAND0_ALPHA()
+    {
+        return 0x00008598;
+    }
+
+
+    @Override
+    public int GL_OPERAND0_RGB()
+    {
+        return 0x00008590;
+    }
+
+
+    @Override
+    public int GL_OPERAND1_ALPHA()
+    {
+        return 0x00008599;
+    }
+
+
+    @Override
+    public int GL_OPERAND1_RGB()
+    {
+        return 0x00008591;
+    }
+
+
+    @Override
+    public int GL_OPERAND2_ALPHA()
+    {
+        return 0x0000859a;
+    }
+
+
+    @Override
+    public int GL_OPERAND2_RGB()
+    {
+        return 0x00008592;
+    }
+
+
+    @Override
     public int GL_OUT_OF_MEMORY()
     {
         return 0x00000505;
@@ -1183,6 +1505,83 @@ public abstract class GLESImplBase implements GLES
 
 
     @Override
+    public int GL_POINT_DISTANCE_ATTENUATION()
+    {
+        return 0x00008129;
+    }
+
+
+    @Override
+    public int GL_POINT_FADE_THRESHOLD_SIZE()
+    {
+        return 0x00008128;
+    }
+
+
+    @Override
+    public int GL_POINT_SIZE()
+    {
+        return 0x00000b11;
+    }
+
+
+    @Override
+    public int GL_POINT_SIZE_ARRAY_BUFFER_BINDING_OES()
+    {
+        return 0x00008b9f;
+    }
+
+
+    @Override
+    public int GL_POINT_SIZE_ARRAY_OES()
+    {
+        return 0x00008b9c;
+    }
+
+
+    @Override
+    public int GL_POINT_SIZE_ARRAY_POINTER_OES()
+    {
+        return 0x0000898c;
+    }
+
+
+    @Override
+    public int GL_POINT_SIZE_ARRAY_STRIDE_OES()
+    {
+        return 0x0000898b;
+    }
+
+
+    @Override
+    public int GL_POINT_SIZE_ARRAY_TYPE_OES()
+    {
+        return 0x0000898a;
+    }
+
+
+    @Override
+    public int GL_POINT_SIZE_MAX()
+    {
+        return 0x00008127;
+    }
+
+
+    @Override
+    public int GL_POINT_SIZE_MIN()
+    {
+        return 0x00008126;
+    }
+
+
+    @Override
+    public int GL_POINT_SPRITE_OES()
+    {
+        return 0x00008861;
+    }
+
+
+    @Override
     public int GL_POLYGON_OFFSET_FACTOR()
     {
         return 0x00008038;
@@ -1200,6 +1599,41 @@ public abstract class GLESImplBase implements GLES
     public int GL_POLYGON_OFFSET_UNITS()
     {
         return 0x00002a00;
+    }
+
+
+    @Override
+    public int GL_PREVIOUS()
+    {
+        return 0x00008578;
+    }
+
+
+    @Override
+    public int GL_PRIMARY_COLOR()
+    {
+        return 0x00008577;
+    }
+
+
+    @Override
+    public int GL_PROJECTION_MATRIX()
+    {
+        return 0x00000ba7;
+    }
+
+
+    @Override
+    public int GL_PROJECTION_MATRIX_FLOAT_AS_INT_BITS_OES()
+    {
+        return 0x0000898e;
+    }
+
+
+    @Override
+    public int GL_PROJECTION_STACK_DEPTH()
+    {
+        return 0x00000ba4;
     }
 
 
@@ -1344,6 +1778,13 @@ public abstract class GLESImplBase implements GLES
 
 
     @Override
+    public int GL_RGB_SCALE()
+    {
+        return 0x00008573;
+    }
+
+
+    @Override
     public int GL_SAMPLER_2D()
     {
         return 0x00008b5e;
@@ -1442,6 +1883,13 @@ public abstract class GLESImplBase implements GLES
 
 
     @Override
+    public int GL_SHADE_MODEL()
+    {
+        return 0x00000b54;
+    }
+
+
+    @Override
     public int GL_SHADING_LANGUAGE_VERSION()
     {
         return 0x00008b8c;
@@ -1452,6 +1900,48 @@ public abstract class GLESImplBase implements GLES
     public int GL_SHORT()
     {
         return 0x00001402;
+    }
+
+
+    @Override
+    public int GL_SRC0_ALPHA()
+    {
+        return 0x00008588;
+    }
+
+
+    @Override
+    public int GL_SRC0_RGB()
+    {
+        return 0x00008580;
+    }
+
+
+    @Override
+    public int GL_SRC1_ALPHA()
+    {
+        return 0x00008589;
+    }
+
+
+    @Override
+    public int GL_SRC1_RGB()
+    {
+        return 0x00008581;
+    }
+
+
+    @Override
+    public int GL_SRC2_ALPHA()
+    {
+        return 0x0000858a;
+    }
+
+
+    @Override
+    public int GL_SRC2_RGB()
+    {
+        return 0x00008582;
     }
 
 
@@ -1641,6 +2131,13 @@ public abstract class GLESImplBase implements GLES
     public int GL_SUBPIXEL_BITS()
     {
         return 0x00000d50;
+    }
+
+
+    @Override
+    public int GL_SUBTRACT()
+    {
+        return 0x000084e7;
     }
 
 
@@ -1897,6 +2394,41 @@ public abstract class GLESImplBase implements GLES
 
 
     @Override
+    public int GL_TEXTURE_COORD_ARRAY_BUFFER_BINDING()
+    {
+        return 0x0000889a;
+    }
+
+
+    @Override
+    public int GL_TEXTURE_COORD_ARRAY_POINTER()
+    {
+        return 0x00008092;
+    }
+
+
+    @Override
+    public int GL_TEXTURE_COORD_ARRAY_SIZE()
+    {
+        return 0x00008088;
+    }
+
+
+    @Override
+    public int GL_TEXTURE_COORD_ARRAY_STRIDE()
+    {
+        return 0x0000808a;
+    }
+
+
+    @Override
+    public int GL_TEXTURE_COORD_ARRAY_TYPE()
+    {
+        return 0x00008089;
+    }
+
+
+    @Override
     public int GL_TEXTURE_CUBE_MAP()
     {
         return 0x00008513;
@@ -1953,9 +2485,30 @@ public abstract class GLESImplBase implements GLES
 
 
     @Override
+    public int GL_TEXTURE_MATRIX()
+    {
+        return 0x00000ba8;
+    }
+
+
+    @Override
+    public int GL_TEXTURE_MATRIX_FLOAT_AS_INT_BITS_OES()
+    {
+        return 0x0000898f;
+    }
+
+
+    @Override
     public int GL_TEXTURE_MIN_FILTER()
     {
         return 0x00002801;
+    }
+
+
+    @Override
+    public int GL_TEXTURE_STACK_DEPTH()
+    {
+        return 0x00000ba5;
     }
 
 
@@ -2072,6 +2625,41 @@ public abstract class GLESImplBase implements GLES
 
 
     @Override
+    public int GL_VERTEX_ARRAY_BUFFER_BINDING()
+    {
+        return 0x00008896;
+    }
+
+
+    @Override
+    public int GL_VERTEX_ARRAY_POINTER()
+    {
+        return 0x0000808e;
+    }
+
+
+    @Override
+    public int GL_VERTEX_ARRAY_SIZE()
+    {
+        return 0x0000807a;
+    }
+
+
+    @Override
+    public int GL_VERTEX_ARRAY_STRIDE()
+    {
+        return 0x0000807c;
+    }
+
+
+    @Override
+    public int GL_VERTEX_ARRAY_TYPE()
+    {
+        return 0x0000807b;
+    }
+
+
+    @Override
     public int GL_VERTEX_ATTRIB_ARRAY_BUFFER_BINDING()
     {
         return 0x0000889f;
@@ -2131,6 +2719,13 @@ public abstract class GLESImplBase implements GLES
     public int GL_VIEWPORT()
     {
         return 0x00000ba2;
+    }
+
+
+    @Override
+    public int GL_WRITE_ONLY()
+    {
+        return 0x000088b9;
     }
 
 
