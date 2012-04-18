@@ -77,7 +77,7 @@ public final class GLESFactory
      * @return
      *         An implementation of {@link GLES} interface.
      *
-     * @throws RuntimeException
+     * @throws UnsupportedOperationException
      *         Failed to create an object implementing {@link GLES}
      *         interface.
      */
@@ -95,7 +95,7 @@ public final class GLESFactory
                 // Failed to create an object implementing GLES interface.
                 String message = "Failed to create an object implementing GLES interface.";
 
-                throw new RuntimeException(message, e);
+                throw new UnsupportedOperationException(message, e);
             }
         }
 
