@@ -139,6 +139,12 @@ public interface GLES
 
 
     /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glDisableVertexAttribArray.xml">glDisableVertexAttribArray</a>
+     */
+    void glDisableVertexAttribArray(int index);
+
+
+    /**
      * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glDetachShader.xml">glDetachShader</a>
      */
     void glDetachShader(int programId, int shaderId);
@@ -148,6 +154,12 @@ public interface GLES
      * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glEnable.xml">glEnable</a>
      */
     void glEnable(int capability);
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glEnableVertexAttribArray.xml">glEnableVertexAttribArray</a>
+     */
+    void glEnableVertexAttribArray(int index);
 
 
     /**

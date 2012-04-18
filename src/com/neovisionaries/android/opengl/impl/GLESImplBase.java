@@ -15,8 +15,7 @@ import com.neovisionaries.android.opengl.GLES;
  *
  * <ol>
  * <li>All gl* methods throw UnsupportedOperationException.
- * <li>All GL_* methods except {@link #GL_TRUE()} return 0.
- * <li>{@link #GL_TRUE()} return 1.
+ * <li>All GL_* methods return appropriate values.
  * </ol>
  * 
  * @author Takahiko Kawasaki
@@ -31,70 +30,70 @@ public abstract class GLESImplBase implements GLES
     @Override
     public int GL_ARRAY_BUFFER()
     {
-        return 0;
+        return 0x00008892;
     }
 
 
     @Override
     public int GL_BLEND()
     {
-        return 0;
+        return 0x00000be2;
     }
 
 
     @Override
     public int GL_COLOR_BUFFER_BIT()
     {
-        return 0;
+        return 0x00004000;
     }
 
 
     @Override
     public int GL_COMPILE_STATUS()
     {
-        return 0;
+        return 0x00008b81;
     }
 
 
     @Override
     public int GL_CULL_FACE()
     {
-        return 0;
+        return 0x00000b44;
     }
 
 
     @Override
     public int GL_DEPTH_BUFFER_BIT()
     {
-        return 0;
+        return 0x00000100;
     }
 
 
     @Override
     public int GL_DEPTH_TEST()
     {
-        return 0;
+        return 0x00000b71;
     }
 
 
     @Override
     public int GL_DITHER()
     {
-        return 0;
+        return 0x00000bd0;
     }
 
 
     @Override
     public int GL_DYNAMIC_DRAW()
     {
-        return 0;
+        return 0x000088e8;
     }
 
 
     @Override
     public int GL_ELEMENT_ARRAY_BUFFER()
     {
-        return 0;
+        return 0x00008893;
     }
 
 
@@ -108,70 +107,70 @@ public abstract class GLESImplBase implements GLES
     @Override
     public int GL_FRAGMENT_SHADER()
     {
-        return 0;
+        return 0x00008b30;
     }
 
 
     @Override
     public int GL_LINK_STATUS()
     {
-        return 0;
+        return 0x00008b82;
     }
 
 
     @Override
     public int GL_POLYGON_OFFSET_FILL()
     {
-        return 0;
+        return 0x00008037;
     }
 
 
     @Override
     public int GL_SAMPLE_ALPHA_TO_COVERAGE()
     {
-        return 0;
+        return 0x0000809e;
     }
 
 
     @Override
     public int GL_SAMPLE_COVERAGE()
     {
-        return 0;
+        return 0x000080a0;
     }
 
 
     @Override
     public int GL_SCISSOR_TEST()
     {
-        return 0;
+        return 0x00000c11;
     }
 
 
     @Override
     public int GL_STATIC_DRAW()
     {
-        return 0;
+        return 0x000088e4;
     }
 
 
     @Override
     public int GL_STENCIL_BUFFER_BIT()
     {
-        return 0;
+        return 0x00000400;
     }
 
 
     @Override
     public int GL_STENCIL_TEST()
     {
-        return 0;
+        return 0x00000b90;
     }
 
 
     @Override
     public int GL_STREAM_DRAW()
     {
-        return 0;
+        return 0x000088e0;
     }
 
 
@@ -185,7 +184,7 @@ public abstract class GLESImplBase implements GLES
     @Override
     public int GL_VERTEX_SHADER()
     {
-        return 0;
+        return 0x00008b31;
     }
 
 
@@ -306,9 +305,23 @@ public abstract class GLESImplBase implements GLES
 
 
     @Override
+    public void glDisableVertexAttribArray(int index)
+    {
+        unsupported("glDisableVertexAttribArray");
+    }
+
+
+    @Override
     public void glEnable(int capability)
     {
         unsupported("glEnable");
+    }
+
+
+    @Override
+    public void glEnableVertexAttribArray(int index)
+    {
+        unsupported("glEnableVertexAttribArray");
     }
 
 

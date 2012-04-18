@@ -21,167 +21,6 @@ import com.neovisionaries.android.opengl.GLES;
 public class GLESImpl20 extends GLESImplBase
 {
     @Override
-    public int GL_ARRAY_BUFFER()
-    {
-        return GLES20.GL_ARRAY_BUFFER;
-    }
-
-
-    @Override
-    public int GL_BLEND()
-    {
-        return GLES20.GL_BLEND;
-    }
-
-
-    @Override
-    public int GL_COLOR_BUFFER_BIT()
-    {
-        return GLES20.GL_COLOR_BUFFER_BIT;
-    }
-
-
-    @Override
-    public int GL_COMPILE_STATUS()
-    {
-        return GLES20.GL_COMPILE_STATUS;
-    }
-
-
-    @Override
-    public int GL_CULL_FACE()
-    {
-        return GLES20.GL_CULL_FACE;
-    }
-
-
-    @Override
-    public int GL_DEPTH_BUFFER_BIT()
-    {
-        return GLES20.GL_DEPTH_BUFFER_BIT;
-    }
-
-
-    @Override
-    public int GL_DEPTH_TEST()
-    {
-        return GLES20.GL_DEPTH_TEST;
-    }
-
-
-    @Override
-    public int GL_DITHER()
-    {
-        return GLES20.GL_DITHER;
-    }
-
-
-    @Override
-    public int GL_DYNAMIC_DRAW()
-    {
-        return GLES20.GL_DYNAMIC_DRAW;
-    }
-
-
-    @Override
-    public int GL_ELEMENT_ARRAY_BUFFER()
-    {
-        return GLES20.GL_ELEMENT_ARRAY_BUFFER;
-    }
-
-
-    @Override
-    public int GL_FALSE()
-    {
-        return GLES20.GL_FALSE;
-    }
-
-
-    @Override
-    public int GL_FRAGMENT_SHADER()
-    {
-        return GLES20.GL_FRAGMENT_SHADER;
-    }
-
-
-    @Override
-    public int GL_LINK_STATUS()
-    {
-        return GLES20.GL_LINK_STATUS;
-    }
-
-
-    @Override
-    public int GL_POLYGON_OFFSET_FILL()
-    {
-        return GLES20.GL_POLYGON_OFFSET_FILL;
-    }
-
-
-    @Override
-    public int GL_SAMPLE_ALPHA_TO_COVERAGE()
-    {
-        return GLES20.GL_SAMPLE_ALPHA_TO_COVERAGE;
-    }
-
-
-    @Override
-    public int GL_SAMPLE_COVERAGE()
-    {
-        return GLES20.GL_SAMPLE_COVERAGE;
-    }
-
-
-    @Override
-    public int GL_SCISSOR_TEST()
-    {
-        return GLES20.GL_SCISSOR_TEST;
-    }
-
-
-    @Override
-    public int GL_STATIC_DRAW()
-    {
-        return GLES20.GL_STATIC_DRAW;
-    }
-
-
-    @Override
-    public int GL_STENCIL_BUFFER_BIT()
-    {
-        return GLES20.GL_STENCIL_BUFFER_BIT;
-    }
-
-
-    @Override
-    public int GL_STENCIL_TEST()
-    {
-        return GLES20.GL_STENCIL_TEST;
-    }
-
-
-    @Override
-    public int GL_STREAM_DRAW()
-    {
-        return GLES20.GL_STREAM_DRAW;
-    }
-
-
-    @Override
-    public int GL_TRUE()
-    {
-        return GLES20.GL_TRUE;
-    }
-
-
-    @Override
-    public int GL_VERTEX_SHADER()
-    {
-        return GLES20.GL_VERTEX_SHADER;
-    }
-
-
-    @Override
     public void glAttachShader(int programId, int shaderId)
     {
         GLES20.glAttachShader(programId, shaderId);
@@ -294,9 +133,23 @@ public class GLESImpl20 extends GLESImplBase
 
 
     @Override
+    public void glDisableVertexAttribArray(int index)
+    {
+        GLES20.glDisableVertexAttribArray(index);
+    }
+
+
+    @Override
     public void glEnable(int capability)
     {
         GLES20.glEnable(capability);
+    }
+
+
+    @Override
+    public void glEnableVertexAttribArray(int index)
+    {
+        GLES20.glEnableVertexAttribArray(index);
     }
 
 
