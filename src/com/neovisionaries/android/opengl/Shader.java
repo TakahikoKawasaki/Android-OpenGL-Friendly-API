@@ -293,6 +293,34 @@ public class Shader
 
 
     /**
+     * Set a shader source code. If this method returns without
+     * any execption, the state of this instance is {@link
+     * ShaderState#SOURCE_SET}.
+     *
+     * @param file
+     *         A file that contains a shader source code.
+     *
+     * @return
+     *         This Shader object.
+     *
+     * @throws IllegalArgumentException
+     *         The given argument is null.
+     *
+     * @throws IllegalStateException
+     *         This shader has already been deleted.
+     *
+     * @throws IOException
+     *         Failed to read the given file.
+     *
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glShaderSource.xml">glShaderSource</a>
+     */
+    public Shader setSource(File file) throws IOException
+    {
+        return setSource(GLESHelper.toString(file));
+    }
+
+
+    /**
      * Compile the source code given by {@link #setSource(String)}.
      * If the current state of this shader is {@link
      * ShaderState#COMPILED COMPILED}, nothing is executed.
