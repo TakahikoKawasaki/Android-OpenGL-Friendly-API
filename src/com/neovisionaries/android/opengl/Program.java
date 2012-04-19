@@ -72,6 +72,8 @@ import static com.neovisionaries.android.opengl.ProgramState.LINKED;
  * @author Takahiko Kawasaki
  *
  * @see Shader
+ * @see Attribute
+ * @see Uniform
  */
 public class Program
 {
@@ -599,6 +601,94 @@ public class Program
     public Program setDeleteShadersOnDelete(boolean delete)
     {
         this.deleteShadersOnDelete = delete;
+
+        return this;
+    }
+
+
+    /**
+     * Get an attribute.
+     *
+     * @param attributeName
+     *         Name of an attribute variable in this program.
+     *
+     * @return
+     *         An {@link Attribute} object for the attribute variable.
+     *         If an attribute variable having the name is not found
+     *         in this program, null is returned.
+     *
+     * @throws IllegalArgumentException
+     *         The arguments is null.
+     *
+     * @throws IllegalStateException
+     *         This program has already been deleted.
+     *
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGetAttribLocation.xml">glGetAttribLocation</a>
+     */
+    public Attribute getAttribute(String attributeName)
+    {
+        if (attributeName == null)
+        {
+            throw new IllegalArgumentException();
+        }
+
+        if (state == DELETED)
+        {
+            throw new IllegalStateException("Program has already been deleted.");
+        }
+
+        int location = getGLES().glGetAttribLocation(id, attributeName);
+
+        if (location == -1)
+        {
+            // Not found an attribute having the name.
+            return null;
+        }
+
+        // Found an attribute having the name.
+        return new Attribute(location);
+    }
+
+
+    /**
+     * Set an attribute.
+     *
+     * <p>
+     * This method has the same effect of
+     * glBindAttribLocation(this.{@link #getId()}, attribute.{@link
+     * Attribute#getIndex() getIndex()}, attributeName).
+     * </p>
+     *
+     * @param attributeName
+     *         The name of the attribute in this program.
+     *
+     * @param attribute
+     *         The attribute data to set.
+     *
+     * @return
+     *         This Program object.
+     *
+     * @throws IllegalArgumentException
+     *         Either or both of the arguments are null.
+     *
+     * @throws IllegalStateException
+     *         This program has already been deleted.
+     *
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBindAttribLocation.xml">glBindAttribLocation</a>
+     */
+    public Program setAttribute(String attributeName, Attribute attribute)
+    {
+        if (attributeName == null || attribute == null)
+        {
+            throw new IllegalArgumentException();
+        }
+
+        if (state == DELETED)
+        {
+            throw new IllegalStateException("Program has already been deleted.");
+        }
+
+        getGLES().glBindAttribLocation(id, attribute.getIndex(), attributeName);
 
         return this;
     }

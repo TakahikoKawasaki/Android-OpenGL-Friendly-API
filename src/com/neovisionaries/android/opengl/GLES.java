@@ -521,6 +521,24 @@ public interface GLES
 
 
     /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glDrawArrays.xml">glDrawArrays</a>
+     */
+    void glDrawArrays(int mode, int first, int count);
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glDrawElements.xml">glDrawElements</a>
+     */
+    void glDrawElements(int mode, int count, int type, Buffer indices);
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glDrawElements.xml">glDrawElements</a>
+     */
+    void glDrawElements(int mode, int count, int type, int offset);
+
+
+    /**
      * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glEnable.xml">glEnable</a>
      */
     void glEnable(int capability);
@@ -866,6 +884,90 @@ public interface GLES
      * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glUseProgram.xml">glUseProgram</a>
      */
     void glUseProgram(int programId);
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glVertexAttrib.xml">glVertexAttrib1f</a>
+     */
+    void glVertexAttrib1f(int vertexAttributeIndex, float x);
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glVertexAttrib.xml">glVertexAttrib1fv</a>
+     */
+    void glVertexAttrib1fv(int vertexAttributeIndex, FloatBuffer values);
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glVertexAttrib.xml">glVertexAttrib1fv</a>
+     */
+    void glVertexAttrib1fv(int vertexAttributeIndex, float[] values, int offset);
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glVertexAttrib.xml">glVertexAttrib2f</a>
+     */
+    void glVertexAttrib2f(int vertexAttributeIndex, float x, float y);
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glVertexAttrib.xml">glVertexAttrib2fv</a>
+     */
+    void glVertexAttrib2fv(int vertexAttributeIndex, FloatBuffer values);
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glVertexAttrib.xml">glVertexAttrib2fv</a>
+     */
+    void glVertexAttrib2fv(int vertexAttributeIndex, float[] values, int offset);
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glVertexAttrib.xml">glVertexAttrib3f</a>
+     */
+    void glVertexAttrib3f(int vertexAttributeIndex, float x, float y, float z);
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glVertexAttrib.xml">glVertexAttrib3fv</a>
+     */
+    void glVertexAttrib3fv(int vertexAttributeIndex, FloatBuffer values);
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glVertexAttrib.xml">glVertexAttrib3fv</a>
+     */
+    void glVertexAttrib3fv(int vertexAttributeIndex, float[] values, int offset);
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glVertexAttrib.xml">glVertexAttrib4f</a>
+     */
+    void glVertexAttrib4f(int vertexAttributeIndex, float x, float y, float z, float w);
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glVertexAttrib.xml">glVertexAttrib4fv</a>
+     */
+    void glVertexAttrib4fv(int vertexAttributeIndex, FloatBuffer values);
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glVertexAttrib.xml">glVertexAttrib4fv</a>
+     */
+    void glVertexAttrib4fv(int vertexAttributeIndex, float[] values, int offset);
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glVertexAttribPointer.xml">glVertexAttribPointer</a>
+     */
+    void glVertexAttribPointer(int vertexAttributeIndex, int size, int type, boolean normalized, int stride, Buffer ptr);
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glVertexAttribPointer.xml">glVertexAttribPointer</a>
+     */
+    void glVertexAttribPointer(int vertexAttributeIndex, int size, int type, boolean normalized, int stride, int offset);
 
 
     /**

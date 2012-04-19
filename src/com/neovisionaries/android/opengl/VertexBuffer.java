@@ -53,6 +53,13 @@ public class VertexBuffer
 
 
     /**
+     * The class of the data given to the last call of a
+     * setData() method.
+     */
+    private Class<? extends Buffer> dataBufferClass;
+
+
+    /**
      * A constructor with a vertex buffer type. A buffer object
      * is assigned internally by glGenBuffers(). If this
      * constructor returns without any exception, the state of
@@ -237,6 +244,9 @@ public class VertexBuffer
         int unit = GLESHelper.getElementSizeInBytes(data);
 
         getGLES().glBufferData(type.getType(), count * unit, data, usage.getUsage());
+
+        // Remember the class of the given data for getDataBufferClass().
+        dataBufferClass = data.getClass();
     }
 
 
@@ -369,6 +379,25 @@ public class VertexBuffer
     public void setSubData(Buffer data)
     {
         setSubData(data, -1, 0);
+    }
+
+
+    /**
+     * Get the class of the data passed to the last call of a
+     * setData() method.
+     *
+     * <p>
+     * This package-private method is used by {@link Attribute}.
+     * </p>
+     *
+     * @return
+     *         The class of the data passed to the last call
+     *         of a setData() method. If any setData() method
+     *         has not been called so far, null is returned.
+     */
+    Class<? extends Buffer> getDataBufferClass()
+    {
+        return dataBufferClass;
     }
 
 

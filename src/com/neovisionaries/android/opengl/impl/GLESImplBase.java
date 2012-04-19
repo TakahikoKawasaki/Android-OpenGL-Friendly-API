@@ -2867,6 +2867,27 @@ public abstract class GLESImplBase implements GLES
 
 
     @Override
+    public void glDrawArrays(int mode, int first, int count)
+    {
+        unsupported("glDrawArrays");
+    }
+
+
+    @Override
+    public void glDrawElements(int mode, int count, int type, Buffer indices)
+    {
+        unsupported("glDrawElements");
+    }
+
+
+    @Override
+    public void glDrawElements(int mode, int count, int type, int offset)
+    {
+        unsupported("glDrawElements");
+    }
+
+
+    @Override
     public void glEnable(int capability)
     {
         unsupported("glEnable");
@@ -3283,6 +3304,104 @@ public abstract class GLESImplBase implements GLES
     public void glUseProgram(int programId)
     {
         unsupported("glUseProgram");
+    }
+
+
+    @Override
+    public void glVertexAttrib1f(int vertexAttributeIndex, float x)
+    {
+        unsupported("glVertexAttrib1f");
+    }
+
+
+    @Override
+    public void glVertexAttrib1fv(int vertexAttributeIndex, FloatBuffer values)
+    {
+        unsupported("glVertexAttrib1fv");
+    }
+
+
+    @Override
+    public void glVertexAttrib1fv(int vertexAttributeIndex, float[] values, int offset)
+    {
+        unsupported("glVertexAttrib1fv");
+    }
+
+
+    @Override
+    public void glVertexAttrib2f(int vertexAttributeIndex, float x, float y)
+    {
+        unsupported("glVertexAttrib2f");
+    }
+
+
+    @Override
+    public void glVertexAttrib2fv(int vertexAttributeIndex, FloatBuffer values)
+    {
+        unsupported("glVertexAttrib2fv");
+    }
+
+
+    @Override
+    public void glVertexAttrib2fv(int vertexAttributeIndex, float[] values, int offset)
+    {
+        unsupported("glVertexAttrib2fv");
+    }
+
+
+    @Override
+    public void glVertexAttrib3f(int vertexAttributeIndex, float x, float y, float z)
+    {
+        unsupported("glVertexAttrib3f");
+    }
+
+
+    @Override
+    public void glVertexAttrib3fv(int vertexAttributeIndex, FloatBuffer values)
+    {
+        unsupported("glVertexAttrib3fv");
+    }
+
+
+    @Override
+    public void glVertexAttrib3fv(int vertexAttributeIndex, float[] values, int offset)
+    {
+        unsupported("glVertexAttrib3fv");
+    }
+
+
+    @Override
+    public void glVertexAttrib4f(int vertexAttributeIndex, float x, float y, float z, float w)
+    {
+        unsupported("glVertexAttrib4f");
+    }
+
+
+    @Override
+    public void glVertexAttrib4fv(int vertexAttributeIndex, FloatBuffer values)
+    {
+        unsupported("glVertexAttrib4fv");
+    }
+
+
+    @Override
+    public void glVertexAttrib4fv(int vertexAttributeIndex, float[] values, int offset)
+    {
+        unsupported("glVertexAttrib4fv");
+    }
+
+
+    @Override
+    public void glVertexAttribPointer(int vertexAttributeIndex, int size, int type, boolean normalized, int stride, Buffer ptr)
+    {
+        unsupported("glVertexAttribPointer");
+    }
+
+
+    @Override
+    public void glVertexAttribPointer(int vertexAttributeIndex, int size, int type, boolean normalized, int stride, int offset)
+    {
+        unsupported("glVertexAttribPointer");
     }
 
 

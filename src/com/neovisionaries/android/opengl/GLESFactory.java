@@ -39,18 +39,23 @@ public final class GLESFactory
     public static final String GLES_IMPL_CLASS_PROPERTY
         = "com.neovisionaries.android.opengl.GLES";
 
+
     /**
-     * The API level since which GLES20 has been supported.
+     * The class name of the default implementation of
+     * {@link GLES} interface for OpenGL ES 2.0 in
+     * Android 2.2 (API Level 8).
      */
-    private static final int API_LEVEL_GLES20 = 8;
+    public static final String GLES_IMPL_GLES20
+        = "com.neovisionaries.android.opengl.impl.GLESImpl20";
 
 
     /**
      * The class name of the default implementation of
-     * {@link GLES} interface for OpenGL ES 2.0.
+     * {@link GLES} interface for OpenGL ES 2.0 in
+     * Android 2.3 (API Level 9) and newer.
      */
-    public static final String GLES_IMPL_GLES20
-        = "com.neovisionaries.android.opengl.impl.GLESImpl20";
+    public static final String GLES_IMPL_GLES20_9
+        = "com.neovisionaries.android.opengl.impl.GLESImpl20_9";
 
 
     /**
@@ -138,7 +143,10 @@ public final class GLESFactory
      *     is checked. If it holds a non-null value, the value is
      *     used as a class name of a {@link GLES} implementation.
      * <li>Otherwise, the API Level of the Android platform is checked.
-     *     If the API Level is 8 (Android 2.2) or higher, the value of
+     *     If the API Level is 9 (Android 2.3) or higher, the value of
+     *     {@link #GLES_IMPL_GLES20_9} is used as a class name of a
+     *     {@link GLES} implementation.
+     * <li>Otherwise, if the API Level is 8 (Android 2.2), the value of
      *     {@link #GLES_IMPL_GLES20} is used as a class name of a
      *     {@link GLES} implementation.
      * <li>Otherwise, the value of {@link #GLES_IMPL_GLES11} is used
@@ -152,12 +160,29 @@ public final class GLESFactory
      * system property {@link #GLES_IMPL_CLASS_PROPERTY}.
      * </p>
      *
+     * <p>
+     * The default {@link GLES} implementation for OpenGL ES 2.0 is
+     * different between Android 2.2 and Android 2.3 (and newer).
+     * This is because
+     * <a href="http://developer.android.com/reference/android/opengl/GLES11.html"
+     * >android.opengl.GLES20</a> class in Anroid 2.2 does not have
+     * the method listed below although it should have.
+     * </p>
+     *
+     * <ul>
+     * <li>glDrawElements(int mode, int count, int type, int offset)
+     * <li>glVertexAttribPointer(int index, int size, int type, boolean normalized, int stride, int offset)
+     * </ul>
+     *
      * @return
      *         An implementation of {@link GLES} interface.
      *
      * @throws UnsupportedOperationException
      *         Failed to create an object implementing {@link GLES}
      *         interface.
+     *
+     * @see <a href="http://developer.android.com/reference/android/opengl/GLES11.html">android.opengl.GLES11</a>
+     * @see <a href="http://developer.android.com/reference/android/opengl/GLES20.html">android.opengl.GLES20</a>
      */
     public static GLES getInstance()
     {
@@ -256,9 +281,14 @@ public final class GLESFactory
         // itself and GLES10/GLES11 are available since API level 4.
         int level = Build.VERSION.SDK_INT;
 
-        if (API_LEVEL_GLES20 <= level)
+        if (9 <= level)
         {
-            // GLES implementation for OpenGL ES 2.0
+            // GLES implementation for OpenGL ES 2.0 for Android 2.3 and newer.
+            return GLES_IMPL_GLES20_9;
+        }
+        else if (8 == level)
+        {
+            // GLES implementation for OpenGL ES 2.0 for Android 2.2.
             return GLES_IMPL_GLES20;
         }
         else

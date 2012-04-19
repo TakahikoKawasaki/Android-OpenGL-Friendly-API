@@ -77,6 +77,51 @@ public final class GLESHelper
 
 
     /**
+     * Get the element size in bytes of the given buffer class.
+     *
+     * <br/><br/>
+     * <table border="1" cellpadding="5" style="border-collapse: collapse;">
+     * <tr style="background-color: lightgray;">
+     *   <th>Buffer Class</th> <th>Return Value</th>
+     * </tr>
+     * <tr>
+     *   <td>java.nio.ByteBuffer</td> <td>Byte.SIZE / 8</td>
+     * </tr>
+     * <tr>
+     *   <td>java.nio.CharBuffer</td> <td>Character.SIZE / 8</td>
+     * </tr>
+     * <tr>
+     *   <td>java.nio.ShortBuffer</td> <td>Short.SIZE / 8</td>
+     * </tr>
+     * <tr>
+     *   <td>java.nio.IntBuffer</td> <td>Integer.SIZE / 8</td>
+     * </tr>
+     * <tr>
+     *   <td>java.nio.LongBuffer</td> <td>Long.SIZE / 8</td>
+     * </tr>
+     * <tr>
+     *   <td>java.nio.FloatBuffer</td> <td>Float.SIZE / 8</td>
+     * </tr>
+     * <tr>
+     *   <td>java.nio.DoubleBuffer</td> <td>Double.SIZE / 8</td>
+     * </tr>
+     * <tr>
+     *   <td>Others</td> <td>0</td>
+     * </tr>
+     * </table>
+     *
+     * @param bufferClass
+     *
+     * @return
+     *         The element size in bytes of the given buffer class.
+     */
+    public static int getElementSizeInBytes(Class<? extends Buffer> bufferClass)
+    {
+        return getElementSizeInBits(bufferClass) / 8;
+    }
+
+
+    /**
      * Get the element size in bits of the given buffer.
      *
      * <br/><br/>
@@ -122,31 +167,76 @@ public final class GLESHelper
             return 0;
         }
 
-        if (buffer instanceof ByteBuffer)
+        return getElementSizeInBits(buffer.getClass());
+    }
+
+
+    /**
+     * Get the element size in bits of the given buffer class.
+     *
+     * <br/><br/>
+     * <table border="1" cellpadding="5" style="border-collapse: collapse;">
+     * <tr style="background-color: lightgray;">
+     *   <th>Buffer Class</th> <th>Return Value</th>
+     * </tr>
+     * <tr>
+     *   <td>java.nio.ByteBuffer</td> <td>Byte.SIZE</td>
+     * </tr>
+     * <tr>
+     *   <td>java.nio.CharBuffer</td> <td>Character.SIZE</td>
+     * </tr>
+     * <tr>
+     *   <td>java.nio.ShortBuffer</td> <td>Short.SIZE</td>
+     * </tr>
+     * <tr>
+     *   <td>java.nio.IntBuffer</td> <td>Integer.SIZE</td>
+     * </tr>
+     * <tr>
+     *   <td>java.nio.LongBuffer</td> <td>Long.SIZE</td>
+     * </tr>
+     * <tr>
+     *   <td>java.nio.FloatBuffer</td> <td>Float.SIZE</td>
+     * </tr>
+     * <tr>
+     *   <td>java.nio.DoubleBuffer</td> <td>Double.SIZE</td>
+     * </tr>
+     * <tr>
+     *   <td>Others</td> <td>0</td>
+     * </tr>
+     * </table>
+     *
+     * @param bufferClass
+     *
+     * @return
+     *         The element size in bytes of the given buffer class.
+     */
+    private static int getElementSizeInBits(Class<? extends Buffer> bufferClass)
+    {
+        if (bufferClass.equals(ByteBuffer.class))
         {
             return Byte.SIZE;
         }
-        else if (buffer instanceof CharBuffer)
+        else if (bufferClass.equals(CharBuffer.class))
         {
             return Character.SIZE;
         }
-        else if (buffer instanceof ShortBuffer)
+        else if (bufferClass.equals(ShortBuffer.class))
         {
             return Short.SIZE;
         }
-        else if (buffer instanceof IntBuffer)
+        else if (bufferClass.equals(IntBuffer.class))
         {
             return Integer.SIZE;
         }
-        else if (buffer instanceof LongBuffer)
+        else if (bufferClass.equals(LongBuffer.class))
         {
             return Long.SIZE;
         }
-        else if (buffer instanceof FloatBuffer)
+        else if (bufferClass.equals(FloatBuffer.class))
         {
             return Float.SIZE;
         }
-        else if (buffer instanceof DoubleBuffer)
+        else if (bufferClass.equals(DoubleBuffer.class))
         {
             return Double.SIZE;
         }

@@ -84,6 +84,27 @@ public class GLESImpl11 extends GLESImplBase
 
 
     @Override
+    public void glDrawArrays(int mode, int first, int count)
+    {
+        GLES11.glDrawArrays(mode, first, count);
+    }
+
+
+    @Override
+    public void glDrawElements(int mode, int count, int type, Buffer indices)
+    {
+        GLES11.glDrawElements(mode, count, type, indices);
+    }
+
+
+    @Override
+    public void glDrawElements(int mode, int count, int type, int offset)
+    {
+        GLES11.glDrawElements(mode, count, type, offset);
+    }
+
+
+    @Override
     public void glEnable(int capability)
     {
         GLES11.glEnable(capability);

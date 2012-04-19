@@ -14,8 +14,27 @@ import com.neovisionaries.android.opengl.GLES;
 /**
  * An implementation of {@link GLES} interface for OpenGL ES 2.0.
  *
+ * <p>
+ * Note that the methods below of this class throw
+ * UnsupportedOperationException.
+ * </p>
+ *
+ * <ul>
+ * <li>glDrawElements(int mode, int count, int type, int offset)
+ * <li>glVertexAttribPointer(int index, int size, int type, boolean normalized, int stride, int offset)
+ * </ul>
+ *
+ * <p>
+ * This is because
+ * <a href="http://developer.android.com/reference/android/opengl/GLES20.html"
+ * >android.opengl.GLES20</a> class in Android 2.2 does not have
+ * the counterpart methods although it should have. {@link
+ * GLESImpl20_9} should be used for Android 2.3 and newer.
+ * </p>
+ *
  * @author Takahiko Kawasaki
  *
+ * @see GLESImpl20_9
  * @see <a href="http://developer.android.com/reference/android/opengl/GLES20.html">android.opengl.GLES20</a>
  */
 public class GLESImpl20 extends GLESImplBase
@@ -143,6 +162,20 @@ public class GLESImpl20 extends GLESImplBase
     public void glDisableVertexAttribArray(int index)
     {
         GLES20.glDisableVertexAttribArray(index);
+    }
+
+
+    @Override
+    public void glDrawArrays(int mode, int first, int count)
+    {
+        GLES20.glDrawArrays(mode, first, count);
+    }
+
+
+    @Override
+    public void glDrawElements(int mode, int count, int type, Buffer indices)
+    {
+        GLES20.glDrawElements(mode, count, type, indices);
     }
 
 
@@ -549,6 +582,97 @@ public class GLESImpl20 extends GLESImplBase
     public void glUseProgram(int programId)
     {
         GLES20.glUseProgram(programId);
+    }
+
+
+    @Override
+    public void glVertexAttrib1f(int vertexAttributeIndex, float x)
+    {
+        GLES20.glVertexAttrib1f(vertexAttributeIndex, x);
+    }
+
+
+    @Override
+    public void glVertexAttrib1fv(int vertexAttributeIndex, FloatBuffer values)
+    {
+        GLES20.glVertexAttrib1fv(vertexAttributeIndex, values);
+    }
+
+
+    @Override
+    public void glVertexAttrib1fv(int vertexAttributeIndex, float[] values, int offset)
+    {
+        GLES20.glVertexAttrib1fv(vertexAttributeIndex, values, offset);
+    }
+
+
+    @Override
+    public void glVertexAttrib2f(int vertexAttributeIndex, float x, float y)
+    {
+        GLES20.glVertexAttrib2f(vertexAttributeIndex, x, y);
+    }
+
+
+    @Override
+    public void glVertexAttrib2fv(int vertexAttributeIndex, FloatBuffer values)
+    {
+        GLES20.glVertexAttrib2fv(vertexAttributeIndex, values);
+    }
+
+
+    @Override
+    public void glVertexAttrib2fv(int vertexAttributeIndex, float[] values, int offset)
+    {
+        GLES20.glVertexAttrib2fv(vertexAttributeIndex, values, offset);
+    }
+
+
+    @Override
+    public void glVertexAttrib3f(int vertexAttributeIndex, float x, float y, float z)
+    {
+        GLES20.glVertexAttrib3f(vertexAttributeIndex, x, y, z);
+    }
+
+
+    @Override
+    public void glVertexAttrib3fv(int vertexAttributeIndex, FloatBuffer values)
+    {
+        GLES20.glVertexAttrib3fv(vertexAttributeIndex, values);
+    }
+
+
+    @Override
+    public void glVertexAttrib3fv(int vertexAttributeIndex, float[] values, int offset)
+    {
+        GLES20.glVertexAttrib3fv(vertexAttributeIndex, values, offset);
+    }
+
+
+    @Override
+    public void glVertexAttrib4f(int vertexAttributeIndex, float x, float y, float z, float w)
+    {
+        GLES20.glVertexAttrib4f(vertexAttributeIndex, x, y, z, w);
+    }
+
+
+    @Override
+    public void glVertexAttrib4fv(int vertexAttributeIndex, FloatBuffer values)
+    {
+        GLES20.glVertexAttrib4fv(vertexAttributeIndex, values);
+    }
+
+
+    @Override
+    public void glVertexAttrib4fv(int vertexAttributeIndex, float[] values, int offset)
+    {
+        GLES20.glVertexAttrib4fv(vertexAttributeIndex, values, offset);
+    }
+
+
+    @Override
+    public void glVertexAttribPointer(int vertexAttributeIndex, int size, int type, boolean normalized, int stride, Buffer ptr)
+    {
+        GLES20.glVertexAttribPointer(vertexAttributeIndex, size, type, normalized, stride, ptr);
     }
 
 
