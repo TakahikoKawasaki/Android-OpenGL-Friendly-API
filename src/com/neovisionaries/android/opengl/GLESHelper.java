@@ -371,4 +371,30 @@ public final class GLESHelper
             return new IOException(message);
         }
     }
+
+
+    /**
+     * Convert an integer value ranging from 0 to 255 to a float value
+     * ranging from 0.0f to 1.0f.
+     *
+     * @param value
+     *         An integer that ranges from 0 to 255.
+     *
+     * @return
+     *         A float value that ranges from 0.0f to 1.0f.
+     */
+    public static float map255(int value)
+    {
+        if (value <= 0)
+        {
+            return 0.0f;
+        }
+
+        if (255 <= value)
+        {
+            return 1.0f;
+        }
+
+        return value / 255.0f;
+    }
 }
