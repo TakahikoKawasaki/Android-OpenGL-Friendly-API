@@ -34,7 +34,7 @@ public enum VertexBufferType
      * A constructor with a vertex buffer type.
      *
      * @param type
-     *         GL_ARRAY_BUFFER or GL_ELEMENT_ARRAY_BUFFER.
+     *         An integer representing a vertex buffer type.
      */
     private VertexBufferType(int type)
     {
@@ -46,7 +46,7 @@ public enum VertexBufferType
      * Get the integer representing the type of this vertex buffer.
      *
      * @return
-     *         GL_ARRAY_BUFFER or GL_ELEMENT_ARRAY_BUFFER.
+     *         The integer representing the type of this vertex buffer.
      */
     public int getType()
     {

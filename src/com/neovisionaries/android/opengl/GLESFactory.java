@@ -72,6 +72,11 @@ public final class GLESFactory
     private static GLES instance;
 
 
+    private GLESFactory()
+    {
+    }
+
+
     /**
      * Initialize the singleton instance of {@link GLES} implemetation.
      *

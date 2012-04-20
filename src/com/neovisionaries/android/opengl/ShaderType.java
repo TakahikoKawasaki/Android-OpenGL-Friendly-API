@@ -34,7 +34,7 @@ public enum ShaderType
      * A constructor with a shader type.
      *
      * @param type
-     *         GL_VERTEX_SHADER or GL_FRAGMENT_SHADER.
+     *         An integer representing a shader type.
      */
     private ShaderType(int type)
     {
@@ -46,7 +46,7 @@ public enum ShaderType
      * Get the integer representing the type of this shader.
      *
      * @return
-     *         GL_VERTEX_SHADER or GL_FRAGMENT_SHADER.
+     *         The integer representing the type of this shader.
      */
     public int getType()
     {

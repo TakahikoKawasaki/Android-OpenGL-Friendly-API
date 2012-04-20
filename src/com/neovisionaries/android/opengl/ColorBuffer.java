@@ -3,6 +3,7 @@
  */
 package com.neovisionaries.android.opengl;
 
+
 import android.graphics.Color;
 
 
@@ -11,8 +12,13 @@ import android.graphics.Color;
  *
  * @author Takahiko Kawasaki
  */
-public class ColorBuffer
+public final class ColorBuffer
 {
+    private ColorBuffer()
+    {
+    }
+
+
     /**
      * Set a color used to clear the color buffer
      * (glClearColor() is called).

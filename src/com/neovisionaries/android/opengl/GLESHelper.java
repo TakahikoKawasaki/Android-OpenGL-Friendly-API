@@ -24,7 +24,7 @@ import java.nio.charset.Charset;
  *
  * @author Takahiko Kawasaki
  */
-public final class GLESHelper
+final class GLESHelper
 {
     private GLESHelper()
     {

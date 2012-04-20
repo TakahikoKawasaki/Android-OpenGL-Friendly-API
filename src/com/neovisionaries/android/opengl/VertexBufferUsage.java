@@ -25,8 +25,13 @@ public enum VertexBufferUsage
 
     /**
      * GL_STREAM_DRAW.
+     *
+     * <p>
+     * Note that GL_STREAM_DRAW is not available in OpenGL ES 1.x.
+     * </p>
      */
-    STREAM(GLESFactory.getInstance().GL_STREAM_DRAW());
+    STREAM(GLESFactory.getInstance().GL_STREAM_DRAW())
+    ;
 
 
     /**
@@ -39,8 +44,7 @@ public enum VertexBufferUsage
      * A constructor with usage.
      *
      * @param usage
-     *         GL_STATIC_DRAW, GL_DYNAMIC_DRAW or
-     *         GL_STREAM_DRAW.
+     *         An integer representing usage.
      */
     private VertexBufferUsage(int usage)
     {
@@ -49,11 +53,10 @@ public enum VertexBufferUsage
 
 
     /**
-     * Get the integer representing the usage.
+     * Get the integer representing this usage.
      *
      * @return
-     *         GL_STATIC_DRAW, GL_DYNAMIC_DRAW or
-     *         GL_STREAM_DRAW.
+     *         The integer representing this usage.
      */
     public int getUsage()
     {

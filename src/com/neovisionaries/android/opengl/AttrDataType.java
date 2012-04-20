@@ -14,37 +14,37 @@ public enum AttrDataType
     /**
      * GL_BYTE.
      */
-    BYTE(getGLES().GL_BYTE()),
+    BYTE(GLESFactory.getInstance().GL_BYTE()),
 
 
     /**
      * GL_UNSIGNED_BYTE.
      */
-    UNSIGNED_BYTE(getGLES().GL_UNSIGNED_BYTE()),
+    UNSIGNED_BYTE(GLESFactory.getInstance().GL_UNSIGNED_BYTE()),
 
 
     /**
      * GL_SHORT.
      */
-    SHORT(getGLES().GL_SHORT()),
+    SHORT(GLESFactory.getInstance().GL_SHORT()),
 
 
     /**
      * GL_UNSIGNED_SHORT.
      */
-    UNSIGNED_SHORT(getGLES().GL_UNSIGNED_SHORT()),
+    UNSIGNED_SHORT(GLESFactory.getInstance().GL_UNSIGNED_SHORT()),
 
 
     /**
      * GL_FLOAT.
      */
-    FLOAT(getGLES().GL_FLOAT()),
+    FLOAT(GLESFactory.getInstance().GL_FLOAT()),
 
 
     /**
      * GL_FIXED.
      */
-    FIXED(getGLES().GL_FIXED())
+    FIXED(GLESFactory.getInstance().GL_FIXED())
     ;
 
 
@@ -71,30 +71,9 @@ public enum AttrDataType
      *
      * @return
      *         The integer representing the data type.
-     *         One of the following is returned.
-     *         <ul>
-     *         <li>GL_BYTE
-     *         <li>GL_UNSIGNED_BYTE
-     *         <li>GL_SHORT
-     *         <li>GL_UNSIGNED_SHORT
-     *         <li>GL_FLOAT
-     *         <li>GL_FIXED
-     *         </ul>
      */
     public int getType()
     {
         return type;
-    }
-
-
-    /**
-     * Get an implementation of GLES interface.
-     *
-     * @return
-     *         An object implementing GLES interface.
-     */
-    private static GLES getGLES()
-    {
-        return GLESFactory.getInstance();
     }
 }
