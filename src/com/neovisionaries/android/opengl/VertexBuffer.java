@@ -32,7 +32,7 @@ import static com.neovisionaries.android.opengl.VertexBufferState.DELETED;
  *
  * @author Takahiko Kawasaki
  */
-public class VertexBuffer
+public abstract class VertexBuffer
 {
     /**
      * Type of the buffer object.
@@ -199,6 +199,11 @@ public class VertexBuffer
     /**
      * Set data to this vertex buffer.
      *
+     * <p>
+     * As a side effect, if this vertex buffer has not been bound yet,
+     * {@link #bind()} is executed before glBufferData().
+     * </p>
+     *
      * @param data
      *         Data to pass to glBufferData().
      *
@@ -238,6 +243,11 @@ public class VertexBuffer
         if (usage == null)
         {
             usage = VertexBufferUsage.STATIC;
+        }
+
+        if (isBound() == false)
+        {
+            bind();
         }
 
         // Get the elements size (in bytes) of the data.
@@ -387,7 +397,8 @@ public class VertexBuffer
      * setData() method.
      *
      * <p>
-     * This package-private method is used by {@link Attribute}.
+     * This package-private method is used by {@link Attribute}
+     * and {@link ElementDrawer}.
      * </p>
      *
      * @return
@@ -411,4 +422,13 @@ public class VertexBuffer
     {
         return GLESFactory.getInstance();
     }
+
+
+    /**
+     * Check if this vertex buffer is bound.
+     *
+     * @return
+     *         True if this vertex buffer is bound.
+     */
+    public abstract boolean isBound();
 }

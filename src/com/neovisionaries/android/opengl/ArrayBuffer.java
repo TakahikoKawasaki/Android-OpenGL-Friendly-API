@@ -31,6 +31,25 @@ public class ArrayBuffer extends VertexBuffer
 
 
     /**
+     * Check if this array buffer is bound.
+     *
+     * <p>
+     * This method returns true if the value returned from
+     * {@link GLESState#getArrayBufferBinding()} and
+     * the value returned from {@link #getId()} are identical.
+     * </p>
+     *
+     * @return
+     *         True if this element array buffer is bound.
+     */
+    @Override
+    public boolean isBound()
+    {
+        return GLESState.getArrayBufferBinding() == getId();
+    }
+
+
+    /**
      * Unbind the array buffer (call glBindBuffer(GL_ARRAY_BUFFER, 0)).
      *
      * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBindBuffer.xml">glBindBuffer</a>

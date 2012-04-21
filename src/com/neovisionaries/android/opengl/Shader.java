@@ -43,7 +43,7 @@ import static com.neovisionaries.android.opengl.ShaderState.SOURCE_SET;
  *
  * @see Program
  */
-public class Shader
+public abstract class Shader
 {
     /**
      * Shader ID. A return value from glCreateShader().

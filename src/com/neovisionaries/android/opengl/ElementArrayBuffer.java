@@ -33,6 +33,25 @@ public class ElementArrayBuffer extends VertexBuffer
 
 
     /**
+     * Check if this element array buffer is bound.
+     *
+     * <p>
+     * This method returns true if the value returned from
+     * {@link GLESState#getElementArrayBufferBinding()} and
+     * the value returned from {@link #getId()} are identical.
+     * </p>
+     *
+     * @return
+     *         True if this element array buffer is bound.
+     */
+    @Override
+    public boolean isBound()
+    {
+        return GLESState.getElementArrayBufferBinding() == getId();
+    }
+
+
+    /**
      * Unbind the element array buffer (call
      * glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0)).
      *
