@@ -6,6 +6,7 @@ package com.neovisionaries.android.opengl;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
 import static com.neovisionaries.android.opengl.ShaderState.COMPILED;
@@ -170,6 +171,58 @@ public abstract class Shader
     protected Shader(ShaderType type, File file) throws IOException, GLESException
     {
         this(type, GLESHelper.toString(file));
+    }
+
+
+    /**
+     * This constructor is an alias of {@link #Shader(ShaderType,
+     * InputStream, boolean) Shader}(type, in, false).
+     *
+     * @see Shader#Shader(ShaderType, InputStream, boolean)
+     * @see VertexShader#VertexShader(InputStream)
+     * @see FragmentShader#FragmentShader(InputStream)
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glCreateShader.xml">glCreateShader</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glShaderSource.xml">glShaderSource</a>
+     */
+    protected Shader(ShaderType type, InputStream in) throws IOException, GLESException
+    {
+        this(type, in, false);
+    }
+
+
+    /**
+     * A constructor with a shader type and an input stream from
+     * which a shader source should be read. After this constructor
+     * returns, the state of this instance is {@link
+     * ShaderState#SOURCE_SET}.
+     *
+     * @param type
+     *         {@link ShaderType#VERTEX} or {@link ShaderType#FRAGMENT}.
+     *
+     * @param in
+     *         An input stream that feeds a shader source code.
+     *
+     * @param close
+     *         If true is given, the input stream is closed before
+     *         this method returns.
+     *
+     * @throws IllegalArgumentException
+     *         'type' is null or 'in' is null.
+     *
+     * @throws IOException
+     *         Failed to read the content of the input stream.
+     *
+     * @throws GLESException
+     *         glCreateShader() failed.
+     *
+     * @see #VertexShader(InputStream, boolean)
+     * @see FragmentShader#FragmentShader(InputStream, boolean))
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glCreateShader.xml">glCreateShader</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glShaderSource.xml">glShaderSource</a>
+     */
+    protected Shader(ShaderType type, InputStream in, boolean close) throws IOException, GLESException
+    {
+        this(type, GLESHelper.toString(in, close));
     }
 
 

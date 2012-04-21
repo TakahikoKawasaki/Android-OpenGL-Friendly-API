@@ -8,6 +8,7 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
@@ -339,6 +340,95 @@ final class GLESHelper
             {
             }
         }
+    }
+
+
+    /**
+     * This method is an alias of {@link #toString(InputStream, Charset, boolean)
+     * toString}(in, null, false).
+     *
+     * @see #toString(InputStream, Charset, boolean)
+     */
+    public static String toString(InputStream in) throws IOException
+    {
+        return toString(in, null, false);
+    }
+
+
+    /**
+     * This method is an alias of {@link #toString(InputStream, Charset, boolean)
+     * toString}(in, null, close).
+     *
+     * @see #toString(InputStream, Charset, boolean)
+     */
+    public static String toString(InputStream in, boolean close) throws IOException
+    {
+        return toString(in, null, close);
+    }
+
+
+    /**
+     * This method is an alias of {@link #toString(InputStream, Charset, boolean)
+     * toString}(in, charset, false).
+     *
+     * @see #toString(InputStream, Charset, boolean)
+     */
+    public static String toString(InputStream in, Charset charset) throws IOException
+    {
+        return toString(in, charset, false);
+    }
+
+
+    /**
+     * Read all the bytes from the input stream and convert them a String instance.
+     *
+     * @param in
+     *         Input.
+     *
+     * @param charset
+     *         The character set of the content of the file. If null
+     *         is given, the default character set of the platform
+     *         is used.
+     *
+     * @param close
+     *         If true is given, the input stream is closed before
+     *         this method returns.
+     *
+     * @return
+     *         A String instance built from the data of the input stream.
+     *
+     * @throws IllegalArgumentException
+     *         'in' is null.
+     *
+     * @throws IOException
+     */
+    public static String toString(InputStream in, Charset charset, boolean close) throws IOException
+    {
+        if (in == null)
+        {
+            throw new IllegalArgumentException();
+        }
+
+        if (charset == null)
+        {
+            // Use the default charset of the platform.
+            charset = Charset.defaultCharset();
+        }
+
+        // Read all bytes from the input stream.
+        DataBuilder builder = new DataBuilder();
+        builder.append(in);
+        byte[] data = builder.toData();
+
+        // Convert the bytes to a String instance.
+        String str = new String(data, charset);
+
+        if (close)
+        {
+            in.close();
+        }
+
+        return str;
     }
 
 

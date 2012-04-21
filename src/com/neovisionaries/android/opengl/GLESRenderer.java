@@ -6,6 +6,7 @@ package com.neovisionaries.android.opengl;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
+import android.content.Context;
 import android.opengl.GLSurfaceView;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -25,6 +26,13 @@ import android.view.MotionEvent;
  */
 public abstract class GLESRenderer implements GLSurfaceView.Renderer
 {
+    /**
+     * Context given from the GLESSurfaceView when this renderer
+     * intance was set to it.
+     */
+    private Context context;
+
+
     /**
      * This method calls {@link #onDrawFrame(GLES)}.
      */
@@ -62,6 +70,39 @@ public abstract class GLESRenderer implements GLSurfaceView.Renderer
 
 
     public abstract void onSurfaceCreated(GLES gles, EGLConfig config);
+
+
+    /**
+     * Set the context of the {@link GLESSurfaceView} to which this
+     * renderer is set to.
+     *
+     * <p>
+     * This method is called by a {@link GLESSurfaceView} when this
+     * renderer is set to it by {@link
+     * GLESSurfaceView#setRenderer(android.opengl.GLSurfaceView.Renderer)
+     * GLESSurfaceView.setRenderer()}.
+     * </p>
+     *
+     * @param context
+     */
+    void setContext(Context context)
+    {
+        this.context = context;
+    }
+
+
+    /**
+     * Get the context of the {@link GLESSurfaceView} to which this
+     * renderer is set to.
+     *
+     * @return
+     *         The context of the {@link GLESSurfaceView} to which
+     *         this renderer is set to.
+     */
+    public Context getContext()
+    {
+        return context;
+    }
 
 
     /**

@@ -31,6 +31,7 @@ import android.view.MotionEvent;
  */
 public class GLESSurfaceView extends GLSurfaceView
 {
+    private Context context;
     private Renderer renderer;
 
 
@@ -38,7 +39,7 @@ public class GLESSurfaceView extends GLSurfaceView
     {
         super(context);
 
-        init();
+        init(context);
     }
 
 
@@ -46,15 +47,17 @@ public class GLESSurfaceView extends GLSurfaceView
     {
         super(context, attrs);
 
-        init();
+        init(context);
     }
 
 
-    private void init()
+    private void init(Context context)
     {
         int major = GLESFactory.getInstance().getMajorVersion();
 
         setEGLContextClientVersion(major);
+
+        this.context = context;
     }
 
 
@@ -87,6 +90,11 @@ public class GLESSurfaceView extends GLSurfaceView
         super.setRenderer(renderer);
 
         this.renderer = renderer;
+
+        if (renderer instanceof GLESRenderer)
+        {
+            ((GLESRenderer)renderer).setContext(context);
+        }
     }
 
 
