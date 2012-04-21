@@ -127,4 +127,13 @@ public final class GLESState
 
         return set;
     }
+
+
+    /**
+     * Get the state value of GL_VERSION.
+     */
+    public static String getVersion()
+    {
+        return getGLES().glGetString(getGLES().GL_VERSION());
+    }
 }

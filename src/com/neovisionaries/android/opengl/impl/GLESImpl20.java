@@ -40,6 +40,14 @@ import com.neovisionaries.android.opengl.GLES;
 public class GLESImpl20 extends GLESImplBase
 {
     @Override
+    public int getMajorVersion()
+    {
+        // OpenGL ES 2.0.
+        return 2;
+    }
+
+
+    @Override
     public void glAttachShader(int programId, int shaderId)
     {
         GLES20.glAttachShader(programId, shaderId);

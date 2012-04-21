@@ -21,6 +21,14 @@ import com.neovisionaries.android.opengl.GLES;
 public class GLESImpl11 extends GLESImplBase
 {
     @Override
+    public int getMajorVersion()
+    {
+        // OpenGL ES 1.1.
+        return 1;
+    }
+
+
+    @Override
     public void glBindBuffer(int vertexBufferType, int vertexBufferId)
     {
         GLES11.glBindBuffer(vertexBufferType, vertexBufferId);

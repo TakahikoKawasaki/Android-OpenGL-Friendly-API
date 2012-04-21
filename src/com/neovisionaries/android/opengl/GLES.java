@@ -23,6 +23,19 @@ import java.nio.IntBuffer;
  */
 public interface GLES
 {
+    /**
+     * Get the major version number of OpenGL ES.
+     *
+     * <p>
+     * For example, an implementation for OpenGL ES 2.0 should return 2.
+     * </p>
+     *
+     * @return
+     *         The major version number of OpenGL ES targeted by
+     *         the implementation of GLES interface.
+     */
+    int getMajorVersion();
+
     int GL_ACTIVE_ATTRIBUTES();
     int GL_ACTIVE_ATTRIBUTE_MAX_LENGTH();
     int GL_ACTIVE_TEXTURE();
