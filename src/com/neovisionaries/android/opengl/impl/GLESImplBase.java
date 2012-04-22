@@ -2853,6 +2853,13 @@ public abstract class GLESImplBase implements GLES
 
 
     @Override
+    public void glDeleteTextures(int count, int[] textureIds, int offset)
+    {
+        unsupported("glDeleteTextures");
+    }
+
+
+    @Override
     public void glDepthMask(boolean writable)
     {
         unsupported("glDepthMask");
@@ -2933,6 +2940,13 @@ public abstract class GLESImplBase implements GLES
     public void glGenBuffers(int vertexBufferType, int[] vertexBufferIds, int offset)
     {
         unsupported("glGenBuffers");
+    }
+
+
+    @Override
+    public void glGenTextures(int textureType, int[] textureIds, int offset)
+    {
+        unsupported("glGenTextures");
     }
 
 

@@ -506,7 +506,7 @@ public interface GLES
     /**
      * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glDeleteBuffers.xml">glDeleteBuffers</a>
      */
-    void glDeleteBuffers(int vertexBufferType, int[] vertexBufferIds, int offset);
+    void glDeleteBuffers(int count, int[] vertexBufferIds, int offset);
 
 
     /**
@@ -519,6 +519,12 @@ public interface GLES
      * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glDeleteShader.xml">glDeleteShader</a>
      */
     void glDeleteShader(int shaderId);
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glDeleteTextures.xml">glDeleteTextures</a>
+     */
+    void glDeleteTextures(int count, int[] textureIds, int offset);
 
 
     /**
@@ -591,6 +597,12 @@ public interface GLES
      * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGenBuffers.xml">glGenBuffers</a>
      */
     void glGenBuffers(int vertexBufferType, int[] vertexBufferIds, int offset);
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGenTextures.xml">glGenTextures</a>
+     */
+    void glGenTextures(int textureType, int[] textureIds, int offset);
 
 
     /**

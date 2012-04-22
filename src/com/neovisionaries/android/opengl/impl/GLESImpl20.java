@@ -139,9 +139,9 @@ public class GLESImpl20 extends GLESImplBase
 
 
     @Override
-    public void glDeleteBuffers(int vertexBufferType, int[] vertexBufferIds, int offset)
+    public void glDeleteBuffers(int count, int[] vertexBufferIds, int offset)
     {
-        GLES20.glDeleteBuffers(vertexBufferType, vertexBufferIds, offset);
+        GLES20.glDeleteBuffers(count, vertexBufferIds, offset);
     }
 
 
@@ -156,6 +156,13 @@ public class GLESImpl20 extends GLESImplBase
     public void glDeleteShader(int shaderId)
     {
         GLES20.glDeleteShader(shaderId);
+    }
+
+
+    @Override
+    public void glDeleteTextures(int count, int[] textureIds, int offset)
+    {
+        GLES20.glDeleteTextures(count, textureIds, offset);
     }
 
 
@@ -233,6 +240,13 @@ public class GLESImpl20 extends GLESImplBase
     public void glGenBuffers(int vertexBufferType, int[] vertexBufferIds, int offset)
     {
         GLES20.glGenBuffers(vertexBufferType, vertexBufferIds, offset);
+    }
+
+
+    @Override
+    public void glGenTextures(int textureType, int[] textureIds, int offset)
+    {
+        GLES20.glGenTextures(textureType, textureIds, offset);
     }
 
 

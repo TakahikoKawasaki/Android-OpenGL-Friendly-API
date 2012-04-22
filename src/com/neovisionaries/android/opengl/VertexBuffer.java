@@ -189,7 +189,7 @@ public abstract class VertexBuffer
         int[] ids = new int[] { id };
 
         // Delete the buffer object.
-        getGLES().glDeleteBuffers(type.getType(), ids, 0);
+        getGLES().glDeleteBuffers(1, ids, 0);
 
         // The buffer object was deleted.
         state = DELETED;
