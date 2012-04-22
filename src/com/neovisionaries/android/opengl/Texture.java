@@ -120,6 +120,26 @@ public abstract class Texture
 
 
     /**
+     * Bind this texture using glBindTexture().
+     *
+     * @throws IllegalStateException
+     *         This texture has already been deleted.
+     *
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBindTexture.xml">glBindTexture</a>
+     */
+    public void bind()
+    {
+        if (state == DELETED)
+        {
+            throw new IllegalStateException("Texture has already been deleted.");
+        }
+
+        // Bind the texture object.
+        getGLES().glBindTexture(type.getType(), id);
+    }
+
+
+    /**
      * Delete this texture object using glDeleteTextures().
      * If the texture object has already been deleted,
      * nothing is executed. After this method returns,
@@ -157,5 +177,55 @@ public abstract class Texture
     private static GLES getGLES()
     {
         return GLESFactory.getInstance();
+    }
+
+
+    private static void setParameter(int textureType, int parameterId, int parameterValue)
+    {
+        getGLES().glTexParameteri(textureType, parameterId, parameterValue);
+    }
+
+
+    static void setMagFilter(TextureType type, MagFilter filter)
+    {
+        if (filter == null)
+        {
+            throw new IllegalArgumentException();
+        }
+
+        setParameter(type.getType(), getGLES().GL_TEXTURE_MAG_FILTER(), filter.getFilter());
+    }
+
+
+    static void setMinFilter(TextureType type, MinFilter filter)
+    {
+        if (filter == null)
+        {
+            throw new IllegalArgumentException();
+        }
+
+        setParameter(type.getType(), getGLES().GL_TEXTURE_MIN_FILTER(), filter.getFilter());
+    }
+
+
+    static void setWrapS(TextureType type, WrapMode mode)
+    {
+        if (mode == null)
+        {
+            throw new IllegalArgumentException();
+        }
+
+        setParameter(type.getType(), getGLES().GL_TEXTURE_WRAP_S(), mode.getMode());
+    }
+
+
+    static void setWrapT(TextureType type, WrapMode mode)
+    {
+        if (mode == null)
+        {
+            throw new IllegalArgumentException();
+        }
+
+        setParameter(type.getType(), getGLES().GL_TEXTURE_WRAP_T(), mode.getMode());
     }
 }

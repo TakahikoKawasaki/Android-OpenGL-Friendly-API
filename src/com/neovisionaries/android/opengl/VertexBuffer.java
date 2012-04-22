@@ -152,6 +152,7 @@ public abstract class VertexBuffer
      * Bind this vertex buffer using glBindBuffer().
      *
      * @throws IllegalStateException
+     *         This vertex buffer has already been deleted.
      *
      * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBindBuffer.xml">glBindBuffer</a>
      */

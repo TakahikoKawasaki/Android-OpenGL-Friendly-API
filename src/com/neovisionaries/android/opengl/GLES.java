@@ -444,6 +444,12 @@ public interface GLES
 
 
     /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBindTexture.xml">glBindTexture</a>
+     */
+    void glBindTexture(int textureType, int textureId);
+
+
+    /**
      * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBufferData.xml">glBufferData</a>
      */
     void glBufferData(int vertexBufferType, int size, Buffer data, int vertexBufferUsage);
@@ -735,6 +741,12 @@ public interface GLES
      * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glShaderSource.xml">glShaderSource</a>
      */
     void glShaderSource(int shaderId, String shaderSourceCode);
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glTexParameter.xml">glTexParameteri</a>
+     */
+    void glTexParameteri(int textureType, int parameterId, int parameterValue);
 
 
     /**

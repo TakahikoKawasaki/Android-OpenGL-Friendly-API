@@ -2758,6 +2758,13 @@ public abstract class GLESImplBase implements GLES
 
 
     @Override
+    public void glBindTexture(int textureType, int textureId)
+    {
+        unsupported("glBindTexture");
+    }
+
+
+    @Override
     public void glBufferData(int vertexBufferType, int size, Buffer data, int vertexBufferUsage)
     {
         unsupported("glBufferData");
@@ -3115,6 +3122,13 @@ public abstract class GLESImplBase implements GLES
     public void glShaderSource(int shaderId, String shaderSourceCode)
     {
         unsupported("glShaderSource");
+    }
+
+
+    @Override
+    public void glTexParameteri(int textureType, int parameterId, int parameterValue)
+    {
+        unsupported("glTexParameteri");
     }
 
 

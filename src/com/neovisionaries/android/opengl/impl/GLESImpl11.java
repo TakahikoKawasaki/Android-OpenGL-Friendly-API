@@ -36,6 +36,13 @@ public class GLESImpl11 extends GLESImplBase
 
 
     @Override
+    public void glBindTexture(int textureType, int textureId)
+    {
+        GLES11.glBindTexture(textureType, textureId);
+    }
+
+
+    @Override
     public void glBufferData(int vertexBufferType, int size, Buffer data, int vertexBufferUsage)
     {
         GLES11.glBufferData(vertexBufferType, size, data, vertexBufferUsage);
@@ -228,6 +235,13 @@ public class GLESImpl11 extends GLESImplBase
     public boolean glIsEnabled(int capability)
     {
         return GLES11.glIsEnabled(capability);
+    }
+
+
+    @Override
+    public void glTexParameteri(int textureType, int parameterId, int parameterValue)
+    {
+        GLES11.glTexParameteri(textureType, parameterId, parameterValue);
     }
 
 

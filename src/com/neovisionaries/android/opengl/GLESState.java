@@ -175,6 +175,24 @@ public final class GLESState
 
 
     /**
+     * Get the state value of GL_TEXTURE_BINDING_2D.
+     */
+    public static int getTextureBinding2D()
+    {
+        return getInteger(getGLES().GL_TEXTURE_BINDING_2D());
+    }
+
+
+    /**
+     * Get the state value of GL_TEXTURE_BINDING_CUBE_MAP.
+     */
+    public static int getTextureBindingCubeMap()
+    {
+        return getInteger(getGLES().GL_TEXTURE_BINDING_CUBE_MAP());
+    }
+
+
+    /**
      * Get the state value of GL_VERSION.
      */
     public static String getVersion()

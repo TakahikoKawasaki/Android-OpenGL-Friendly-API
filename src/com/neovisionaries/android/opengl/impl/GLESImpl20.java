@@ -69,6 +69,13 @@ public class GLESImpl20 extends GLESImplBase
 
 
     @Override
+    public void glBindTexture(int textureType, int textureId)
+    {
+        GLES20.glBindTexture(textureType, textureId);
+    }
+
+
+    @Override
     public void glBufferData(int vertexBufferType, int size, Buffer data, int vertexBufferUsage)
     {
         GLES20.glBufferData(vertexBufferType, size, data, vertexBufferUsage);
@@ -401,6 +408,13 @@ public class GLESImpl20 extends GLESImplBase
     public void glShaderSource(int shaderId, String shaderSourceCode)
     {
         GLES20.glShaderSource(shaderId, shaderSourceCode);
+    }
+
+
+    @Override
+    public void glTexParameteri(int textureType, int parameterId, int parameterValue)
+    {
+        GLES20.glTexParameteri(textureType, parameterId, parameterValue);
     }
 
 
