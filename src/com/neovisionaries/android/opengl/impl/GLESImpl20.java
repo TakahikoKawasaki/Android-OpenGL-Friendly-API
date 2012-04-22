@@ -153,6 +153,13 @@ public class GLESImpl20 extends GLESImplBase
 
 
     @Override
+    public void glDepthMask(boolean writable)
+    {
+        GLES20.glDepthMask(writable);
+    }
+
+
+    @Override
     public void glDetachShader(int programId, int shaderId)
     {
         GLES20.glDetachShader(programId, shaderId);

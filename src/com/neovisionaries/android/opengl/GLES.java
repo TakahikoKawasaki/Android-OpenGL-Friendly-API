@@ -528,6 +528,12 @@ public interface GLES
 
 
     /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glDepthMask.xml">glDepthMask</a>
+     */
+    void glDepthMask(boolean writable);
+
+
+    /**
      * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glDetachShader.xml">glDetachShader</a>
      */
     void glDetachShader(int programId, int shaderId);

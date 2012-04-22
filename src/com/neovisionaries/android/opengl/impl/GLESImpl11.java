@@ -85,6 +85,13 @@ public class GLESImpl11 extends GLESImplBase
 
 
     @Override
+    public void glDepthMask(boolean writable)
+    {
+        GLES11.glDepthMask(writable);
+    }
+
+
+    @Override
     public void glDisable(int capability)
     {
         GLES11.glDisable(capability);

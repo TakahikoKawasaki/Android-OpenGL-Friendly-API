@@ -2846,6 +2846,13 @@ public abstract class GLESImplBase implements GLES
 
 
     @Override
+    public void glDepthMask(boolean writable)
+    {
+        unsupported("glDepthMask");
+    }
+
+
+    @Override
     public void glDetachShader(int programId, int shaderId)
     {
         unsupported("glDetachShader");
