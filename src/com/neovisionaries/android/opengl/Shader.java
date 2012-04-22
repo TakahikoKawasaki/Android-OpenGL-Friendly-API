@@ -215,8 +215,8 @@ public abstract class Shader
      * @throws GLESException
      *         glCreateShader() failed.
      *
-     * @see #VertexShader(InputStream, boolean)
-     * @see FragmentShader#FragmentShader(InputStream, boolean))
+     * @see VertexShader#VertexShader(InputStream, boolean)
+     * @see FragmentShader#FragmentShader(InputStream, boolean)
      * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glCreateShader.xml">glCreateShader</a>
      * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glShaderSource.xml">glShaderSource</a>
      */
