@@ -38,6 +38,28 @@ public final class GLESState
     }
 
 
+    private static boolean getBoolean(int parameterId)
+    {
+        boolean[] params = getBooleanArray(parameterId, 1);
+
+        return params[0];
+    }
+
+
+    private static boolean[] getBooleanArray(int parameterId, int size)
+    {
+        return getBooleanArray(parameterId, new boolean[size]);
+    }
+
+
+    private static boolean[] getBooleanArray(int parameterId, boolean[] params)
+    {
+        getGLES().glGetBooleanv(parameterId, params, 0);
+
+        return params;
+    }
+
+
     private static int getInteger(int parameterId)
     {
         int[] params = getIntArray(parameterId, 1);
@@ -66,6 +88,29 @@ public final class GLESState
     public static int getArrayBufferBinding()
     {
         return getInteger(getGLES().GL_ARRAY_BUFFER_BINDING());
+    }
+
+
+    /**
+     * Get the state value of GL_COLOR_WRITEMASK.
+     *
+     * @return
+     *         A boolean array of size 4. The values indicate whether
+     *         the red, green, blue and alpha components are writable
+     *         or not.
+     */
+    public static boolean[] getColorWritemask()
+    {
+        return getBooleanArray(getGLES().GL_COLOR_WRITEMASK(), 4);
+    }
+
+
+    /**
+     * Get the state value of GL_DEPTH_WRITEMASK.
+     */
+    public static boolean getDepthWritemask()
+    {
+        return getBoolean(getGLES().GL_DEPTH_WRITEMASK());
     }
 
 

@@ -480,6 +480,12 @@ public interface GLES
 
 
     /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glColorMask.xml">glColorMask</a>
+     */
+    void glColorMask(boolean red, boolean green, boolean blue, boolean alpha);
+
+
+    /**
      * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glCompileShader.xml">glCompileShader</a>
      */
     void glCompileShader(int shaderId);

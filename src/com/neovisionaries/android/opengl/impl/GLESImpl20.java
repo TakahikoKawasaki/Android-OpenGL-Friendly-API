@@ -111,6 +111,13 @@ public class GLESImpl20 extends GLESImplBase
 
 
     @Override
+    public void glColorMask(boolean red, boolean green, boolean blue, boolean alpha)
+    {
+        GLES20.glColorMask(red, green, blue, alpha);
+    }
+
+
+    @Override
     public void glCompileShader(int shaderId)
     {
         GLES20.glCompileShader(shaderId);

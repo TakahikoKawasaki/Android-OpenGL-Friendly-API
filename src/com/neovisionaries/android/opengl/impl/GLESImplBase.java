@@ -2800,6 +2800,13 @@ public abstract class GLESImplBase implements GLES
 
 
     @Override
+    public void glColorMask(boolean red, boolean green, boolean blue, boolean alpha)
+    {
+        unsupported("glColorMask");
+    }
+
+
+    @Override
     public void glCompileShader(int shaderId)
     {
         unsupported("glCompileShader");

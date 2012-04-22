@@ -89,6 +89,78 @@ public final class ColorBuffer
 
 
     /**
+     * Set color components writable (call glColorMask(red, green, blue, alpha)).
+     *
+     * @param red
+     *         True to set the red component writable.
+     *
+     * @param green
+     *         True to set the green component writable.
+     *
+     * @param blue
+     *         True to set the blue component writable.
+     *
+     * @param alpha
+     *         True to set the alpha component writable.
+     *
+     *
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glColorMask.xml">glColorMask</a>
+     */
+    public static void setWritable(boolean red, boolean green, boolean blue, boolean alpha)
+    {
+        getGLES().glColorMask(red, green, blue, alpha);
+    }
+
+
+    /**
+     * Set color components writable.
+     *
+     * <p>
+     * This method calls {@link #setWritable(boolean, boolean, boolean, boolean)
+     * setWritable}(masks[0], masks[1], masks[2], masks[3]).
+     * </p>
+     *
+     * @param masks
+     *         A boolean array of size 4 (or more). Each element
+     *         corresponds to red, green blue and alpha components
+     *         from the beginning in this order respectively.
+     *         True should be set to make the corresponding color
+     *         component writable.
+     *
+     * @throws IllegalArgumentException
+     *         The argument is null or the length of the argument
+     *         is less than 4.
+     *
+     * @see #setWritable(boolean red, boolean green, boolean blue, boolean alpha)
+     */
+    public static void setWritable(boolean[] masks)
+    {
+        if (masks == null || masks.length < 4)
+        {
+            throw new IllegalArgumentException();
+        }
+
+        setWritable(masks[0], masks[1], masks[2], masks[3]);
+    }
+
+
+    /**
+     * Get the current writable masks of color components.
+     *
+     * @return
+     *         A boolean array of size 4. The values indicate whether
+     *         the red, green, blue and alpha components are writable
+     *         or not.
+     *
+     * @see GLESState#getColorWritemask()
+     */
+    public static boolean[] getWritable()
+    {
+        return GLESState.getColorWritemask();
+    }
+
+
+    /**
      * Get an implementation of GLES interface.
      *
      * @return

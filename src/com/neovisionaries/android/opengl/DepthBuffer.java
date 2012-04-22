@@ -60,6 +60,20 @@ public final class DepthBuffer
 
 
     /**
+     * Check if the depth buffer is writable.
+     *
+     * @return
+     *         True if the depth buffer is writable.
+     *
+     * @see GLESState#getDepthWritemask()
+     */
+    public static boolean isWritable()
+    {
+        return GLESState.getDepthWritemask();
+    }
+
+
+    /**
      * Get an implementation of GLES interface.
      *
      * @return

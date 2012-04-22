@@ -78,6 +78,13 @@ public class GLESImpl11 extends GLESImplBase
 
 
     @Override
+    public void glColorMask(boolean red, boolean green, boolean blue, boolean alpha)
+    {
+        GLES11.glColorMask(red, green, blue, alpha);
+    }
+
+
+    @Override
     public void glDeleteBuffers(int vertexBufferType, int[] vertexBufferIds, int offset)
     {
         GLES11.glDeleteBuffers(vertexBufferType, vertexBufferIds, offset);
