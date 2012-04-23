@@ -35,62 +35,6 @@ public class TextureCubeMap extends Texture
 
 
     /**
-     * Set a mag filter for cube map textures.
-     *
-     * @param filter
-     *
-     * @throws IllegalArgumentException
-     *         The given argument is null.
-     */
-    public static void setMagFilter(MagFilter filter)
-    {
-        Texture.setMagFilter(TextureType.CUBE_MAP, filter);
-    }
-
-
-    /**
-     * Set a min filter for cube map textures.
-     *
-     * @param filter
-     *
-     * @throws IllegalArgumentException
-     *         The given argument is null.
-     */
-    public static void setMinFilter(MinFilter filter)
-    {
-        Texture.setMinFilter(TextureType.CUBE_MAP, filter);
-    }
-
-
-    /**
-     * Set a wrap mode for S coordinates of cube map textures.
-     *
-     * @param mode
-     *
-     * @throws IllegalArgumentException
-     *         The given argument is null.
-     */
-    public static void setWrapS(WrapMode mode)
-    {
-        Texture.setWrapS(TextureType.CUBE_MAP, mode);
-    }
-
-
-    /**
-     * Set a wrap mode for T coordinates of cube map textures.
-     *
-     * @param mode
-     *
-     * @throws IllegalArgumentException
-     *         The given argument is null.
-     */
-    public static void setWrapT(WrapMode mode)
-    {
-        Texture.setWrapT(TextureType.CUBE_MAP, mode);
-    }
-
-
-    /**
      * Check if this 2D texture is bound.
      *
      * <p>

@@ -2737,6 +2737,13 @@ public abstract class GLESImplBase implements GLES
 
 
     @Override
+    public void glActiveTexture(int textureUnit)
+    {
+        unsupported("glActiveTexture");
+    }
+
+
+    @Override
     public void glAttachShader(int programId, int shaderId)
     {
         unsupported("glAttachShader");

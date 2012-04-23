@@ -9,10 +9,8 @@ package com.neovisionaries.android.opengl;
  *
  * @author Takahiko Kawasaki
  *
- * @see Texture2D#setWrapS(WrapMode)
- * @see Texture2D#setWrapT(WrapMode)
- * @see TextureCubeMap#setWrapS(WrapMode)
- * @see TextureCubeMap#setWrapT(WrapMode)
+ * @see Texture#setWrapS(WrapMode)
+ * @see Texture#setWrapT(WrapMode)
  * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glTexParameter.xml">glTexParameter</a>
  */
 public enum WrapMode

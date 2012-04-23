@@ -33,62 +33,6 @@ public class Texture2D extends Texture
 
 
     /**
-     * Set a mag filter for 2D textures.
-     *
-     * @param filter
-     *
-     * @throws IllegalArgumentException
-     *         The given argument is null.
-     */
-    public static void setMagFilter(MagFilter filter)
-    {
-        Texture.setMagFilter(TextureType.TWO_D, filter);
-    }
-
-
-    /**
-     * Set a min filter for 2D textures.
-     *
-     * @param filter
-     *
-     * @throws IllegalArgumentException
-     *         The given argument is null.
-     */
-    public static void setMinFilter(MinFilter filter)
-    {
-        Texture.setMinFilter(TextureType.TWO_D, filter);
-    }
-
-
-    /**
-     * Set a wrap mode for S coordinates of 2D textures.
-     *
-     * @param mode
-     *
-     * @throws IllegalArgumentException
-     *         The given argument is null.
-     */
-    public static void setWrapS(WrapMode mode)
-    {
-        Texture.setWrapS(TextureType.TWO_D, mode);
-    }
-
-
-    /**
-     * Set a wrap mode for T coordinates of 2D textures.
-     *
-     * @param mode
-     *
-     * @throws IllegalArgumentException
-     *         The given argument is null.
-     */
-    public static void setWrapT(WrapMode mode)
-    {
-        Texture.setWrapT(TextureType.TWO_D, mode);
-    }
-
-
-    /**
      * Check if this 2D texture is bound.
      *
      * <p>

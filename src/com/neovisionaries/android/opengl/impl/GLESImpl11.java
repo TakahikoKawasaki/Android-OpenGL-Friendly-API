@@ -29,6 +29,13 @@ public class GLESImpl11 extends GLESImplBase
 
 
     @Override
+    public void glActiveTexture(int textureUnit)
+    {
+        GLES11.glActiveTexture(textureUnit);
+    }
+
+
+    @Override
     public void glBindBuffer(int vertexBufferType, int vertexBufferId)
     {
         GLES11.glBindBuffer(vertexBufferType, vertexBufferId);

@@ -194,105 +194,180 @@ public abstract class Texture
     /**
      * Calls glTexParameteri(textureType, parameterId, parameterValue).
      *
-     * @param textureType
      * @param parameterId
      * @param parameterValue
      */
-    private static void setParameter(int textureType, int parameterId, int parameterValue)
+    private void setParameter(int parameterId, int parameterValue)
     {
-        getGLES().glTexParameteri(textureType, parameterId, parameterValue);
+        getGLES().glTexParameteri(type.getType(), parameterId, parameterValue);
     }
 
 
     /**
      * Set a mag filter.
      *
-     * @param type
-     *         Type of the target texture.
+     * <p>
+     * If this texture is not bound when this method is called,
+     * {@link #bind()} is called before
+     * glTexParameter(GL_TEXTURE_MAG_FILTER, filter.{@link
+     * MagFilter#getFilter() getFilter()}) is called.
+     * </p>
      *
      * @param filter
      *         A mag filter.
      *
      * @throws IllegalArgumentException
      *         'filter' is null.
+     *
+     * @throws IllegalStateException
+     *         This texture has already been deleted.
+     *
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glTexParameter.xml">glTexParameter</a>
      */
-    static void setMagFilter(TextureType type, MagFilter filter)
+    public void setMagFilter(MagFilter filter)
     {
         if (filter == null)
         {
             throw new IllegalArgumentException();
         }
 
-        setParameter(type.getType(), getGLES().GL_TEXTURE_MAG_FILTER(), filter.getFilter());
+        if (state == DELETED)
+        {
+            throw new IllegalStateException("Texture has already been deleted.");
+        }
+
+        if (isBound() == false)
+        {
+            bind();
+        }
+
+        setParameter(getGLES().GL_TEXTURE_MAG_FILTER(), filter.getFilter());
     }
 
 
     /**
      * Set a min filter.
      *
-     * @param type
-     *         Type of the target texture.
+     * <p>
+     * If this texture is not bound when this method is called,
+     * {@link #bind()} is called before
+     * glTexParameter(GL_TEXTURE_MIN_FILTER, filter.{@link
+     * MinFilter#getFilter() getFilter()}) is called.
+     * </p>
      *
      * @param filter
      *         A min filter.
      *
      * @throws IllegalArgumentException
      *         'filter' is null.
+     *
+     * @throws IllegalStateException
+     *         This texture has already been deleted.
+     *
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glTexParameter.xml">glTexParameter</a>
      */
-    static void setMinFilter(TextureType type, MinFilter filter)
+    public void setMinFilter(MinFilter filter)
     {
         if (filter == null)
         {
             throw new IllegalArgumentException();
         }
 
-        setParameter(type.getType(), getGLES().GL_TEXTURE_MIN_FILTER(), filter.getFilter());
+        if (state == DELETED)
+        {
+            throw new IllegalStateException("Texture has already been deleted.");
+        }
+
+        if (isBound() == false)
+        {
+            bind();
+        }
+
+        setParameter(getGLES().GL_TEXTURE_MIN_FILTER(), filter.getFilter());
     }
 
 
     /**
      * Set a wrap mode for S coordinates of textures.
      *
-     * @param type
-     *         Type of the target texture.
+     * <p>
+     * If this texture is not bound when this method is called,
+     * {@link #bind()} is called before
+     * glTexParameter(GL_TEXTURE_WRAP_S, mode.{@link
+     * WrapMode#getMode() getMode()}) is called.
+     * </p>
      *
      * @param mode
      *         A wrap mode.
      *
      * @throws IllegalArgumentException
      *         'mode' is null.
+     *
+     * @throws IllegalStateException
+     *         This texture has already been deleted.
+     *
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glTexParameter.xml">glTexParameter</a>
      */
-    static void setWrapS(TextureType type, WrapMode mode)
+    public void setWrapS(WrapMode mode)
     {
         if (mode == null)
         {
             throw new IllegalArgumentException();
         }
 
-        setParameter(type.getType(), getGLES().GL_TEXTURE_WRAP_S(), mode.getMode());
+        if (state == DELETED)
+        {
+            throw new IllegalStateException("Texture has already been deleted.");
+        }
+
+        if (isBound() == false)
+        {
+            bind();
+        }
+
+        setParameter(getGLES().GL_TEXTURE_WRAP_S(), mode.getMode());
     }
 
 
     /**
      * Set a wrap mode for T coordinates of textures.
      *
-     * @param type
-     *         Type of the target texture.
+     * <p>
+     * If this texture is not bound when this method is called,
+     * {@link #bind()} is called before
+     * glTexParameter(GL_TEXTURE_WRAP_T, mode.{@link
+     * WrapMode#getMode() getMode()}) is called.
+     * </p>
      *
      * @param mode
      *         A wrap mode.
      *
      * @throws IllegalArgumentException
      *         'mode' is null.
+     *
+     * @throws IllegalStateException
+     *         This texture has already been deleted.
+     *
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glTexParameter.xml">glTexParameter</a>
      */
-    static void setWrapT(TextureType type, WrapMode mode)
+    public void setWrapT(WrapMode mode)
     {
         if (mode == null)
         {
             throw new IllegalArgumentException();
         }
 
-        setParameter(type.getType(), getGLES().GL_TEXTURE_WRAP_T(), mode.getMode());
+        if (state == DELETED)
+        {
+            throw new IllegalStateException("Texture has already been deleted.");
+        }
+
+        if (isBound() == false)
+        {
+            bind();
+        }
+
+        setParameter(getGLES().GL_TEXTURE_WRAP_T(), mode.getMode());
     }
 
 

@@ -48,6 +48,13 @@ public class GLESImpl20 extends GLESImplBase
 
 
     @Override
+    public void glActiveTexture(int textureUnit)
+    {
+        GLES20.glActiveTexture(textureUnit);
+    }
+
+
+    @Override
     public void glAttachShader(int programId, int shaderId)
     {
         GLES20.glAttachShader(programId, shaderId);

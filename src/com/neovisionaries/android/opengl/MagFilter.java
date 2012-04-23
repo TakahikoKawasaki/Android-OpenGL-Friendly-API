@@ -9,8 +9,7 @@ package com.neovisionaries.android.opengl;
  *
  * @author Takahiko Kawasaki
  *
- * @see Texture2D#setMagFilter(MagFilter)
- * @see TextureCubeMap#setMagFilter(MagFilter)
+ * @see Texture#setMagFilter(MagFilter)
  * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glTexParameter.xml">glTexParameter</a>
  */
 public enum MagFilter

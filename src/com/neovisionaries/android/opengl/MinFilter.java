@@ -9,8 +9,7 @@ package com.neovisionaries.android.opengl;
  *
  * @author Takahiko Kawasaki
  *
- * @see Texture2D#setMinFilter(MinFilter)
- * @see TextureCubeMap#setMinFilter(MinFilter)
+ * @see Texture#setMinFilter(MinFilter)
  * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glTexParameter.xml">glTexParameter</a>
  */
 public enum MinFilter

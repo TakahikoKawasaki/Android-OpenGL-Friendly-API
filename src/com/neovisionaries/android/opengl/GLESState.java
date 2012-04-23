@@ -83,6 +83,15 @@ public final class GLESState
 
 
     /**
+     * Get the state value of GL_ACTIVE_TEXTURE.
+     */
+    public static int getActiveTexture()
+    {
+        return getInteger(getGLES().GL_ACTIVE_TEXTURE());
+    }
+
+
+    /**
      * Get the state value of GL_ARRAY_BUFFER_BINDING.
      */
     public static int getArrayBufferBinding()
