@@ -606,6 +606,12 @@ public interface GLES
 
 
     /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGenerateMipmap.xml">glGenerateMipmap</a>
+     */
+    void glGenerateMipmap(int textureType);
+
+
+    /**
      * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGenTextures.xml">glGenTextures</a>
      */
     void glGenTextures(int textureType, int[] textureIds, int offset);

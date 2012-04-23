@@ -313,11 +313,46 @@ public abstract class Texture
             throw new IllegalArgumentException();
         }
 
+        if (state == DELETED)
+        {
+            throw new IllegalStateException("Texture has already been deleted.");
+        }
+
         if (isBound() == false)
         {
             bind();
         }
 
         GLUtils.texImage2D(target, level, bitmap, 0);
+    }
+
+
+    /**
+     * Generate mipmaps.
+     *
+     * <p>
+     * If this texture is not bound when this method is called,
+     * {@link #bind()} is called first. Then glGenerateMipmap()
+     * is called.
+     * </p>
+     *
+     * @throws IllegalStateException
+     *         This texture has already been deleted.
+     *
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGenerateMipmap.xml">glGenerateMipmap</a>
+     */
+    public void generateMipmap()
+    {
+        if (state == DELETED)
+        {
+            throw new IllegalStateException("Texture has already been deleted.");
+        }
+        
+        if (isBound() == false)
+        {
+            bind();
+        }
+
+        getGLES().glGenerateMipmap(type.getType());
     }
 }

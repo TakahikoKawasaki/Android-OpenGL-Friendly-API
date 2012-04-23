@@ -251,6 +251,13 @@ public class GLESImpl20 extends GLESImplBase
 
 
     @Override
+    public void glGenerateMipmap(int textureType)
+    {
+        GLES20.glGenerateMipmap(textureType);
+    }
+
+
+    @Override
     public void glGenTextures(int textureType, int[] textureIds, int offset)
     {
         GLES20.glGenTextures(textureType, textureIds, offset);

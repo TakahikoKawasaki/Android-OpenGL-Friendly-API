@@ -113,7 +113,7 @@ public class Texture2D extends Texture
      * Load an image.
      *
      * <p>
-     * If this texture has not been bound yet when this method
+     * If this texture is not bound when this method
      * is called, {@link #bind() bind()} is called first. Then,
      * <a href="http://developer.android.com/reference/android/opengl/GLUtils.html#texImage2D(int,%20int,%20android.graphics.Bitmap,%20int)"
      * >GLUtils.texImage2D</a>(GL_TEXTURE_2D, level, bitmap, 0)
@@ -128,6 +128,9 @@ public class Texture2D extends Texture
      *
      * @throws IllegalArgumentException
      *         'bitmap' is null or 'level' is less than 0.
+     *
+     * @throws IllegalStateException
+     *         This texture has already been deleted.
      *
      * @see <a href="http://developer.android.com/reference/android/opengl/GLUtils.html#texImage2D(int,%20int,%20android.graphics.Bitmap,%20int)"
      *       >GLUtils.texImage2D</a>

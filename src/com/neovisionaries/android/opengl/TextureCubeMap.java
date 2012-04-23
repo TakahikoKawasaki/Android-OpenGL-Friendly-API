@@ -3,8 +3,8 @@
  */
 package com.neovisionaries.android.opengl;
 
+
 import android.graphics.Bitmap;
-import android.opengl.GLUtils;
 
 
 /**
@@ -115,7 +115,7 @@ public class TextureCubeMap extends Texture
      * Load an image at the positive X.
      *
      * <p>
-     * If this texture has not been bound yet when this method
+     * If this texture is not bound when this method
      * is called, {@link #bind() bind()} is called first. Then,
      * <a href="http://developer.android.com/reference/android/opengl/GLUtils.html#texImage2D(int,%20int,%20android.graphics.Bitmap,%20int)"
      * >GLUtils.texImage2D</a>(GL_TEXTURE_CUBE_MAP_POSITIVE_X,
@@ -130,6 +130,9 @@ public class TextureCubeMap extends Texture
      *
      * @throws IllegalArgumentException
      *         'bitmap' is null or 'level' is less than 0.
+     *
+     * @throws IllegalStateException
+     *         This texture has already been deleted.
      *
      * @see <a href="http://developer.android.com/reference/android/opengl/GLUtils.html#texImage2D(int,%20int,%20android.graphics.Bitmap,%20int)"
      *       >GLUtils.texImage2D</a>
@@ -155,7 +158,7 @@ public class TextureCubeMap extends Texture
      * Load an image at the negative X.
      *
      * <p>
-     * If this texture has not been bound yet when this method
+     * If this texture is not bound when this method
      * is called, {@link #bind() bind()} is called first. Then,
      * <a href="http://developer.android.com/reference/android/opengl/GLUtils.html#texImage2D(int,%20int,%20android.graphics.Bitmap,%20int)"
      * >GLUtils.texImage2D</a>(GL_TEXTURE_CUBE_MAP_NEGATIVE_X,
@@ -170,6 +173,9 @@ public class TextureCubeMap extends Texture
      *
      * @throws IllegalArgumentException
      *         'bitmap' is null or 'level' is less than 0.
+     *
+     * @throws IllegalStateException
+     *         This texture has already been deleted.
      *
      * @see <a href="http://developer.android.com/reference/android/opengl/GLUtils.html#texImage2D(int,%20int,%20android.graphics.Bitmap,%20int)"
      *       >GLUtils.texImage2D</a>
@@ -195,7 +201,7 @@ public class TextureCubeMap extends Texture
      * Load an image at the positive Y.
      *
      * <p>
-     * If this texture has not been bound yet when this method
+     * If this texture is not bound when this method
      * is called, {@link #bind() bind()} is called first. Then,
      * <a href="http://developer.android.com/reference/android/opengl/GLUtils.html#texImage2D(int,%20int,%20android.graphics.Bitmap,%20int)"
      * >GLUtils.texImage2D</a>(GL_TEXTURE_CUBE_MAP_POSITIVE_Y,
@@ -210,6 +216,9 @@ public class TextureCubeMap extends Texture
      *
      * @throws IllegalArgumentException
      *         'bitmap' is null or 'level' is less than 0.
+     *
+     * @throws IllegalStateException
+     *         This texture has already been deleted.
      *
      * @see <a href="http://developer.android.com/reference/android/opengl/GLUtils.html#texImage2D(int,%20int,%20android.graphics.Bitmap,%20int)"
      *       >GLUtils.texImage2D</a>
@@ -235,7 +244,7 @@ public class TextureCubeMap extends Texture
      * Load an image at the negative Y.
      *
      * <p>
-     * If this texture has not been bound yet when this method
+     * If this texture is not bound when this method
      * is called, {@link #bind() bind()} is called first. Then,
      * <a href="http://developer.android.com/reference/android/opengl/GLUtils.html#texImage2D(int,%20int,%20android.graphics.Bitmap,%20int)"
      * >GLUtils.texImage2D</a>(GL_TEXTURE_CUBE_MAP_NEGATIVE_Y,
@@ -250,6 +259,9 @@ public class TextureCubeMap extends Texture
      *
      * @throws IllegalArgumentException
      *         'bitmap' is null or 'level' is less than 0.
+     *
+     * @throws IllegalStateException
+     *         This texture has already been deleted.
      *
      * @see <a href="http://developer.android.com/reference/android/opengl/GLUtils.html#texImage2D(int,%20int,%20android.graphics.Bitmap,%20int)"
      *       >GLUtils.texImage2D</a>
@@ -275,7 +287,7 @@ public class TextureCubeMap extends Texture
      * Load an image at the positive Z.
      *
      * <p>
-     * If this texture has not been bound yet when this method
+     * If this texture is not bound when this method
      * is called, {@link #bind() bind()} is called first. Then,
      * <a href="http://developer.android.com/reference/android/opengl/GLUtils.html#texImage2D(int,%20int,%20android.graphics.Bitmap,%20int)"
      * >GLUtils.texImage2D</a>(GL_TEXTURE_CUBE_MAP_POSITIVE_Z,
@@ -290,6 +302,9 @@ public class TextureCubeMap extends Texture
      *
      * @throws IllegalArgumentException
      *         'bitmap' is null or 'level' is less than 0.
+     *
+     * @throws IllegalStateException
+     *         This texture has already been deleted.
      *
      * @see <a href="http://developer.android.com/reference/android/opengl/GLUtils.html#texImage2D(int,%20int,%20android.graphics.Bitmap,%20int)"
      *       >GLUtils.texImage2D</a>
@@ -315,7 +330,7 @@ public class TextureCubeMap extends Texture
      * Load an image at the negative Z.
      *
      * <p>
-     * If this texture has not been bound yet when this method
+     * If this texture is not bound when this method
      * is called, {@link #bind() bind()} is called first. Then,
      * <a href="http://developer.android.com/reference/android/opengl/GLUtils.html#texImage2D(int,%20int,%20android.graphics.Bitmap,%20int)"
      * >GLUtils.texImage2D</a>(GL_TEXTURE_CUBE_MAP_NEGATIVE_Z,
@@ -330,6 +345,9 @@ public class TextureCubeMap extends Texture
      *
      * @throws IllegalArgumentException
      *         'bitmap' is null or 'level' is less than 0.
+     *
+     * @throws IllegalStateException
+     *         This texture has already been deleted.
      *
      * @see <a href="http://developer.android.com/reference/android/opengl/GLUtils.html#texImage2D(int,%20int,%20android.graphics.Bitmap,%20int)"
      *       >GLUtils.texImage2D</a>

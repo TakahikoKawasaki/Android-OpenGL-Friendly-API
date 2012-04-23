@@ -2951,6 +2951,13 @@ public abstract class GLESImplBase implements GLES
 
 
     @Override
+    public void glGenerateMipmap(int textureType)
+    {
+        unsupported("glGenerateMipmap");
+    }
+
+
+    @Override
     public void glGenTextures(int textureType, int[] textureIds, int offset)
     {
         unsupported("glGenTextures");
