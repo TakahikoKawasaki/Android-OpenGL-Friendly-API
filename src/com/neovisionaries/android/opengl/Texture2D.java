@@ -3,6 +3,8 @@
  */
 package com.neovisionaries.android.opengl;
 
+import android.graphics.Bitmap;
+
 
 /**
  * OpenGL ES 2D texture.
@@ -83,5 +85,66 @@ public class Texture2D extends Texture
     public static void setWrapT(WrapMode mode)
     {
         Texture.setWrapT(TextureType.TWO_D, mode);
+    }
+
+
+    /**
+     * Check if this 2D texture is bound.
+     *
+     * <p>
+     * This method returns true if the value returned from
+     * {@link GLESState#getTextureBinding2D()} and
+     * the value returned from {@link #getId()} are identical.
+     * </p>
+     *
+     * @return
+     *         True if this 2D texture is bound.
+     *
+     * @see GLESState#getTextureBinding2D()
+     */
+    @Override
+    public boolean isBound()
+    {
+        return GLESState.getTextureBinding2D() == getId();
+    }
+
+
+    /**
+     * Load an image.
+     *
+     * <p>
+     * If this texture has not been bound yet when this method
+     * is called, {@link #bind() bind()} is called first. Then,
+     * <a href="http://developer.android.com/reference/android/opengl/GLUtils.html#texImage2D(int,%20int,%20android.graphics.Bitmap,%20int)"
+     * >GLUtils.texImage2D</a>(GL_TEXTURE_2D, level, bitmap, 0)
+     * is called.
+     * </p>
+     *
+     * @param bitmap
+     *         Image to load.
+     *
+     * @param level
+     *         Mipmap level.
+     *
+     * @throws IllegalArgumentException
+     *         'bitmap' is null or 'level' is less than 0.
+     *
+     * @see <a href="http://developer.android.com/reference/android/opengl/GLUtils.html#texImage2D(int,%20int,%20android.graphics.Bitmap,%20int)"
+     *       >GLUtils.texImage2D</a>
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glTexImage2D.xml">glTexImage2D</a>
+     */
+    public void loadImage(Bitmap bitmap, int level)
+    {
+        super.loadImage(GLESFactory.getInstance().GL_TEXTURE_2D(), bitmap, level);
+    }
+
+
+    /**
+     * This method is an alias of {@link #loadImage(Bitmap, int)
+     * loadImage}(bitmap, 0).
+     */
+    public void loadImage(Bitmap bitmap)
+    {
+        loadImage(bitmap, 0);
     }
 }

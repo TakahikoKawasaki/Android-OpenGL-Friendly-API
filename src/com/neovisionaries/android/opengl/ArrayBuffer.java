@@ -41,6 +41,8 @@ public class ArrayBuffer extends VertexBuffer
      *
      * @return
      *         True if this element array buffer is bound.
+     *
+     * @see GLESState#getArrayBufferBinding()
      */
     @Override
     public boolean isBound()

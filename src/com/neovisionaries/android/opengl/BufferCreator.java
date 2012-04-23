@@ -50,6 +50,84 @@ public final class BufferCreator
 
 
     /**
+     * Create a direct ByteBuffer with the native byte order.
+     *
+     * <p>
+     * Int values from the offset in the data array up to the
+     * specified length are set to a newly allocated ByteBuffer.
+     * </p>
+     *
+     * @param data
+     *         Data to set to a newly allocated ByteBuffer.
+     *
+     * @param offset
+     *         The offset from the beginning of the data array.
+     *
+     * @param length
+     *         The number of int values to use.
+     *
+     * @return
+     *         A newly allocated ByteBuffer. Its position is 0
+     *         right after this method returns.
+     *
+     * @throws IllegalArgumentException
+     * <ul>
+     * <li>'data' is null.
+     * <li>'offset' is less than 0.
+     * <li>'offset' is equal to or greater than the length of 'data'.
+     * <li>'length' is 0 or less.
+     * <li>'length' is greater than ('data.length' - 'offset').
+     * </ul>
+     */
+    public static ByteBuffer createByteBuffer(byte[] data, int offset, int length)
+    {
+        if (data == null)
+        {
+            throw new IllegalArgumentException("bad data");
+        }
+
+        // Check if the combination of the arguments is valid.
+        checkDataArguments(data.length, offset, length);
+
+        // Create a new ByteBuffer.
+        ByteBuffer buffer = createByteBuffer(length);
+
+        // Set the passed data to the ByteBUffer.
+        buffer.put(data, offset, length);
+
+        // Move the position to the beginning.
+        buffer.position(0);
+
+        return buffer;
+    }
+
+
+    /**
+     * This method is an alias of {@link #createByteBuffer(byte[],
+     * int, int) createByteBuffer}(data, 0, data.length).
+     *
+     * @param data
+     *         Data to set to a newly allocated ByteBuffer.
+     *
+     * @return
+     *         A newly allocated ByteBuffer. Its position is 0
+     *         right after this method returns.
+     *
+     * @throws IllegalArgumentException
+     *         'data' is null or its length is 0.
+     */
+    public static ByteBuffer createByteBuffer(byte[] data)
+    {
+        if (data == null || data.length == 0)
+        {
+            throw new IllegalArgumentException("bad data");
+        }
+
+        return createByteBuffer(data, 0, data.length);
+    }
+
+
+    /**
      * Create a direct ShortBuffer with the native byte order.
      *
      * <p>
@@ -72,6 +150,84 @@ public final class BufferCreator
     public static ShortBuffer createShortBuffer(int size)
     {
         return createBuffer(size, ShortBuffer.class).asShortBuffer();
+    }
+
+
+    /**
+     * Create a direct ShortBuffer with the native byte order.
+     *
+     * <p>
+     * Int values from the offset in the data array up to the
+     * specified length are set to a newly allocated ShortBuffer.
+     * </p>
+     *
+     * @param data
+     *         Data to set to a newly allocated ShortBuffer.
+     *
+     * @param offset
+     *         The offset from the beginning of the data array.
+     *
+     * @param length
+     *         The number of int values to use.
+     *
+     * @return
+     *         A newly allocated ShortBuffer. Its position is 0
+     *         right after this method returns.
+     *
+     * @throws IllegalArgumentException
+     * <ul>
+     * <li>'data' is null.
+     * <li>'offset' is less than 0.
+     * <li>'offset' is equal to or greater than the length of 'data'.
+     * <li>'length' is 0 or less.
+     * <li>'length' is greater than ('data.length' - 'offset').
+     * </ul>
+     */
+    public static ShortBuffer createShortBuffer(short[] data, int offset, int length)
+    {
+        if (data == null)
+        {
+            throw new IllegalArgumentException("bad data");
+        }
+
+        // Check if the combination of the arguments is valid.
+        checkDataArguments(data.length, offset, length);
+
+        // Create a new ShortBuffer.
+        ShortBuffer buffer = createShortBuffer(length);
+
+        // Set the passed data to the ShortBUffer.
+        buffer.put(data, offset, length);
+
+        // Move the position to the beginning.
+        buffer.position(0);
+
+        return buffer;
+    }
+
+
+    /**
+     * This method is an alias of {@link #createShortBuffer(short[],
+     * int, int) createShortBuffer}(data, 0, data.length).
+     *
+     * @param data
+     *         Data to set to a newly allocated ShortBuffer.
+     *
+     * @return
+     *         A newly allocated ShortBuffer. Its position is 0
+     *         right after this method returns.
+     *
+     * @throws IllegalArgumentException
+     *         'data' is null or its length is 0.
+     */
+    public static ShortBuffer createShortBuffer(short[] data)
+    {
+        if (data == null || data.length == 0)
+        {
+            throw new IllegalArgumentException("bad data");
+        }
+
+        return createShortBuffer(data, 0, data.length);
     }
 
 
@@ -102,6 +258,84 @@ public final class BufferCreator
 
 
     /**
+     * Create a direct IntBuffer with the native byte order.
+     *
+     * <p>
+     * Int values from the offset in the data array up to the
+     * specified length are set to a newly allocated IntBuffer.
+     * </p>
+     *
+     * @param data
+     *         Data to set to a newly allocated IntBuffer.
+     *
+     * @param offset
+     *         The offset from the beginning of the data array.
+     *
+     * @param length
+     *         The number of int values to use.
+     *
+     * @return
+     *         A newly allocated IntBuffer. Its position is 0
+     *         right after this method returns.
+     *
+     * @throws IllegalArgumentException
+     * <ul>
+     * <li>'data' is null.
+     * <li>'offset' is less than 0.
+     * <li>'offset' is equal to or greater than the length of 'data'.
+     * <li>'length' is 0 or less.
+     * <li>'length' is greater than ('data.length' - 'offset').
+     * </ul>
+     */
+    public static IntBuffer createIntBuffer(int[] data, int offset, int length)
+    {
+        if (data == null)
+        {
+            throw new IllegalArgumentException("bad data");
+        }
+
+        // Check if the combination of the arguments is valid.
+        checkDataArguments(data.length, offset, length);
+
+        // Create a new IntBuffer.
+        IntBuffer buffer = createIntBuffer(length);
+
+        // Set the passed data to the IntBUffer.
+        buffer.put(data, offset, length);
+
+        // Move the position to the beginning.
+        buffer.position(0);
+
+        return buffer;
+    }
+
+
+    /**
+     * This method is an alias of {@link #createIntBuffer(int[],
+     * int, int) createIntBuffer}(data, 0, data.length).
+     *
+     * @param data
+     *         Data to set to a newly allocated IntBuffer.
+     *
+     * @return
+     *         A newly allocated IntBuffer. Its position is 0
+     *         right after this method returns.
+     *
+     * @throws IllegalArgumentException
+     *         'data' is null or its length is 0.
+     */
+    public static IntBuffer createIntBuffer(int[] data)
+    {
+        if (data == null || data.length == 0)
+        {
+            throw new IllegalArgumentException("bad data");
+        }
+
+        return createIntBuffer(data, 0, data.length);
+    }
+
+
+    /**
      * Create a direct FloatBuffer with the native byte order.
      *
      * <p>
@@ -124,6 +358,84 @@ public final class BufferCreator
     public static FloatBuffer createFloatBuffer(int size)
     {
         return createBuffer(size, FloatBuffer.class).asFloatBuffer();
+    }
+
+
+    /**
+     * Create a direct FloatBuffer with the native byte order.
+     *
+     * <p>
+     * Float values from the offset in the data array up to the
+     * specified length are set to a newly allocated FloatBuffer.
+     * </p>
+     *
+     * @param data
+     *         Data to set to a newly allocated FloatBuffer.
+     *
+     * @param offset
+     *         The offset from the beginning of the data array.
+     *
+     * @param length
+     *         The number of float values to use.
+     *
+     * @return
+     *         A newly allocated FloatBuffer. Its position is 0
+     *         right after this method returns.
+     *
+     * @throws IllegalArgumentException
+     * <ul>
+     * <li>'data' is null.
+     * <li>'offset' is less than 0.
+     * <li>'offset' is equal to or greater than the length of 'data'.
+     * <li>'length' is 0 or less.
+     * <li>'length' is greater than ('data.length' - 'offset').
+     * </ul>
+     */
+    public static FloatBuffer createFloatBuffer(float[] data, int offset, int length)
+    {
+        if (data == null)
+        {
+            throw new IllegalArgumentException("bad data");
+        }
+
+        // Check if the combination of the arguments is valid.
+        checkDataArguments(data.length, offset, length);
+
+        // Create a new FloatBuffer.
+        FloatBuffer buffer = createFloatBuffer(length);
+
+        // Set the passed data to the FloatBUffer.
+        buffer.put(data, offset, length);
+
+        // Move the position to the beginning.
+        buffer.position(0);
+
+        return buffer;
+    }
+
+
+    /**
+     * This method is an alias of {@link #createFloatBuffer(float[],
+     * int, int) createFloatBuffer}(data, 0, data.length).
+     *
+     * @param data
+     *         Data to set to a newly allocated FloatBuffer.
+     *
+     * @return
+     *         A newly allocated FloatBuffer. Its position is 0
+     *         right after this method returns.
+     *
+     * @throws IllegalArgumentException
+     *         'data' is null or its length is 0.
+     */
+    public static FloatBuffer createFloatBuffer(float[] data)
+    {
+        if (data == null || data.length == 0)
+        {
+            throw new IllegalArgumentException("bad data");
+        }
+
+        return createFloatBuffer(data, 0, data.length);
     }
 
 
@@ -158,5 +470,34 @@ public final class BufferCreator
         buffer.order(ByteOrder.nativeOrder());
 
         return buffer;
+    }
+
+
+    /**
+     * Check if the combination of the arguments is valid.
+     *
+     * @param dataLength
+     * @param offset
+     * @param length
+     *
+     * @throws IllegalArgumentException
+     * <ul>
+     * <li>'offset' is less than 0.
+     * <li>'offset' is equal to or greater than 'dataLength'.
+     * <li>'length' is 0 or less.
+     * <li>'length' is greater than ('dataLength' - 'offset').
+     * </ul>
+     */
+    private static void checkDataArguments(int dataLength, int offset, int length)
+    {
+        if (offset < 0 || dataLength <= offset)
+        {
+            throw new IllegalArgumentException("bad offset");
+        }
+
+        if (length <= 0 || (dataLength - offset) < length)
+        {
+            throw new IllegalArgumentException("bad length");
+        }
     }
 }

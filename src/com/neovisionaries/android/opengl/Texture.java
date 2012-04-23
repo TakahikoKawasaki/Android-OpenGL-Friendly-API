@@ -6,6 +6,8 @@ package com.neovisionaries.android.opengl;
 
 import static com.neovisionaries.android.opengl.TextureState.CREATED;
 import static com.neovisionaries.android.opengl.TextureState.DELETED;
+import android.graphics.Bitmap;
+import android.opengl.GLUtils;
 
 
 /**
@@ -169,6 +171,15 @@ public abstract class Texture
 
 
     /**
+     * Check if this texture is bound.
+     *
+     * @return
+     *         True if this texture is bound.
+     */
+    public abstract boolean isBound();
+
+
+    /**
      * Get an implementation of GLES interface.
      *
      * @return
@@ -180,12 +191,31 @@ public abstract class Texture
     }
 
 
+    /**
+     * Calls glTexParameteri(textureType, parameterId, parameterValue).
+     *
+     * @param textureType
+     * @param parameterId
+     * @param parameterValue
+     */
     private static void setParameter(int textureType, int parameterId, int parameterValue)
     {
         getGLES().glTexParameteri(textureType, parameterId, parameterValue);
     }
 
 
+    /**
+     * Set a mag filter.
+     *
+     * @param type
+     *         Type of the target texture.
+     *
+     * @param filter
+     *         A mag filter.
+     *
+     * @throws IllegalArgumentException
+     *         'filter' is null.
+     */
     static void setMagFilter(TextureType type, MagFilter filter)
     {
         if (filter == null)
@@ -197,6 +227,18 @@ public abstract class Texture
     }
 
 
+    /**
+     * Set a min filter.
+     *
+     * @param type
+     *         Type of the target texture.
+     *
+     * @param filter
+     *         A min filter.
+     *
+     * @throws IllegalArgumentException
+     *         'filter' is null.
+     */
     static void setMinFilter(TextureType type, MinFilter filter)
     {
         if (filter == null)
@@ -208,6 +250,18 @@ public abstract class Texture
     }
 
 
+    /**
+     * Set a wrap mode for S coordinates of textures.
+     *
+     * @param type
+     *         Type of the target texture.
+     *
+     * @param mode
+     *         A wrap mode.
+     *
+     * @throws IllegalArgumentException
+     *         'mode' is null.
+     */
     static void setWrapS(TextureType type, WrapMode mode)
     {
         if (mode == null)
@@ -219,6 +273,18 @@ public abstract class Texture
     }
 
 
+    /**
+     * Set a wrap mode for T coordinates of textures.
+     *
+     * @param type
+     *         Type of the target texture.
+     *
+     * @param mode
+     *         A wrap mode.
+     *
+     * @throws IllegalArgumentException
+     *         'mode' is null.
+     */
     static void setWrapT(TextureType type, WrapMode mode)
     {
         if (mode == null)
@@ -227,5 +293,31 @@ public abstract class Texture
         }
 
         setParameter(type.getType(), getGLES().GL_TEXTURE_WRAP_T(), mode.getMode());
+    }
+
+
+    /**
+     * Calls {@link #bind()} if this texture is not bound yet
+     * and then calls <a
+     * href="http://developer.android.com/reference/android/opengl/GLUtils.html#texImage2D(int,%20int,%20android.graphics.Bitmap,%20int)"
+     * >GLUtils.texImage2D</a>(target, bitmap, level).
+     *
+     * @param target
+     * @param bitmap
+     * @param level
+     */
+    void loadImage(int target, Bitmap bitmap, int level)
+    {
+        if (bitmap == null || level < 0)
+        {
+            throw new IllegalArgumentException();
+        }
+
+        if (isBound() == false)
+        {
+            bind();
+        }
+
+        GLUtils.texImage2D(target, level, bitmap, 0);
     }
 }

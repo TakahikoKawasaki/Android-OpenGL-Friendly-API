@@ -39,7 +39,14 @@ public abstract class GLESRenderer implements GLSurfaceView.Renderer
     @Override
     public final void onDrawFrame(GL10 gl10)
     {
-        onDrawFrame(GLESFactory.getInstance());
+        try
+        {
+            onDrawFrame(GLESFactory.getInstance());
+        }
+        catch (GLESException e)
+        {
+            e.printStackTrace();
+        }
     }
 
 
@@ -49,7 +56,14 @@ public abstract class GLESRenderer implements GLSurfaceView.Renderer
     @Override
     public final void onSurfaceChanged(GL10 gl10, int width, int height)
     {
-        onSurfaceChanged(GLESFactory.getInstance(), width, height);
+        try
+        {
+            onSurfaceChanged(GLESFactory.getInstance(), width, height);
+        }
+        catch (GLESException e)
+        {
+            e.printStackTrace();
+        }
     }
 
 
@@ -59,17 +73,24 @@ public abstract class GLESRenderer implements GLSurfaceView.Renderer
     @Override
     public final void onSurfaceCreated(GL10 gl10, EGLConfig config)
     {
-        onSurfaceCreated(GLESFactory.getInstance(), config);
+        try
+        {
+            onSurfaceCreated(GLESFactory.getInstance(), config);
+        }
+        catch (GLESException e)
+        {
+            e.printStackTrace();
+        }
     }
 
 
-    public abstract void onDrawFrame(GLES gles);
+    public abstract void onDrawFrame(GLES gles) throws GLESException;
 
 
-    public abstract void onSurfaceChanged(GLES gles, int width, int height);
+    public abstract void onSurfaceChanged(GLES gles, int width, int height) throws GLESException;
 
 
-    public abstract void onSurfaceCreated(GLES gles, EGLConfig config);
+    public abstract void onSurfaceCreated(GLES gles, EGLConfig config) throws GLESException;
 
 
     /**

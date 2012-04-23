@@ -2450,7 +2450,7 @@ public abstract class GLESImplBase implements GLES
 
 
     @Override
-    public int GL_TEXTURE_CUTE_MAP_NEGATIVE_Z()
+    public int GL_TEXTURE_CUBE_MAP_NEGATIVE_Z()
     {
         return 0x0000851a;
     }

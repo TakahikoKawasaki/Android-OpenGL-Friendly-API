@@ -87,12 +87,25 @@ public class GLESSurfaceView extends GLSurfaceView
     @Override
     public void setRenderer(Renderer renderer)
     {
+        if (this.renderer == renderer)
+        {
+            return;
+        }
+
         super.setRenderer(renderer);
 
+        if (this.renderer instanceof GLESRenderer)
+        {
+            // Detach the current renderer from this view.
+            ((GLESRenderer)this.renderer).setContext(null);
+        }
+
+        // Replace with the new renderer.
         this.renderer = renderer;
 
         if (renderer instanceof GLESRenderer)
         {
+            // Attach the new renderer to this view.
             ((GLESRenderer)renderer).setContext(context);
         }
     }
