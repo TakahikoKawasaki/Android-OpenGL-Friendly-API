@@ -9,7 +9,7 @@ package com.neovisionaries.android.opengl;
  *
  * @author Takahiko Kawasaki
  */
-public class ArrayBuffer extends VertexBuffer
+public class ArrayBuffer extends VertexBuffer<ArrayBuffer>
 {
     /**
      * A constructor to create a vertex buffer of array type

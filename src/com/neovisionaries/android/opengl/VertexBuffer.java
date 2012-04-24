@@ -32,7 +32,7 @@ import static com.neovisionaries.android.opengl.VertexBufferState.DELETED;
  *
  * @author Takahiko Kawasaki
  */
-public abstract class VertexBuffer
+public abstract class VertexBuffer<TVertexBuffer extends VertexBuffer<TVertexBuffer>>
 {
     /**
      * Type of the buffer object.
@@ -113,8 +113,7 @@ public abstract class VertexBuffer
      * Get the type of this vertex buffer.
      *
      * @return
-     *         {@link VertexBufferType#ARRAY} or
-     *         {@link VertexBufferType#ELEMENT_ARRAY}.
+     *         The type of this vertex buffer.
      */
     public VertexBufferType getType()
     {
@@ -151,12 +150,16 @@ public abstract class VertexBuffer
     /**
      * Bind this vertex buffer using glBindBuffer().
      *
+     * @return
+     *         This VertexBuffer object.
+     *
      * @throws IllegalStateException
      *         This vertex buffer has already been deleted.
      *
      * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBindBuffer.xml">glBindBuffer</a>
      */
-    public void bind()
+    @SuppressWarnings("unchecked")
+    public TVertexBuffer bind()
     {
         if (state == DELETED)
         {
@@ -165,6 +168,8 @@ public abstract class VertexBuffer
 
         // Bind the buffer object.
         getGLES().glBindBuffer(type.getType(), id);
+
+        return (TVertexBuffer)this;
     }
 
 
@@ -175,15 +180,19 @@ public abstract class VertexBuffer
      * the state of this instance is {@link
      * VertexBufferState#DELETED}.
      *
+     * @return
+     *         This VertexBuffer object.
+     *
      * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glDeleteBuffers.xml">glDeleteBuffers</a>
      */
-    public void delete()
+    @SuppressWarnings("unchecked")
+    public TVertexBuffer delete()
     {
         // Check the current state of this instance.
         if (state == DELETED)
         {
             // This vertex buffer has already been deleted.
-            return;
+            return (TVertexBuffer)this;
         }
 
 
@@ -194,6 +203,8 @@ public abstract class VertexBuffer
 
         // The buffer object was deleted.
         state = DELETED;
+
+        return (TVertexBuffer)this;
     }
 
 
@@ -219,12 +230,16 @@ public abstract class VertexBuffer
      *         Usage of the data. If null is given, {@link
      *         VertexBufferUsage#STATIC} is used.
      *
+     * @return
+     *         This VertexBuffer object.
+     *
      * @throws IllegalArgumentException
      *         'data' is null, or 'count' exceeds data.remaining().
      *
      * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBufferData.xml">glBufferData</a>
      */
-    public void setData(Buffer data, int count, VertexBufferUsage usage)
+    @SuppressWarnings("unchecked")
+    public TVertexBuffer setData(Buffer data, int count, VertexBufferUsage usage)
     {
         if (data == null)
         {
@@ -258,6 +273,8 @@ public abstract class VertexBuffer
 
         // Remember the class of the given data for getDataBufferClass().
         dataBufferClass = data.getClass();
+
+        return (TVertexBuffer)this;
     }
 
 
@@ -271,11 +288,14 @@ public abstract class VertexBuffer
      * @param usage
      *         Usage of the data.
      *
+     * @return
+     *         This VertexBuffer object.
+     *
      * @see #setData(Buffer, int, VertexBufferUsage)
      */
-    public void setData(Buffer data, VertexBufferUsage usage)
+    public TVertexBuffer setData(Buffer data, VertexBufferUsage usage)
     {
-        setData(data, -1, usage);
+        return setData(data, -1, usage);
     }
 
 
@@ -289,11 +309,14 @@ public abstract class VertexBuffer
      * @param count
      *         The number of elements to pass to glBufferData().
      *
+     * @return
+     *         This VertexBuffer object.
+     *
      * @see #setData(Buffer, int, VertexBufferUsage)
      */
-    public void setData(Buffer data, int count)
+    public TVertexBuffer setData(Buffer data, int count)
     {
-        setData(data, count, null);
+        return setData(data, count, null);
     }
 
 
@@ -304,11 +327,14 @@ public abstract class VertexBuffer
      * @param data
      *         Data to pass to glBufferData().
      *
+     * @return
+     *         This VertexBuffer object.
+     *
      * @see #setData(Buffer, int, VertexBufferUsage)
      */
-    public void setData(Buffer data)
+    public TVertexBuffer setData(Buffer data)
     {
-        setData(data, -1, null);
+        return setData(data, -1, null);
     }
 
 
@@ -331,12 +357,16 @@ public abstract class VertexBuffer
      *         glBufferSubData() is calculated in this method based
      *         on the type of the given data.
      *
+     * @return
+     *         This VertexBuffer object.
+     *
      * @throws IllegalArgumentException
      *         'data' is null, or 'count' exceeds data.remaining().
      *
      * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBufferSubData.xml">glBufferSubData</a>
      */
-    public void setSubData(Buffer data, int count, int offset)
+    @SuppressWarnings("unchecked")
+    public TVertexBuffer setSubData(Buffer data, int count, int offset)
     {
         if (data == null)
         {
@@ -357,6 +387,8 @@ public abstract class VertexBuffer
         int unit = GLESHelper.getElementSizeInBytes(data);
 
         getGLES().glBufferSubData(type.getType(), offset * unit, count * unit, data);
+
+        return (TVertexBuffer)this;
     }
 
 
@@ -370,11 +402,14 @@ public abstract class VertexBuffer
      * @param count
      *         The number of elements to pass to glBufferSubData().
      *
+     * @return
+     *         This VertexBuffer object.
+     *
      * @see #setSubData(Buffer, int, int)
      */
-    public void setSubData(Buffer data, int count)
+    public TVertexBuffer setSubData(Buffer data, int count)
     {
-        setSubData(data, count, 0);
+        return setSubData(data, count, 0);
     }
 
 
@@ -385,11 +420,14 @@ public abstract class VertexBuffer
      * @param data
      *         Data to pass to glBufferSubData().
      *
+     * @return
+     *         This VertexBuffer object.
+     *
      * @see #setSubData(Buffer, int, int)
      */
-    public void setSubData(Buffer data)
+    public TVertexBuffer setSubData(Buffer data)
     {
-        setSubData(data, -1, 0);
+        return setSubData(data, -1, 0);
     }
 
 
