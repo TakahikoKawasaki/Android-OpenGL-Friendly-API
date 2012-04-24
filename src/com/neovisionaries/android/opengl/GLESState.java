@@ -184,6 +184,15 @@ public final class GLESState
 
 
     /**
+     * Get the state value of GL_MAX_TEXTURE_IMAGE_UNITS.
+     */
+    public static int getMaxTextureImageUnits()
+    {
+        return getInteger(getGLES().GL_MAX_TEXTURE_IMAGE_UNITS());
+    }
+
+
+    /**
      * Get the state value of GL_TEXTURE_BINDING_2D.
      */
     public static int getTextureBinding2D()

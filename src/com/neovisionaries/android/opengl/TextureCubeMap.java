@@ -38,20 +38,33 @@ public class TextureCubeMap extends Texture<TextureCubeMap>
      * Check if this 2D texture is bound.
      *
      * <p>
-     * This method returns true if the value returned from
-     * {@link GLESState#getTextureBindingCubeMap()} and
-     * the value returned from {@link #getId()} are identical.
+     * This method returns true (1) if the current active texture
+     * unit is the same as the one that this texture should be
+     * bound to and (2) if the value returned from {@link
+     * GLESState#getTextureBindingCubeMap()} and the value returned
+     * from {@link #getId()} are identical.
      * </p>
      *
      * @return
-     *         True if this 2D texture is bound.
+     *         True if this cube map texture is bound.
      *
+     * @see GLESState#getActiveTexture()
      * @see GLESState#getTextureBindingCubeMap()
      */
     @Override
     public boolean isBound()
     {
-        return GLESState.getTextureBindingCubeMap() == getId();
+        if (GLESState.getActiveTexture() == getNativeTextureUnit() &&
+            GLESState.getTextureBindingCubeMap() == getId())
+        {
+            // This texture is bound.
+            return true;
+        }
+        else
+        {
+            // This texture is not bound.
+            return true;
+        }
     }
 
 

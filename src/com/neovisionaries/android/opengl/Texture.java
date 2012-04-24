@@ -36,6 +36,20 @@ public abstract class Texture<TTexture extends Texture<TTexture>>
 
 
     /**
+     * Texture unit number that this texture should be bound to.
+     * The possible smallest number is 0.
+     */
+    private int textureUnit;
+
+
+    /**
+     * Native texture unit number that this texture should be
+     * bound to. The possible smallest number is GL_TEXTURE0.
+     */
+    private int nativeTextureUnit;
+
+
+    /**
      * A constructor with a texture type. A texture object is
      * assigned internally by glGenTextures(). If this constructor
      * returns without any exception, the state of this instance
@@ -122,7 +136,98 @@ public abstract class Texture<TTexture extends Texture<TTexture>>
 
 
     /**
+     * Get the texture unit that this texture should be bound to.
+     * The default value is 0.
+     *
+     * @return
+     *         The texture unit number. 0 means GL_TEXTURE0.
+     *
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBindTexture.xml">glBindTexture</a>
+     */
+    public int getTextureUnit()
+    {
+        return textureUnit;
+    }
+
+
+    /**
+     * Set the texture unit that this texture should be bound to.
+     * The default value before this method is called is 0.
+     *
+     * @param textureUnit
+     *         A texture unit number. 0 means GL_TEXTURE0.
+     *         The range of the number is from 0 to ({@link
+     *         GLESState#getMaxTextureImageUnits()} - 1).
+     *
+     * @return
+     *         This Texture object.
+     *
+     * @throws IllegalArgumentException
+     * <ul>
+     * <li>'textureUnit' is less than 0.
+     * <li>'textureUnit' is equal to or greater than the state
+     *      value of GL_MAX_TEXTURE_IMAGE_UNITS.
+     * </ul>
+     *
+     * @see GLESState#getMaxTextureImageUnits()
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBindTexture.xml">glBindTexture</a>
+     */
+    @SuppressWarnings("unchecked")
+    public TTexture setTextureUnit(int textureUnit)
+    {
+        if (textureUnit < 0 || GLESState.getMaxTextureImageUnits() <= textureUnit)
+        {
+            throw new IllegalArgumentException("Texture unit is out of range.");
+        }
+
+        this.textureUnit = textureUnit;
+        this.nativeTextureUnit = convertToNativeTextureUnit(textureUnit);
+
+        return (TTexture)this;
+    }
+
+
+    /**
+     * Convert a texture unit number (starting from 0) to a
+     * corresponding native texture unit number (starting from
+     * GL_TEXTURE0).
+     *
+     * @param textureUnit
+     *         A texture unit number. The possible smallest
+     *         number is 0.
+     *
+     * @return
+     *         The corresponding native texture unit number.
+     *         The possible smallest number is GL_TEXTURE0.
+     */
+    private static int convertToNativeTextureUnit(int textureUnit)
+    {
+        return textureUnit + getGLES().GL_TEXTURE0();
+    }
+
+
+    /**
+     * Get the texture unit that this texture should be bound to.
+     *
+     * @return
+     *         A texture unit number. The possible smallest number
+     *         is GL_TEXTURE0.
+     */
+    int getNativeTextureUnit()
+    {
+        return nativeTextureUnit;
+    }
+
+
+    /**
      * Bind this texture using glBindTexture().
+     *
+     * <p>
+     * If the current active texture unit is not the one that
+     * this texture should be bound to (= the one that has been
+     * set by {@link #setTextureUnit(int)}), glActiveTexture()
+     * is called before glBindTexture().
+     * </p>
      *
      * @return
      *         This Texture object.
@@ -130,6 +235,8 @@ public abstract class Texture<TTexture extends Texture<TTexture>>
      * @throws IllegalStateException
      *         This texture has already been deleted.
      *
+     * @see GLESState#getActiveTexture()
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glActiveTexture.xml">glActiveTexture</a>
      * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBindTexture.xml">glBindTexture</a>
      */
     @SuppressWarnings("unchecked")
@@ -138,6 +245,14 @@ public abstract class Texture<TTexture extends Texture<TTexture>>
         if (state == DELETED)
         {
             throw new IllegalStateException("Texture has already been deleted.");
+        }
+
+        if (GLESState.getActiveTexture() != nativeTextureUnit)
+        {
+            // The current active texture unit is different from
+            // the one that this texture should be bound to. So,
+            // change the active texture before binding.
+            getGLES().glActiveTexture(nativeTextureUnit);
         }
 
         // Bind the texture object.
