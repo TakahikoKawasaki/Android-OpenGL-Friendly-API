@@ -44,7 +44,7 @@ import static com.neovisionaries.android.opengl.ShaderState.SOURCE_SET;
  *
  * @see Program
  */
-public abstract class Shader
+public abstract class Shader<TShader extends Shader<TShader>>
 {
     /**
      * Shader ID. A return value from glCreateShader().
@@ -269,16 +269,20 @@ public abstract class Shader
      * the {@link Program} instance is deleted.
      * </p>
      *
+     * @return
+     *         This Shader object.
+     *
      * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glDeleteShader.xml">glDeleteShader</a>
      * @see Program#setDeleteShadersOnDelete(boolean)
      */
-    public void delete()
+    @SuppressWarnings("unchecked")
+    public TShader delete()
     {
         // Check the state of this shader.
         if (state == DELETED)
         {
             // Already deleted.
-            return;
+            return (TShader)this;
         }
 
         // Delete this shader.
@@ -297,6 +301,8 @@ public abstract class Shader
         // Not keep track of programs any more.
         programList.clear();
         programList = null;
+
+        return (TShader)this;
     }
 
 
@@ -319,7 +325,8 @@ public abstract class Shader
      *
      * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glShaderSource.xml">glShaderSource</a>
      */
-    public Shader setSource(String source)
+    @SuppressWarnings("unchecked")
+    public TShader setSource(String source)
     {
         // Check the argument.
         if (source == null)
@@ -341,7 +348,7 @@ public abstract class Shader
         // A shader source was set.
         state = SOURCE_SET;
 
-        return this;
+        return (TShader)this;
     }
 
 
@@ -367,7 +374,7 @@ public abstract class Shader
      *
      * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glShaderSource.xml">glShaderSource</a>
      */
-    public Shader setSource(File file) throws IOException
+    public TShader setSource(File file) throws IOException
     {
         return setSource(GLESHelper.toString(file));
     }
@@ -392,7 +399,8 @@ public abstract class Shader
      *
      * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glCompileShader.xml">glCompileShader</a>
      */
-    public Shader compile() throws GLESException
+    @SuppressWarnings("unchecked")
+    public TShader compile() throws GLESException
     {
         switch (state)
         {
@@ -402,7 +410,7 @@ public abstract class Shader
 
             case COMPILED:
                 // Already compiled.
-                return this;
+                return (TShader)this;
 
             case DELETED:
                 // Already deleted.
@@ -422,7 +430,7 @@ public abstract class Shader
         // Compiled successfully.
         state = COMPILED;
 
-        return this;
+        return (TShader)this;
     }
 
 

@@ -14,7 +14,7 @@ import java.io.InputStream;
  *
  * @author Takahiko Kawasaki
  */
-public class FragmentShader extends Shader
+public class FragmentShader extends Shader<FragmentShader>
 {
     /**
      * A constructor. {@link Shader#Shader(ShaderType)

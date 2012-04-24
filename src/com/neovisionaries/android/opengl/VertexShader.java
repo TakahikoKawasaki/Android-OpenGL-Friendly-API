@@ -14,7 +14,7 @@ import java.io.InputStream;
  *
  * @author Takahiko Kawasaki
  */
-public class VertexShader extends Shader
+public class VertexShader extends Shader<VertexShader>
 {
     /**
      * A constructor. {@link Shader#Shader(ShaderType)
