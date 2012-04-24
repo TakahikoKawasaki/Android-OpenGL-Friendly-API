@@ -92,7 +92,7 @@ public class Program
     /**
      * Attached shaders.
      */
-    private Map<Integer, Shader> shaderMap = new HashMap<Integer, Shader>();
+    private Map<Integer, Shader<?>> shaderMap = new HashMap<Integer, Shader<?>>();
 
 
     /**
@@ -119,7 +119,7 @@ public class Program
      * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glCreateProgram.xml">glCreateProgram</a>
      * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glAttachShader.xml">glAttachShader</a>
      */
-    public Program(Shader... shaders) throws GLESException
+    public Program(Shader<?>... shaders) throws GLESException
     {
         // Create a program.
         id = getGLES().glCreateProgram();
@@ -132,7 +132,7 @@ public class Program
         }
 
         // For each shader given to this constructor.
-        for (Shader shader : shaders)
+        for (Shader<?> shader : shaders)
         {
             if (shader == null || shader.getState() == ShaderState.DELETED)
             {
@@ -193,10 +193,10 @@ public class Program
         }
 
         // Do shallow-copy of the list of attached shaders.
-        List<Shader> shaders = new ArrayList<Shader>(shaderMap.values());
+        List<Shader<?>> shaders = new ArrayList<Shader<?>>(shaderMap.values());
 
         // Detach all the shaders.
-        for (Shader shader : shaders)
+        for (Shader<?> shader : shaders)
         {
             // Detach the shader from this program. As a result
             // of this, the shader is removed from shaderMap and
@@ -219,7 +219,7 @@ public class Program
         // If shaders should be deleted when this program is deleted.
         if (deleteShadersOnDelete)
         {
-            for (Shader shader : shaders)
+            for (Shader<?> shader : shaders)
             {
                 // Delete the shader. Note that this will not
                 // trigger onShaderDetached() of this Program.
@@ -258,7 +258,7 @@ public class Program
      *
      * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glAttachShader.xml">glAttachShader</a>
      */
-    public Program attach(Shader shader)
+    public Program attach(Shader<?> shader)
     {
         // Check the argument.
         if (shader == null || shader.getState() == ShaderState.DELETED)
@@ -299,7 +299,7 @@ public class Program
      * @param shader
      *         A shader to attach to this program.
      */
-    private void attachInternal(Shader shader)
+    private void attachInternal(Shader<?> shader)
     {
         // Attach the shader to this program.
         getGLES().glAttachShader(id, shader.getId());
@@ -332,7 +332,7 @@ public class Program
      *
      * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glDetachShader.xml">glDetachShader</a>
      */
-    public Program detach(Shader shader)
+    public Program detach(Shader<?> shader)
     {
         // Check the argument.
         if (shader == null)
@@ -374,7 +374,7 @@ public class Program
      * @param shader
      *         A shader to detach from this program.
      */
-    private void detachInternal(Shader shader)
+    private void detachInternal(Shader<?> shader)
     {
         // Detach the shader from this program.
         getGLES().glDetachShader(id, shader.getId());
@@ -428,7 +428,7 @@ public class Program
         }
 
         // Make sure that all shaders are compiled.
-        for (Shader shader : shaderMap.values())
+        for (Shader<?> shader : shaderMap.values())
         {
             // Compile the shader. If the shader has already been
             // compiled, compile() does nothing. Note that compile()
@@ -552,7 +552,7 @@ public class Program
      * @param shader
      *         A shader that was deleted.
      */
-    void onShaderDeleted(Shader shader)
+    void onShaderDeleted(Shader<?> shader)
     {
         if (state == DELETED)
         {
