@@ -11,7 +11,7 @@ import android.graphics.Bitmap;
  *
  * @author Takahiko Kawasaki
  */
-public class Texture2D extends Texture
+public class Texture2D extends Texture<Texture2D>
 {
     /**
      * A constructor to create a 2D texture (GL_TEXTURE_2D).
@@ -70,6 +70,9 @@ public class Texture2D extends Texture
      * @param level
      *         Mipmap level.
      *
+     * @return
+     *         This Texture object.
+     *
      * @throws IllegalArgumentException
      *         'bitmap' is null or 'level' is less than 0.
      *
@@ -80,9 +83,9 @@ public class Texture2D extends Texture
      *       >GLUtils.texImage2D</a>
      * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glTexImage2D.xml">glTexImage2D</a>
      */
-    public void loadImage(Bitmap bitmap, int level)
+    public Texture2D loadImage(Bitmap bitmap, int level)
     {
-        super.loadImage(GLESFactory.getInstance().GL_TEXTURE_2D(), bitmap, level);
+        return super.loadImage(GLESFactory.getInstance().GL_TEXTURE_2D(), bitmap, level);
     }
 
 
@@ -90,8 +93,8 @@ public class Texture2D extends Texture
      * This method is an alias of {@link #loadImage(Bitmap, int)
      * loadImage}(bitmap, 0).
      */
-    public void loadImage(Bitmap bitmap)
+    public Texture2D loadImage(Bitmap bitmap)
     {
-        loadImage(bitmap, 0);
+        return loadImage(bitmap, 0);
     }
 }

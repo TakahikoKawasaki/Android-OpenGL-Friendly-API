@@ -12,7 +12,7 @@ import android.graphics.Bitmap;
  *
  * @author Takahiko Kawasaki
  */
-public class TextureCubeMap extends Texture
+public class TextureCubeMap extends Texture<TextureCubeMap>
 {
     /**
      * A constructor to create a cube map texture

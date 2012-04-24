@@ -15,7 +15,7 @@ import android.opengl.GLUtils;
  *
  * @author Takahiko Kawasaki
  */
-public abstract class Texture
+public abstract class Texture<TTexture extends Texture<TTexture>>
 {
     /**
      * Type of the texture object.
@@ -124,12 +124,16 @@ public abstract class Texture
     /**
      * Bind this texture using glBindTexture().
      *
+     * @return
+     *         This Texture object.
+     *
      * @throws IllegalStateException
      *         This texture has already been deleted.
      *
      * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBindTexture.xml">glBindTexture</a>
      */
-    public void bind()
+    @SuppressWarnings("unchecked")
+    public TTexture bind()
     {
         if (state == DELETED)
         {
@@ -138,6 +142,8 @@ public abstract class Texture
 
         // Bind the texture object.
         getGLES().glBindTexture(type.getType(), id);
+
+        return (TTexture)this;
     }
 
 
@@ -148,15 +154,19 @@ public abstract class Texture
      * the state of this instance is {@link
      * TextureState#DELETED}.
      *
+     * @return
+     *         This Texture object.
+     *
      * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glDeleteTextures.xml">glDeleteTextures</a>
      */
-    public void delete()
+    @SuppressWarnings("unchecked")
+    public TTexture delete()
     {
         // Check the current state of this instance.
         if (state == DELETED)
         {
             // This texture has already been deleted.
-            return;
+            return (TTexture)this;
         }
 
 
@@ -167,6 +177,8 @@ public abstract class Texture
 
         // The texture object was deleted.
         state = DELETED;
+
+        return (TTexture)this;
     }
 
 
@@ -196,10 +208,16 @@ public abstract class Texture
      *
      * @param parameterId
      * @param parameterValue
+     *
+     * @return
+     *         This Texture object.
      */
-    private void setParameter(int parameterId, int parameterValue)
+    @SuppressWarnings("unchecked")
+    private TTexture setParameter(int parameterId, int parameterValue)
     {
         getGLES().glTexParameteri(type.getType(), parameterId, parameterValue);
+
+        return (TTexture)this;
     }
 
 
@@ -216,6 +234,9 @@ public abstract class Texture
      * @param filter
      *         A mag filter.
      *
+     * @return
+     *         This Texture object.
+     *
      * @throws IllegalArgumentException
      *         'filter' is null.
      *
@@ -224,7 +245,7 @@ public abstract class Texture
      *
      * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glTexParameter.xml">glTexParameter</a>
      */
-    public void setMagFilter(MagFilter filter)
+    public TTexture setMagFilter(MagFilter filter)
     {
         if (filter == null)
         {
@@ -241,7 +262,7 @@ public abstract class Texture
             bind();
         }
 
-        setParameter(getGLES().GL_TEXTURE_MAG_FILTER(), filter.getFilter());
+        return setParameter(getGLES().GL_TEXTURE_MAG_FILTER(), filter.getFilter());
     }
 
 
@@ -258,6 +279,9 @@ public abstract class Texture
      * @param filter
      *         A min filter.
      *
+     * @return
+     *         This Texture object.
+     *
      * @throws IllegalArgumentException
      *         'filter' is null.
      *
@@ -266,7 +290,7 @@ public abstract class Texture
      *
      * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glTexParameter.xml">glTexParameter</a>
      */
-    public void setMinFilter(MinFilter filter)
+    public TTexture setMinFilter(MinFilter filter)
     {
         if (filter == null)
         {
@@ -283,7 +307,7 @@ public abstract class Texture
             bind();
         }
 
-        setParameter(getGLES().GL_TEXTURE_MIN_FILTER(), filter.getFilter());
+        return setParameter(getGLES().GL_TEXTURE_MIN_FILTER(), filter.getFilter());
     }
 
 
@@ -300,6 +324,9 @@ public abstract class Texture
      * @param mode
      *         A wrap mode.
      *
+     * @return
+     *         This Texture object.
+     *
      * @throws IllegalArgumentException
      *         'mode' is null.
      *
@@ -308,7 +335,7 @@ public abstract class Texture
      *
      * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glTexParameter.xml">glTexParameter</a>
      */
-    public void setWrapS(WrapMode mode)
+    public TTexture setWrapS(WrapMode mode)
     {
         if (mode == null)
         {
@@ -325,7 +352,7 @@ public abstract class Texture
             bind();
         }
 
-        setParameter(getGLES().GL_TEXTURE_WRAP_S(), mode.getMode());
+        return setParameter(getGLES().GL_TEXTURE_WRAP_S(), mode.getMode());
     }
 
 
@@ -342,6 +369,9 @@ public abstract class Texture
      * @param mode
      *         A wrap mode.
      *
+     * @return
+     *         This Texture object.
+     *
      * @throws IllegalArgumentException
      *         'mode' is null.
      *
@@ -350,7 +380,7 @@ public abstract class Texture
      *
      * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glTexParameter.xml">glTexParameter</a>
      */
-    public void setWrapT(WrapMode mode)
+    public TTexture setWrapT(WrapMode mode)
     {
         if (mode == null)
         {
@@ -367,7 +397,7 @@ public abstract class Texture
             bind();
         }
 
-        setParameter(getGLES().GL_TEXTURE_WRAP_T(), mode.getMode());
+        return setParameter(getGLES().GL_TEXTURE_WRAP_T(), mode.getMode());
     }
 
 
@@ -380,8 +410,12 @@ public abstract class Texture
      * @param target
      * @param bitmap
      * @param level
+     *
+     * @return
+     *         This Texture object.
      */
-    void loadImage(int target, Bitmap bitmap, int level)
+    @SuppressWarnings("unchecked")
+    TTexture loadImage(int target, Bitmap bitmap, int level)
     {
         if (bitmap == null || level < 0)
         {
@@ -399,6 +433,8 @@ public abstract class Texture
         }
 
         GLUtils.texImage2D(target, level, bitmap, 0);
+
+        return (TTexture)this;
     }
 
 
@@ -411,12 +447,16 @@ public abstract class Texture
      * is called.
      * </p>
      *
+     * @return
+     *         This Texture object.
+     *
      * @throws IllegalStateException
      *         This texture has already been deleted.
      *
      * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGenerateMipmap.xml">glGenerateMipmap</a>
      */
-    public void generateMipmap()
+    @SuppressWarnings("unchecked")
+    public TTexture generateMipmap()
     {
         if (state == DELETED)
         {
@@ -429,5 +469,7 @@ public abstract class Texture
         }
 
         getGLES().glGenerateMipmap(type.getType());
+
+        return (TTexture)this;
     }
 }
