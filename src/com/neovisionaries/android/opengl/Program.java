@@ -536,12 +536,36 @@ public class Program
      * @return
      *         A {@link Uniform} object to manipulate the uniform variable.
      *
+     * @throws IllegalArgumentException
+     *         The argument is null.
+     *
      * @throws GLESException
      *         There is no such a uniform variable having the name.
      */
     public Uniform getUniform(String name) throws GLESException
     {
         return new Uniform(this, name);
+    }
+
+
+    /**
+     * Get a Sampler object.
+     *
+     * @param name
+     *         A name of a uniform sampler variable.
+     *
+     * @return
+     *         A {@link Sampler} object to manipulate the uniform sampler variable.
+     *
+     * @throws IllegalArgumentException
+     *         The argument is null.
+     *
+     * @throws GLESException
+     *         There is no such a uniform variable having the name.
+     */
+    public Sampler getSampler(String name) throws GLESException
+    {
+        return new Sampler(this, name);
     }
 
 

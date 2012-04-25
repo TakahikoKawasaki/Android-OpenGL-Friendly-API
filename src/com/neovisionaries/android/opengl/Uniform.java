@@ -12,7 +12,7 @@ import java.nio.IntBuffer;
  * A class to manipulate a uniform variable in OpenGL Shader Language.
  *
  * <pre style="background: lightgray;">
- * <span style="color: darkgreen;">// <b>E X A M P L E   1</b></span>
+ * <span style="color: darkgreen;">// <b>E X A M P L E</b></span>
  *
  * <span style="color: darkgreen;">// Get a program from somewhere.</span>
  * {@link Program} program = ...;
