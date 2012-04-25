@@ -83,6 +83,41 @@ public class GLESImpl20 extends GLESImplBase
 
 
     @Override
+    public void glBlendColor(float red, float green, float blue, float alpha)
+    {
+        GLES20.glBlendColor(red, green, blue, alpha);
+    }
+
+
+    @Override
+    public void glBlendEquation(int operator)
+    {
+        GLES20.glBlendEquation(operator);
+    }
+
+
+    @Override
+    public void glBlendEquationSeparate(int rgbOperator, int alphaOperator)
+    {
+        GLES20.glBlendEquationSeparate(rgbOperator, alphaOperator);
+    }
+
+
+    @Override
+    public void glBlendFunc(int sourceFactor, int destinationFactor)
+    {
+        GLES20.glBlendFunc(sourceFactor, destinationFactor);
+    }
+
+
+    @Override
+    public void glBlendFuncSeparate(int sourceRGBFactor, int destinationRGBFactor, int sourceAlphaFactor, int destinationAlphaFactor)
+    {
+        GLES20.glBlendFuncSeparate(sourceRGBFactor, destinationRGBFactor, sourceAlphaFactor, destinationAlphaFactor);
+    }
+
+
+    @Override
     public void glBufferData(int vertexBufferType, int size, Buffer data, int vertexBufferUsage)
     {
         GLES20.glBufferData(vertexBufferType, size, data, vertexBufferUsage);

@@ -2772,6 +2772,41 @@ public abstract class GLESImplBase implements GLES
 
 
     @Override
+    public void glBlendColor(float red, float green, float blue, float alpha)
+    {
+        unsupported("glBlendColor");
+    }
+
+
+    @Override
+    public void glBlendEquation(int operator)
+    {
+        unsupported("glBlendEquation");
+    }
+
+
+    @Override
+    public void glBlendEquationSeparate(int rgbOperator, int alphaOperator)
+    {
+        unsupported("glBlendEquationSeparate");
+    }
+
+
+    @Override
+    public void glBlendFunc(int sourceFactor, int destinationFactor)
+    {
+        unsupported("glBlendFunc");
+    }
+
+
+    @Override
+    public void glBlendFuncSeparate(int sourceRGBFactor, int destinationRGBFactor, int sourceAlphaFactor, int destinationAlphaFactor)
+    {
+        unsupported("glBlendFuncSeparator");
+    }
+
+
+    @Override
     public void glBufferData(int vertexBufferType, int size, Buffer data, int vertexBufferUsage)
     {
         unsupported("glBufferData");

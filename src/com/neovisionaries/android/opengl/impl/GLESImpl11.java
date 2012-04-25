@@ -50,6 +50,13 @@ public class GLESImpl11 extends GLESImplBase
 
 
     @Override
+    public void glBlendFunc(int sourceFactor, int destinationFactor)
+    {
+        GLES11.glBlendFunc(sourceFactor, destinationFactor);
+    }
+
+
+    @Override
     public void glBufferData(int vertexBufferType, int size, Buffer data, int vertexBufferUsage)
     {
         GLES11.glBufferData(vertexBufferType, size, data, vertexBufferUsage);

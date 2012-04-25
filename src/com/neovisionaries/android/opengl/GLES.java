@@ -456,6 +456,36 @@ public interface GLES
 
 
     /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBlendColor.xml">glBlendColor</a>
+     */
+    void glBlendColor(float red, float green, float blue, float alpha);
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBlendEquation.xml">glBlendEquation</a>
+     */
+    void glBlendEquation(int operator);
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBlendEquationSeparate.xml">glBlendEquationSeparate</a>
+     */
+    void glBlendEquationSeparate(int rgbOperator, int alphaOperator);
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBlendFunc.xml">glBlendFunc</a>
+     */
+    void glBlendFunc(int sourceFactor, int destinationFactor);
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBlendFuncSeparate.xml">glBlendFuncSeparate</a>
+     */
+    void glBlendFuncSeparate(int sourceRGBFactor, int destinationRGBFactor, int sourceAlphaFactor, int destinationAlphaFactor);
+
+
+    /**
      * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBufferData.xml">glBufferData</a>
      */
     void glBufferData(int vertexBufferType, int size, Buffer data, int vertexBufferUsage);

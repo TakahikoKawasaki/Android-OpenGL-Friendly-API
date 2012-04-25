@@ -487,4 +487,19 @@ final class GLESHelper
 
         return value / 255.0f;
     }
+
+
+    /**
+     * Clamp a float value to fit it in the range from 0.0f to 1.0f.
+     *
+     * @param value
+     *         A float value.
+     *
+     * @return
+     *         A float value between 0.0f and 1.0f.
+     */
+    public static float clampFrom0To1(float value)
+    {
+        return Math.max(0, Math.min(value, 1.0f));
+    }
 }
