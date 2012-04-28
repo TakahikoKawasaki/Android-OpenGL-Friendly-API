@@ -19,6 +19,11 @@ package com.neovisionaries.android.opengl;
  * </pre>
  *
  * @author Takahiko Kawasaki
+ *
+ * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBlendFunc.xml">glBlendFunc</a>
+ * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBlendFuncSeparate.xml">glBlendFuncSeparate</a>
+ * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBlendColor.xml">glBlendColor</a>
+ * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBlendEquationSeparate.xml">glBlendEquationSeparate</a>
  */
 public class BlendSettings
 {
@@ -485,19 +490,25 @@ public class BlendSettings
      * </p>
      *
      * <ol>
+     * <li>{@link #enable()}
      * <li>glBlendFuncSeparate()
      * <li>glBlendColor()
      * <li>glBlendEquationSeparate()
      * </ol>
      *
      * <p>
-     * Otherwise, glBlendFunc() is executed but other methods
-     * won't be called.
+     * Otherwise, the following two are executed.
      * </p>
+     *
+     * <ol>
+     * <li>{@link #enable()}
+     * <li>glBlendFunc()
+     * </ol>
      *
      * @return
      *         This BlendSettings object.
      *
+     * @see #enable()
      * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBlendFunc.xml">glBlendFunc</a>
      * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBlendFuncSeparate.xml">glBlendFuncSeparate</a>
      * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBlendColor.xml">glBlendColor</a>
@@ -505,6 +516,9 @@ public class BlendSettings
      */
     public BlendSettings apply()
     {
+        // Enable blending.
+        enable();
+
         GLES gles = GLESFactory.getInstance();
 
         boolean es2 = (2 <= gles.getMajorVersion());

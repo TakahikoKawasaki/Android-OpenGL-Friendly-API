@@ -3175,6 +3175,34 @@ public abstract class GLESImplBase implements GLES
 
 
     @Override
+    public void glStencilFunc(int comparisonOperator, int referenceValue, int mask)
+    {
+        unsupported("glStencilFunc");
+    }
+
+
+    @Override
+    public void glStencilFuncSeparate(int face, int comparisonOperator, int referenceValue, int mask)
+    {
+        unsupported("glStencilFuncSeparate");
+    }
+
+
+    @Override
+    public void glStencilOp(int stencilFail, int depthFail, int pass)
+    {
+        unsupported("glStencilOp");
+    }
+
+
+    @Override
+    public void glStencilOpSeparate(int face, int stencilFail, int depthFail, int pass)
+    {
+        unsupported("glStencilOpSeparate");
+    }
+
+
+    @Override
     public void glTexParameteri(int textureType, int parameterId, int parameterValue)
     {
         unsupported("glTexParameteri");

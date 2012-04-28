@@ -461,6 +461,34 @@ public class GLESImpl20 extends GLESImplBase
 
 
     @Override
+    public void glStencilFunc(int comparisonOperator, int referenceValue, int mask)
+    {
+        GLES20.glStencilFunc(comparisonOperator, referenceValue, mask);
+    }
+
+
+    @Override
+    public void glStencilFuncSeparate(int face, int comparisonOperator, int referenceValue, int mask)
+    {
+        GLES20.glStencilFuncSeparate(face, comparisonOperator, referenceValue, mask);
+    }
+
+
+    @Override
+    public void glStencilOp(int stencilFail, int depthFail, int pass)
+    {
+        GLES20.glStencilOp(stencilFail, depthFail, pass);
+    }
+
+
+    @Override
+    public void glStencilOpSeparate(int face, int stencilFail, int depthFail, int pass)
+    {
+        GLES20.glStencilOpSeparate(face, stencilFail, depthFail, pass);
+    }
+
+
+    @Override
     public void glTexParameteri(int textureType, int parameterId, int parameterValue)
     {
         GLES20.glTexParameteri(textureType, parameterId, parameterValue);

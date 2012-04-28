@@ -253,6 +253,20 @@ public class GLESImpl11 extends GLESImplBase
 
 
     @Override
+    public void glStencilFunc(int comparisonOperator, int referenceValue, int mask)
+    {
+        GLES11.glStencilFunc(comparisonOperator, referenceValue, mask);
+    }
+
+
+    @Override
+    public void glStencilOp(int stencilFail, int depthFail, int pass)
+    {
+        GLES11.glStencilOp(stencilFail, depthFail, pass);
+    }
+
+
+    @Override
     public void glTexParameteri(int textureType, int parameterId, int parameterValue)
     {
         GLES11.glTexParameteri(textureType, parameterId, parameterValue);

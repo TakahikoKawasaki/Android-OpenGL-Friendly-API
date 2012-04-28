@@ -786,6 +786,30 @@ public interface GLES
 
 
     /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glStencilFunc.xml">glStencilFunc</a>
+     */
+    void glStencilFunc(int comparisonOperator, int referenceValue, int mask);
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glStencilFuncSeparate.xml">glStencilFuncSeparate</a>
+     */
+    void glStencilFuncSeparate(int face, int comparisonOperator, int referenceValue, int mask);
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glStencilOp.xml">glStencilOp</a>
+     */
+    void glStencilOp(int stencilFail, int depthFail, int pass);
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glStencilOpSeparate.xml">glStencilOpSeparate</a>
+     */
+    void glStencilOpSeparate(int face, int stencilFail, int depthFail, int pass);
+
+
+    /**
      * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glTexParameter.xml">glTexParameteri</a>
      */
     void glTexParameteri(int textureType, int parameterId, int parameterValue);
