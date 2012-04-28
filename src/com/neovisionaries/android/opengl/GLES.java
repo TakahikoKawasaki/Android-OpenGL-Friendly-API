@@ -798,6 +798,18 @@ public interface GLES
 
 
     /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glStencilMask.xml">glStencilMask</a>
+     */
+    void glStencilMask(int stencilMask);
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glStencilMaskSeparate.xml">glStencilMaskSeparate</a>
+     */
+    void glStencilMaskSeparate(int face, int stencilMask);
+
+
+    /**
      * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glStencilOp.xml">glStencilOp</a>
      */
     void glStencilOp(int stencilFail, int depthFail, int pass);

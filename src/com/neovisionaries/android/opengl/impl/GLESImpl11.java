@@ -260,6 +260,13 @@ public class GLESImpl11 extends GLESImplBase
 
 
     @Override
+    public void glStencilMask(int stencilMask)
+    {
+        GLES11.glStencilMask(stencilMask);
+    }
+
+
+    @Override
     public void glStencilOp(int stencilFail, int depthFail, int pass)
     {
         GLES11.glStencilOp(stencilFail, depthFail, pass);

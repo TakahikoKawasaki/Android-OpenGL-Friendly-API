@@ -475,6 +475,20 @@ public class GLESImpl20 extends GLESImplBase
 
 
     @Override
+    public void glStencilMask(int stencilMask)
+    {
+        GLES20.glStencilMask(stencilMask);
+    }
+
+
+    @Override
+    public void glStencilMaskSeparate(int face, int stencilMask)
+    {
+        GLES20.glStencilMaskSeparate(face, stencilMask);
+    }
+
+
+    @Override
     public void glStencilOp(int stencilFail, int depthFail, int pass)
     {
         GLES20.glStencilOp(stencilFail, depthFail, pass);
