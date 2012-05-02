@@ -17,10 +17,10 @@ package com.neovisionaries.android.opengl;
  * {@link Sampler} s_texture = program.{@link Program#getSampler(String) getSampler}("s_texture");
  *
  * <span style="color: darkgreen;">// Get a texture from somewhere.</span>
- * {@link Texture}<?> texture = ...;
+ * {@link Texture}&lt;?&gt; texture = ...;
  *
  * <span style="color: darkgreen;">// Set the texture to the uniform sampler variable.</span>
- * s_texture.{@link #set(Texture<?>) set}(texture);
+ * s_texture.{@link #set(Texture) set}(texture);
  * </pre>
  *
  * @author Takahiko Kawasaki

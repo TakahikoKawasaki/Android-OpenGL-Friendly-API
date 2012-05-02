@@ -9,7 +9,7 @@ package com.neovisionaries.android.opengl;
  *
  * @author Takahiko Kawasaki
  *
- * @see StencilComparatorOperator
+ * @see StencilComparisonOperator
  * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glStencilFunc.xml">glStencilFunc</a>
  * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glStencilFuncSeparate.xml">glStencilFuncSeparate</a>
  */
