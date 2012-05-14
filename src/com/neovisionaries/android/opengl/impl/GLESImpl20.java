@@ -76,6 +76,13 @@ public class GLESImpl20 extends GLESImplBase
 
 
     @Override
+    public void glBindRenderbuffer(int target, int renderBufferId)
+    {
+        GLES20.glBindRenderbuffer(target, renderBufferId);
+    }
+
+
+    @Override
     public void glBindTexture(int textureType, int textureId)
     {
         GLES20.glBindTexture(textureType, textureId);
@@ -202,6 +209,13 @@ public class GLESImpl20 extends GLESImplBase
 
 
     @Override
+    public void glDeleteRenderbuffers(int count, int[] renderBufferIds, int offset)
+    {
+        GLES20.glDeleteRenderbuffers(count, renderBufferIds, offset);
+    }
+
+
+    @Override
     public void glDeleteShader(int shaderId)
     {
         GLES20.glDeleteShader(shaderId);
@@ -296,6 +310,13 @@ public class GLESImpl20 extends GLESImplBase
     public void glGenerateMipmap(int textureType)
     {
         GLES20.glGenerateMipmap(textureType);
+    }
+
+
+    @Override
+    public void glGenRenderbuffers(int count, int[] renderBufferIds, int offset)
+    {
+        GLES20.glGenRenderbuffers(count, renderBufferIds, offset);
     }
 
 
@@ -450,6 +471,13 @@ public class GLESImpl20 extends GLESImplBase
     public void glReleaseShaderCompiler()
     {
         GLES20.glReleaseShaderCompiler();
+    }
+
+
+    @Override
+    public void glRenderbufferStorage(int target, int internalFormat, int width, int height)
+    {
+        GLES20.glRenderbufferStorage(target, internalFormat, width, height);
     }
 
 

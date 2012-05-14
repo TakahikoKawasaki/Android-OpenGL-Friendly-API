@@ -184,6 +184,15 @@ public final class GLESState
 
 
     /**
+     * Get the state value of GL_MAX_RENDERBUFFER_SIZE.
+     */
+    public static int getMaxRenderbufferSize()
+    {
+        return getInteger(getGLES().GL_MAX_RENDERBUFFER_SIZE());
+    }
+
+
+    /**
      * Get the state value of GL_MAX_TEXTURE_IMAGE_UNITS.
      */
     public static int getMaxTextureImageUnits()

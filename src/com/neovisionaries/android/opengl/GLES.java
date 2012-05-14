@@ -450,6 +450,12 @@ public interface GLES
 
 
     /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBindRenderbuffer.xml">glBindRenderbuffer</a>
+     */
+    void glBindRenderbuffer(int target, int renderBufferId);
+
+
+    /**
      * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBindTexture.xml">glBindTexture</a>
      */
     void glBindTexture(int textureType, int textureId);
@@ -558,6 +564,12 @@ public interface GLES
 
 
     /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glDeleteRenderbuffers.xml">glDeleteRenderbuffers</a>
+     */
+    void glDeleteRenderbuffers(int count, int[] renderBufferIds, int offset);
+
+
+    /**
      * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glDeleteShader.xml">glDeleteShader</a>
      */
     void glDeleteShader(int shaderId);
@@ -645,6 +657,12 @@ public interface GLES
      * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGenerateMipmap.xml">glGenerateMipmap</a>
      */
     void glGenerateMipmap(int textureType);
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGenRenderbuffers.xml">glGenRenderbuffers</a>
+     */
+    void glGenRenderbuffers(int count, int[] renderBufferIds, int offset);
 
 
     /**
@@ -777,6 +795,12 @@ public interface GLES
      * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glReleaseShaderCompiler.xml">glReleaseShaderCompiler</a>
      */
     void glReleaseShaderCompiler();
+
+
+    /**
+     * <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glRenderbufferStorage.xml">glRenderbufferStorage</a>
+     */
+    void glRenderbufferStorage(int target, int internalFormat, int width, int height);
 
 
     /**

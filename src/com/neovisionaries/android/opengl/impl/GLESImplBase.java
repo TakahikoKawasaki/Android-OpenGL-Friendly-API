@@ -2765,6 +2765,13 @@ public abstract class GLESImplBase implements GLES
 
 
     @Override
+    public void glBindRenderbuffer(int target, int renderBufferId)
+    {
+        unsupported("glBindRenderbuffer");
+    }
+
+
+    @Override
     public void glBindTexture(int textureType, int textureId)
     {
         unsupported("glBindTexture");
@@ -2895,6 +2902,13 @@ public abstract class GLESImplBase implements GLES
 
 
     @Override
+    public void glDeleteRenderbuffers(int count, int[] renderBufferIds, int offset)
+    {
+        unsupported("glDeleteRenderbuffers");
+    }
+
+
+    @Override
     public void glDeleteShader(int shaderId)
     {
         unsupported("glDeleteShader");
@@ -2996,6 +3010,13 @@ public abstract class GLESImplBase implements GLES
     public void glGenerateMipmap(int textureType)
     {
         unsupported("glGenerateMipmap");
+    }
+
+
+    @Override
+    public void glGenRenderbuffers(int count, int[] renderBufferIds, int offset)
+    {
+        unsupported("glGenRenderbuffers");
     }
 
 
@@ -3164,6 +3185,13 @@ public abstract class GLESImplBase implements GLES
     public void glReleaseShaderCompiler()
     {
         unsupported("glReleaseShaderCompiler");
+    }
+
+
+    @Override
+    public void glRenderbufferStorage(int target, int internalFormat, int width, int height)
+    {
+        unsupported("glRenderbufferStorage");
     }
 
 
