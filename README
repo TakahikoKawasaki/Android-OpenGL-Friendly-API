@@ -12,10 +12,11 @@ vertex shader and a fragment shader and using the program can
 be written like the following with the API provided by this
 project:
 
-    Program program = new Program(
-                              new VertexShader("..."),
-                              new FragmentShader("...")
-                      ).setDeleteShadersOnDelete(true);
+    Program program =
+        new Program(
+            new VertexShader("...").setAutoDeleted(true),
+            new FragmentShader("...").setAutoDeleted(true)
+        );
 
     program.use();
     program.delete();
@@ -49,21 +50,33 @@ instead of the code like below with the low-level OpenGL ES API.
 Supported OpenGL ES Versions
 ----------------------------
 
-OpenGL ES 1.1 and 2.0 are supported. The internal implementation
-carefully avoids referring to android.opengl.GLES11 and GLES20
-directly. See GLESFactory for details.
+The main target version is OpenGL ES 2.0.
 
-OpenGL ES 1.1 and OpenGL ES 2.0 have been supported since Android
-1.6 (API Level 4) and Android 2.2 (API Level 8), respectively.
+As the internal implementation carefully avoids referring to
+android.opengl.GLES?? classes directly, in other words, as an
+instance of an implementation of GLES interface is created by
+reflection via GLESFactory, a JAR file of this project will
+not raise any link error even if android.opengl.GLES20 class
+is not available (this is true on Android 2.1 and older).
+However, the purpose of the mechanism is for not backward but
+forward compatibility and so OpenGL ES 1.1 is supported only
+partially.
 
 
 Current Status of Development
 -----------------------------
 
-Just started, so there are many OpenGL ES features that are not
-covered by this project yet.
+Just started on April 14, 2012, so there are many OpenGL ES
+features that are not covered by this project yet.
+
+
+TODO
+----
+
+- Add high-level API like M3G.
+- Add asset loaders.
 
 
 --------------------
-2012-Apr-17
+2012-May-16
 Takahiko Kawasaki
