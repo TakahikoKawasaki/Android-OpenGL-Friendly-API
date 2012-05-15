@@ -51,7 +51,7 @@ public abstract class GLESRenderer implements GLSurfaceView.Renderer
 
 
     /**
-     * This method calls {@link #onSurfaceChanged(GLES, int width, int height)}.
+     * This method calls {@link #onSurfaceChanged(GLES, int, int)}.
      */
     @Override
     public final void onSurfaceChanged(GL10 gl10, int width, int height)

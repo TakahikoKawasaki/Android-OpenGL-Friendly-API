@@ -59,6 +59,12 @@ public abstract class Shader<TShader extends Shader<TShader>>
 
 
     /**
+     * Auto deletion when detached.
+     */
+    private boolean autoDeleted;
+
+
+    /**
      * Programs that this shader is attached to.
      */
     private List<Program> programList = new LinkedList<Program>();
@@ -263,17 +269,17 @@ public abstract class Shader<TShader extends Shader<TShader>>
      * </p>
      *
      * <p>
-     * If this shader is attached to a {@link Program} instance
-     * whose setting of 'deleteShaderOnDelete' is true, delete()
-     * method of this Shader instance is called automatically when
-     * the {@link Program} instance is deleted.
+     * If auto-deletion is enabled by {@link #setAutoDeleted(boolean)
+     * setAutoDeleted}(true), this method is automatically called
+     * when this instance is detached from the last program that
+     * this instance is attached to.
      * </p>
      *
      * @return
      *         This Shader object.
      *
      * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glDeleteShader.xml">glDeleteShader</a>
-     * @see Program#setDeleteShadersOnDelete(boolean)
+     * @see #setAutoDeleted(boolean)
      */
     @SuppressWarnings("unchecked")
     public TShader delete()
@@ -301,6 +307,43 @@ public abstract class Shader<TShader extends Shader<TShader>>
         // Not keep track of programs any more.
         programList.clear();
         programList = null;
+
+        return (TShader)this;
+    }
+
+
+    /**
+     * Check if auto-deletion is enabled. The default value is false.
+     *
+     * @return
+     *         True if auto-deletion is enabled. Otherwise, false.
+     */
+    public boolean isAutoDeleted()
+    {
+        return autoDeleted;
+    }
+
+
+    /**
+     * Enable/disable auto-deletion.
+     *
+     * <p>
+     * If 'true' is given to this method, auto-deletion is enabled,
+     * meaning that {@link #delete()} is called automatically when
+     * this instance is detached from the last program that this
+     * instance was attached to.
+     * </p>
+     *
+     * @param autoDeleted
+     *         True to enable auto-deletion. False to disable it.
+     *
+     * @return
+     *         This Shader object.
+     */
+    @SuppressWarnings("unchecked")
+    public TShader setAutoDeleted(boolean autoDeleted)
+    {
+        this.autoDeleted = autoDeleted;
 
         return (TShader)this;
     }
@@ -508,6 +551,15 @@ public abstract class Shader<TShader extends Shader<TShader>>
         if (programList != null)
         {
             programList.remove(program);
+
+            if (programList.size() == 0 && autoDeleted)
+            {
+                // This shader is not attached to any program and
+                // the flag 'autoDeleted' indicates that this
+                // instance should be deleted automatically in
+                // such the case.
+                delete();
+            }
         }
     }
 

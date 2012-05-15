@@ -54,9 +54,11 @@ import static com.neovisionaries.android.opengl.ProgramState.LINKED;
  *
  * <span style="color: darkgreen;">// Create a program with shaders.</span>
  * {@link Program} program = new {@link #Program(Shader...) Program}(
- *                           new {@link VertexShader#VertexShader(String) VertexShader}(<span style="color: brown;">"..."</span>),
- *                           new {@link FragmentShader#FragmentShader(String) FragmentShader}(<span style="color: brown;">"..."</span>)
- *                   ).{@link #setDeleteShadersOnDelete(boolean) setDeleteShadersOnDelete}(true);
+ *                           new {@link VertexShader#VertexShader(String) VertexShader}(<span style="color: brown;">"..."</span>).{@link
+ *                           Shader#setAutoDeleted(boolean) setAutoDeleted}(true),
+ *                           new {@link FragmentShader#FragmentShader(String) FragmentShader}(<span style="color: brown;">"..."</span>).{@link
+ *                           Shader#setAutoDeleted(boolean) setAutoDeleted}(true)
+ *                   );
  *
  * <span style="color: darkgreen;">// Use the program. Compiling and linking are performed</span>
  * <span style="color: darkgreen;">// automatically because use() calls link() if not linked</span>
@@ -65,7 +67,7 @@ import static com.neovisionaries.android.opengl.ProgramState.LINKED;
  * program.{@link #use() use}();
  *
  * <span style="color: darkgreen;">// Delete the program. Shaders are deleted automatically</span>
- * <span style="color: darkgreen;">// because setDeleteShadersOnDelete(true) has been called.</span>
+ * <span style="color: darkgreen;">// because setAutoDeleted(true) of them has been called.</span>
  * program.{@link #delete() delete}();
  * </pre>
  *
@@ -93,13 +95,6 @@ public class Program
      * Attached shaders.
      */
     private Map<Integer, Shader<?>> shaderMap = new HashMap<Integer, Shader<?>>();
-
-
-    /**
-     * If true, when this program is deleted, attached shaders
-     * are deleted.
-     */
-    private boolean deleteShadersOnDelete;
 
 
     /**
@@ -215,17 +210,6 @@ public class Program
 
         // Not keep track of shaders any more.
         shaderMap = null;
-
-        // If shaders should be deleted when this program is deleted.
-        if (deleteShadersOnDelete)
-        {
-            for (Shader<?> shader : shaders)
-            {
-                // Delete the shader. Note that this will not
-                // trigger onShaderDetached() of this Program.
-                shader.delete();
-            }
-        }
 
         // Delete this program.
         getGLES().glDeleteProgram(id);
@@ -592,41 +576,6 @@ public class Program
 
         // This program needs linking.
         state = NEEDS_LINKING;
-    }
-
-
-    /**
-     * Get the current setting value of 'deleteShadersOnDelete'.
-     * If this method returns true, it means that shaders attached
-     * to this Program instance will be deleted (= {@link
-     * Shader#delete()} is called) when this Program instance
-     * is deleted.
-     *
-     * @return
-     *         The current setting of 'deleteShadersOnDelete'.
-     */
-    public boolean getDeleteShadersOnDelete()
-    {
-        return deleteShadersOnDelete;
-    }
-
-
-    /**
-     * Set the setting value of 'deleteShaderOnDelete'. The initial
-     * value of 'deleteShaderOnDelete' is false.
-     *
-     * @param delete
-     *         True to delete shaders (= call {@link Shader#delete()})
-     *         automatically when this Program instance is deleted.
-     *
-     * @return
-     *         This Program object.
-     */
-    public Program setDeleteShadersOnDelete(boolean delete)
-    {
-        this.deleteShadersOnDelete = delete;
-
-        return this;
     }
 
 

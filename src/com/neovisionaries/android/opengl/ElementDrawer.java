@@ -270,7 +270,7 @@ public class ElementDrawer extends Drawer<ElementDrawer>
      * @return
      *         This ElementDrawer object.
      *
-     * @throws
+     * @throws IllegalArgumentException
      * <ul>
      * <li>The argument is null.
      * <li>The actual class of the data that the given object holds

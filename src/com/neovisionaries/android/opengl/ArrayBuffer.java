@@ -40,7 +40,7 @@ public class ArrayBuffer extends VertexBuffer<ArrayBuffer>
      * </p>
      *
      * @return
-     *         True if this element array buffer is bound.
+     *         True if this array buffer is bound.
      *
      * @see GLESState#getArrayBufferBinding()
      */
