@@ -202,6 +202,15 @@ public final class GLESState
 
 
     /**
+     * Get the state value of GL_RENDERBUFFER_BINDING.
+     */
+    public static int getRenderbufferBinding()
+    {
+        return getInteger(getGLES().GL_RENDERBUFFER_BINDING());
+    }
+
+
+    /**
      * Get the state value of GL_TEXTURE_BINDING_2D.
      */
     public static int getTextureBinding2D()

@@ -61,6 +61,49 @@ public class RenderBuffer
 
 
     /**
+     * A constructor with format parameters. A render buffer is assigned
+     * internally by glGenRenderbuffers() and then format parameters are
+     * set to the render buffer by glRenderbufferStorage(). If this
+     * constructor returns without any exception, the state of this
+     * instance is {@link RenderBufferState#CREATED}.
+     *
+     * <p>
+     * This constructor does the same thing as follows.
+     * </p>
+     *
+     * <pre style="background: lightgray;">
+     *
+     * new {@link #RenderBuffer()}.{@link #setFormat(RenderBufferFormat,
+     * int, int) setFormat}(format, width, height);
+     * </pre>
+     *
+     * @param format
+     * @param width
+     * @param height
+     *
+     * @throws IllegalArgumentException
+     * <ul>
+     * <li>The argument 'format' is null.
+     * <li>The argument 'width' is less than 0 or greater than
+     *     GL_MAX_RENDERBUFFER_SIZE.
+     * <li>The argument 'height' is less than 0 or greater than
+     *     GL_MAX_RENDERBUFFER_SIZE.
+     * </ul>
+     *
+     * @throws GLESException
+     *         glGenRenderbuffers() failed.
+     *
+     * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glGenRenderbuffers.xml">glGenRenderbuffers</a>
+     */
+    public RenderBuffer(RenderBufferFormat format, int width, int height) throws GLESException
+    {
+        this();
+
+        setFormat(this, format, width, height);
+    }
+
+
+    /**
      * Get the ID of the render buffer object assigned to this instance.
      *
      * @return
@@ -112,6 +155,26 @@ public class RenderBuffer
 
 
     /**
+     * Check if this render buffer is bound.
+     *
+     * <p>
+     * This method returns true if the value returned from
+     * {@link GLESState#getRenderbufferBinding()} and
+     * the value returned from {@link #getId()} are identical.
+     * </p>
+     *
+     * @return
+     *         True if this render buffer is bound.
+     *
+     * @see GLESState#getRenderbufferBinding()
+     */
+    public boolean isBound()
+    {
+        return (GLESState.getRenderbufferBinding() == getId());
+    }
+
+
+    /**
      * Delete the render buffer object using glDeleteRenderbuffers().
      * If the render buffer object has already been deleted, nothing
      * is executed. After this method returns, the state of this
@@ -145,6 +208,11 @@ public class RenderBuffer
     /**
      * Set format, width and height of this render buffer using
      * glRenderbufferStorage().
+     *
+     * <p>
+     * If this render buffer is not bound when this method is called,
+     * {@link #bind()} is called before glRenderbufferStorage().
+     * </p>
      * 
      * @param format
      * @param width
@@ -170,6 +238,12 @@ public class RenderBuffer
      */
     public RenderBuffer setFormat(RenderBufferFormat format, int width, int height)
     {
+        return setFormat(this, format, width, height);
+    }
+
+
+    private static RenderBuffer setFormat(RenderBuffer renderBuffer, RenderBufferFormat format, int width, int height)
+    {
         // Check the argument 'format'.
         if (format == null)
         {
@@ -192,15 +266,22 @@ public class RenderBuffer
         }
 
         // Check the current state of this instance.
-        if (state == DELETED)
+        if (renderBuffer.getState() == DELETED)
         {
             throw new IllegalStateException("Render buffer has already been deleted.");
+        }
+
+        // Check if the render buffer is bound.
+        if (renderBuffer.isBound() == false)
+        {
+            // Bind the render buffer.
+            renderBuffer.bind();
         }
 
         // Set the format, width and height of the render buffer.
         getGLES().glRenderbufferStorage(getGLES().GL_RENDERBUFFER(), format.getFormat(), width, height);
 
-        return this;
+        return renderBuffer;
     }
 
 
@@ -214,6 +295,4 @@ public class RenderBuffer
     {
         return GLESFactory.getInstance();
     }
-
-
 }

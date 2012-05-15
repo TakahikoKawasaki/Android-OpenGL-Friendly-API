@@ -14,7 +14,7 @@ public enum RenderBufferState
     /**
      * The render buffer has been created.
      *
-     * @see RenderBuffer#RederBuffer()
+     * @see RenderBuffer#RenderBuffer()
      */
     CREATED,
 
