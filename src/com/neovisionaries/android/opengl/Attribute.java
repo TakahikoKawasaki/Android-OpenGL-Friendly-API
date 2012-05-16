@@ -90,8 +90,7 @@ import java.nio.FloatBuffer;
  * <span style="color: darkgreen;">// in Android 2.2 (API Level 8) because android.opengl.GLES20</span>
  * <span style="color: darkgreen;">// class does not have glVertexAttribPointer() method whose</span>
  * <span style="color: darkgreen;">// last argument is 'int offset' although it should have.</span>
- * attr.{@link #setArray(ArrayBuffer, AttrDataSize, AttrDataType)
- * setArray}(ab, {@link AttrDataSize#THREE}, {@link AttrDataType#FLOAT});
+ * attr.{@link #setArray3(ArrayBuffer) setArray3}(ab);
  * </pre>
  *
  * @author Takahiko Kawasaki
@@ -603,6 +602,8 @@ public class Attribute
      *         {@link AttrDataType#UNSIGNED_SHORT UNSIGNED_SHORT},
      *         {@link AttrDataType#FLOAT FLOAT} and
      *         {@link AttrDataType#FIXED FIXED}.
+     *         Null can be given only when 'values' is an instance of {@link FloatBuffer},
+     *         and in the case, {@link AttrDataType#FLOAT} is used.
      *
      * @param normalized
      *         True to normalize data when they are used. This parameter does
@@ -622,7 +623,8 @@ public class Attribute
      *
      * @throws IllegalArgumentException
      *         'values', 'size', or 'type' is null. Or 'stride' is less
-     *         than 0.
+     *         than 0. Note that, however, if 'values' is an instance of
+     *         {@link FloatBuffer}, 'type' can be null.
      *
      * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glVertexAttribPointer.xml">glVertexAttribPointer</a>
      * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glEnableVertexAttribArray.xml">glEnableVertexAttribArray</a>
@@ -630,9 +632,22 @@ public class Attribute
      */
     public Attribute setArray(Buffer values, AttrDataSize size, AttrDataType type, boolean normalized, int stride)
     {
-        if (values == null || size == null || type == null || stride < 0)
+        if (values == null || size == null || stride < 0)
         {
             throw new IllegalArgumentException();
+        }
+
+        if (type == null)
+        {
+            // Try to guess the data type.
+            if (values instanceof FloatBuffer)
+            {
+                type = AttrDataType.FLOAT;
+            }
+            else
+            {
+                throw new IllegalArgumentException("Cannot guess AttrDataType.");
+            }
         }
 
         // Unbind the vertex array buffer.
@@ -1092,6 +1107,8 @@ public class Attribute
      *         {@link AttrDataType#UNSIGNED_SHORT UNSIGNED_SHORT},
      *         {@link AttrDataType#FLOAT FLOAT} and
      *         {@link AttrDataType#FIXED FIXED}.
+     *         Null can be given only when data held by 'values' is a float
+     *         array, and in the case, {@link AttrDataType#FLOAT} is used.
      *
      * @param normalized
      *         True to normalize data when they are used. This parameter does
@@ -1123,7 +1140,8 @@ public class Attribute
      *
      * @throws IllegalArgumentException
      *         'values', 'size', or 'type' is null. Or 'stride' is less
-     *         than 0.
+     *         than 0. Note that, however, if data held by 'values' is
+     *         a float array, 'type' can be null.
      *
      * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glVertexAttribPointer.xml">glVertexAttribPointer</a>
      * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glEnableVertexAttribArray.xml">glEnableVertexAttribArray</a>
@@ -1131,9 +1149,22 @@ public class Attribute
      */
     public Attribute setArray(ArrayBuffer values, AttrDataSize size, AttrDataType type, boolean normalized, int stride, int offset)
     {
-        if (values == null || size == null || type == null || stride < 0)
+        if (values == null || size == null || stride < 0)
         {
             throw new IllegalArgumentException();
+        }
+
+        if (type == null)
+        {
+            // Guess the data type.
+            if (values.getDataBufferClass().equals(FloatBuffer.class))
+            {
+                type = AttrDataType.FLOAT;
+            }
+            else
+            {
+                throw new IllegalArgumentException("Cannot guess AttrDataType.");
+            }
         }
 
         // Enable the vertex array for the index of this vertex attribute.
@@ -1149,6 +1180,33 @@ public class Attribute
 
         return this;
         
+    }
+
+
+    /**
+     * This method is an alias of {@link #setArray(ArrayBuffer, AttrDataSize,
+     * AttrDataType, boolean, int, int) setArray}(values, size, null,
+     * normalized, stride, 0).
+     *
+     * <p>
+     * Note that data held by 'values' must be a float array. If not, other
+     * method variants having {@link AttrDataType} as an argument must be used.
+     * </p>
+     *
+     * @param values
+     * @param size
+     * @param normalized
+     * @param stride
+     * @param offset
+     *
+     * @return
+     *         This Attribute object.
+     *
+     * @see #setArray(ArrayBuffer, AttrDataSize, AttrDataType, boolean, int, int)
+     */
+    public Attribute setArray(ArrayBuffer values, AttrDataSize size, boolean normalized, int stride, int offset)
+    {
+        return setArray(values, size, null, normalized, stride, offset);
     }
 
 
@@ -1176,6 +1234,32 @@ public class Attribute
 
     /**
      * This method is an alias of {@link #setArray(ArrayBuffer, AttrDataSize,
+     * AttrDataType, boolean, int, int) setArray}(values, size, null,
+     * normalized, stride, 0).
+     *
+     * <p>
+     * Note that data held by 'values' must be a float array. If not, other
+     * method variants having {@link AttrDataType} as an argument must be used.
+     * </p>
+     *
+     * @param values
+     * @param size
+     * @param normalized
+     * @param stride
+     *
+     * @return
+     *         This Attribute object.
+     *
+     * @see #setArray(ArrayBuffer, AttrDataSize, AttrDataType, boolean, int, int)
+     */
+    public Attribute setArray(ArrayBuffer values, AttrDataSize size, boolean normalized, int stride)
+    {
+        return setArray(values, size, null, normalized, stride, 0);
+    }
+
+
+    /**
+     * This method is an alias of {@link #setArray(ArrayBuffer, AttrDataSize,
      * AttrDataType, boolean, int, int) setArray}(values, size, type,
      * normalized, 0, 0).
      *
@@ -1197,6 +1281,31 @@ public class Attribute
 
     /**
      * This method is an alias of {@link #setArray(ArrayBuffer, AttrDataSize,
+     * AttrDataType, boolean, int, int) setArray}(values, size, null,
+     * normalized, 0, 0).
+     *
+     * <p>
+     * Note that data held by 'values' must be a float array. If not, other
+     * method variants having {@link AttrDataType} as an argument must be used.
+     * </p>
+     *
+     * @param values
+     * @param size
+     * @param normalized
+     *
+     * @return
+     *         This Attribute object.
+     *
+     * @see #setArray(ArrayBuffer, AttrDataSize, AttrDataType, boolean, int, int)
+     */
+    public Attribute setArray(ArrayBuffer values, AttrDataSize size, boolean normalized)
+    {
+        return setArray(values, size, null, normalized, 0, 0);
+    }
+
+
+    /**
+     * This method is an alias of {@link #setArray(ArrayBuffer, AttrDataSize,
      * AttrDataType, boolean, int, int) setArray}(values, size, type,
      * false, 0, 0).
      *
@@ -1212,6 +1321,749 @@ public class Attribute
     public Attribute setArray(ArrayBuffer values, AttrDataSize size, AttrDataType type)
     {
         return setArray(values, size, type, false, 0, 0);
+    }
+
+
+    /**
+     * This method is an alias of {@link #setArray(ArrayBuffer, AttrDataSize,
+     * AttrDataType, boolean, int, int) setArray}(values, size, null, false, 0, 0).
+     *
+     * <p>
+     * Note that data held by 'values' must be a float array. If not, other
+     * method variants having {@link AttrDataType} as an argument must be used.
+     * </p>
+     *
+     * @param values
+     * @param size
+     *
+     * @return
+     *         This Attribute object.
+     *
+     * @see #setArray(ArrayBuffer, AttrDataSize, AttrDataType, boolean, int, int)
+     */
+    public Attribute setArray(ArrayBuffer values, AttrDataSize size)
+    {
+        return setArray(values, size, null, false, 0, 0);
+    }
+
+
+    /**
+     * This method is an alias of {@link #setArray(ArrayBuffer, AttrDataSize,
+     * AttrDataType, boolean, int, int) setArray}(values, {@link AttrDataSize#ONE},
+     * type, normalized, stride, offset).
+     *
+     * @param values
+     * @param type
+     * @param normalized
+     * @param stride
+     * @param offset
+     *
+     * @return
+     *         This Attribute object.
+     *
+     * @see #setArray(ArrayBuffer, AttrDataSize, AttrDataType, boolean, int, int)
+     */
+    public Attribute setArray1(ArrayBuffer values, AttrDataType type, boolean normalized, int stride, int offset)
+    {
+        return setArray(values, AttrDataSize.ONE, type, normalized, stride, offset);
+    }
+
+
+    /**
+     * This method is an alias of {@link #setArray(ArrayBuffer, AttrDataSize,
+     * AttrDataType, boolean, int, int) setArray}(values, {@link AttrDataSize#ONE},
+     * null, normalized, stride, offset).
+     *
+     * <p>
+     * Note that data held by 'values' must be a float array. If not, other
+     * method variants having {@link AttrDataType} as an argument must be used.
+     * </p>
+     *
+     * @param values
+     * @param normalized
+     * @param stride
+     * @param offset
+     *
+     * @return
+     *         This Attribute object.
+     *
+     * @see #setArray(ArrayBuffer, AttrDataSize, AttrDataType, boolean, int, int)
+     */
+    public Attribute setArray1(ArrayBuffer values, boolean normalized, int stride, int offset)
+    {
+        return setArray(values, AttrDataSize.ONE, null, normalized, stride, offset);
+    }
+
+
+    /**
+     * This method is an alias of {@link #setArray(ArrayBuffer, AttrDataSize,
+     * AttrDataType, boolean, int, int) setArray}(values, {@link AttrDataSize#ONE},
+     * type, normalized, stride, 0).
+     * 
+     * @param values
+     * @param type
+     * @param normalized
+     * @param stride
+     *
+     * @return
+     *         This Attribute object.
+     *
+     * @see #setArray(ArrayBuffer, AttrDataSize, AttrDataType, boolean, int, int)
+     */
+    public Attribute setArray1(ArrayBuffer values, AttrDataType type, boolean normalized, int stride)
+    {
+        return setArray(values, AttrDataSize.ONE, type, normalized, stride, 0);
+    }
+
+
+    /**
+     * This method is an alias of {@link #setArray(ArrayBuffer, AttrDataSize,
+     * AttrDataType, boolean, int, int) setArray}(values, {@link AttrDataSize#ONE},
+     * null, normalized, stride, 0).
+     *
+     * <p>
+     * Note that data held by 'values' must be a float array. If not, other
+     * method variants having {@link AttrDataType} as an argument must be used.
+     * </p>
+     * 
+     * @param values
+     * @param normalized
+     * @param stride
+     *
+     * @return
+     *         This Attribute object.
+     *
+     * @see #setArray(ArrayBuffer, AttrDataSize, AttrDataType, boolean, int, int)
+     */
+    public Attribute setArray1(ArrayBuffer values, boolean normalized, int stride)
+    {
+        return setArray(values, AttrDataSize.ONE, null, normalized, stride, 0);
+    }
+
+
+    /**
+     * This method is an alias of {@link #setArray(ArrayBuffer, AttrDataSize,
+     * AttrDataType, boolean, int, int) setArray}(values, {@link AttrDataSize#ONE},
+     * type, normalized, 0, 0).
+     * 
+     * @param values
+     * @param type
+     * @param normalized
+     *
+     * @return
+     *         This Attribute object.
+     *
+     * @see #setArray(ArrayBuffer, AttrDataSize, AttrDataType, boolean, int, int)
+     */
+    public Attribute setArray1(ArrayBuffer values, AttrDataType type, boolean normalized)
+    {
+        return setArray(values, AttrDataSize.ONE, type, normalized, 0, 0);
+    }
+
+
+    /**
+     * This method is an alias of {@link #setArray(ArrayBuffer, AttrDataSize,
+     * AttrDataType, boolean, int, int) setArray}(values, {@link AttrDataSize#ONE},
+     * null, normalized, 0, 0).
+     *
+     * <p>
+     * Note that data held by 'values' must be a float array. If not, other
+     * method variants having {@link AttrDataType} as an argument must be used.
+     * </p>
+     * 
+     * @param values
+     * @param normalized
+     *
+     * @return
+     *         This Attribute object.
+     *
+     * @see #setArray(ArrayBuffer, AttrDataSize, AttrDataType, boolean, int, int)
+     */
+    public Attribute setArray1(ArrayBuffer values, boolean normalized)
+    {
+        return setArray(values, AttrDataSize.ONE, null, normalized, 0, 0);
+    }
+
+
+    /**
+     * This method is an alias of {@link #setArray(ArrayBuffer, AttrDataSize,
+     * AttrDataType, boolean, int, int) setArray}(values, {@link AttrDataSize#ONE},
+     * type, false, 0, 0).
+     * 
+     * @param values
+     * @param type
+     *
+     * @return
+     *         This Attribute object.
+     *
+     * @see #setArray(ArrayBuffer, AttrDataSize, AttrDataType, boolean, int, int)
+     */
+    public Attribute setArray1(ArrayBuffer values, AttrDataType type)
+    {
+        return setArray(values, AttrDataSize.ONE, type, false, 0, 0);
+    }
+
+
+    /**
+     * This method is an alias of {@link #setArray(ArrayBuffer, AttrDataSize,
+     * AttrDataType, boolean, int, int) setArray}(values, {@link AttrDataSize#ONE},
+     * null, false, 0, 0).
+     *
+     * <p>
+     * Note that data held by 'values' must be a float array. If not, other
+     * method variants having {@link AttrDataType} as an argument must be used.
+     * </p>
+     * 
+     * @param values
+     *
+     * @return
+     *         This Attribute object.
+     *
+     * @see #setArray(ArrayBuffer, AttrDataSize, AttrDataType, boolean, int, int)
+     */
+    public Attribute setArray1(ArrayBuffer values)
+    {
+        return setArray(values, AttrDataSize.ONE, null, false, 0, 0);
+    }
+
+
+    /**
+     * This method is an alias of {@link #setArray(ArrayBuffer, AttrDataSize,
+     * AttrDataType, boolean, int, int) setArray}(values, {@link AttrDataSize#TWO},
+     * type, normalized, stride, offset).
+     *
+     * @param values
+     * @param type
+     * @param normalized
+     * @param stride
+     * @param offset
+     *
+     * @return
+     *         This Attribute object.
+     *
+     * @see #setArray(ArrayBuffer, AttrDataSize, AttrDataType, boolean, int, int)
+     */
+    public Attribute setArray2(ArrayBuffer values, AttrDataType type, boolean normalized, int stride, int offset)
+    {
+        return setArray(values, AttrDataSize.TWO, type, normalized, stride, offset);
+    }
+
+
+    /**
+     * This method is an alias of {@link #setArray(ArrayBuffer, AttrDataSize,
+     * AttrDataType, boolean, int, int) setArray}(values, {@link AttrDataSize#TWO},
+     * null, normalized, stride, offset).
+     *
+     * <p>
+     * Note that data held by 'values' must be a float array. If not, other
+     * method variants having {@link AttrDataType} as an argument must be used.
+     * </p>
+     *
+     * @param values
+     * @param normalized
+     * @param stride
+     * @param offset
+     *
+     * @return
+     *         This Attribute object.
+     *
+     * @see #setArray(ArrayBuffer, AttrDataSize, AttrDataType, boolean, int, int)
+     */
+    public Attribute setArray2(ArrayBuffer values, boolean normalized, int stride, int offset)
+    {
+        return setArray(values, AttrDataSize.TWO, null, normalized, stride, offset);
+    }
+
+
+    /**
+     * This method is an alias of {@link #setArray(ArrayBuffer, AttrDataSize,
+     * AttrDataType, boolean, int, int) setArray}(values, {@link AttrDataSize#TWO},
+     * type, normalized, stride, 0).
+     * 
+     * @param values
+     * @param type
+     * @param normalized
+     * @param stride
+     *
+     * @return
+     *         This Attribute object.
+     *
+     * @see #setArray(ArrayBuffer, AttrDataSize, AttrDataType, boolean, int, int)
+     */
+    public Attribute setArray2(ArrayBuffer values, AttrDataType type, boolean normalized, int stride)
+    {
+        return setArray(values, AttrDataSize.TWO, type, normalized, stride, 0);
+    }
+
+
+    /**
+     * This method is an alias of {@link #setArray(ArrayBuffer, AttrDataSize,
+     * AttrDataType, boolean, int, int) setArray}(values, {@link AttrDataSize#TWO},
+     * null, normalized, stride, 0).
+     *
+     * <p>
+     * Note that data held by 'values' must be a float array. If not, other
+     * method variants having {@link AttrDataType} as an argument must be used.
+     * </p>
+     * 
+     * @param values
+     * @param normalized
+     * @param stride
+     *
+     * @return
+     *         This Attribute object.
+     *
+     * @see #setArray(ArrayBuffer, AttrDataSize, AttrDataType, boolean, int, int)
+     */
+    public Attribute setArray2(ArrayBuffer values, boolean normalized, int stride)
+    {
+        return setArray(values, AttrDataSize.TWO, null, normalized, stride, 0);
+    }
+
+
+    /**
+     * This method is an alias of {@link #setArray(ArrayBuffer, AttrDataSize,
+     * AttrDataType, boolean, int, int) setArray}(values, {@link AttrDataSize#TWO},
+     * type, normalized, 0, 0).
+     * 
+     * @param values
+     * @param type
+     * @param normalized
+     *
+     * @return
+     *         This Attribute object.
+     *
+     * @see #setArray(ArrayBuffer, AttrDataSize, AttrDataType, boolean, int, int)
+     */
+    public Attribute setArray2(ArrayBuffer values, AttrDataType type, boolean normalized)
+    {
+        return setArray(values, AttrDataSize.TWO, type, normalized, 0, 0);
+    }
+
+
+    /**
+     * This method is an alias of {@link #setArray(ArrayBuffer, AttrDataSize,
+     * AttrDataType, boolean, int, int) setArray}(values, {@link AttrDataSize#TWO},
+     * null, normalized, 0, 0).
+     *
+     * <p>
+     * Note that data held by 'values' must be a float array. If not, other
+     * method variants having {@link AttrDataType} as an argument must be used.
+     * </p>
+     * 
+     * @param values
+     * @param normalized
+     *
+     * @return
+     *         This Attribute object.
+     *
+     * @see #setArray(ArrayBuffer, AttrDataSize, AttrDataType, boolean, int, int)
+     */
+    public Attribute setArray2(ArrayBuffer values, boolean normalized)
+    {
+        return setArray(values, AttrDataSize.TWO, null, normalized, 0, 0);
+    }
+
+
+    /**
+     * This method is an alias of {@link #setArray(ArrayBuffer, AttrDataSize,
+     * AttrDataType, boolean, int, int) setArray}(values, {@link AttrDataSize#TWO},
+     * type, false, 0, 0).
+     * 
+     * @param values
+     * @param type
+     *
+     * @return
+     *         This Attribute object.
+     *
+     * @see #setArray(ArrayBuffer, AttrDataSize, AttrDataType, boolean, int, int)
+     */
+    public Attribute setArray2(ArrayBuffer values, AttrDataType type)
+    {
+        return setArray(values, AttrDataSize.TWO, type, false, 0, 0);
+    }
+
+
+    /**
+     * This method is an alias of {@link #setArray(ArrayBuffer, AttrDataSize,
+     * AttrDataType, boolean, int, int) setArray}(values, {@link AttrDataSize#TWO},
+     * null, false, 0, 0).
+     *
+     * <p>
+     * Note that data held by 'values' must be a float array. If not, other
+     * method variants having {@link AttrDataType} as an argument must be used.
+     * </p>
+     * 
+     * @param values
+     *
+     * @return
+     *         This Attribute object.
+     *
+     * @see #setArray(ArrayBuffer, AttrDataSize, AttrDataType, boolean, int, int)
+     */
+    public Attribute setArray2(ArrayBuffer values)
+    {
+        return setArray(values, AttrDataSize.TWO, null, false, 0, 0);
+    }
+
+
+    /**
+     * This method is an alias of {@link #setArray(ArrayBuffer, AttrDataSize,
+     * AttrDataType, boolean, int, int) setArray}(values, {@link AttrDataSize#THREE},
+     * type, normalized, stride, offset).
+     *
+     * @param values
+     * @param type
+     * @param normalized
+     * @param stride
+     * @param offset
+     *
+     * @return
+     *         This Attribute object.
+     *
+     * @see #setArray(ArrayBuffer, AttrDataSize, AttrDataType, boolean, int, int)
+     */
+    public Attribute setArray3(ArrayBuffer values, AttrDataType type, boolean normalized, int stride, int offset)
+    {
+        return setArray(values, AttrDataSize.THREE, type, normalized, stride, offset);
+    }
+
+
+    /**
+     * This method is an alias of {@link #setArray(ArrayBuffer, AttrDataSize,
+     * AttrDataType, boolean, int, int) setArray}(values, {@link AttrDataSize#THREE},
+     * null, normalized, stride, offset).
+     *
+     * <p>
+     * Note that data held by 'values' must be a float array. If not, other
+     * method variants having {@link AttrDataType} as an argument must be used.
+     * </p>
+     *
+     * @param values
+     * @param normalized
+     * @param stride
+     * @param offset
+     *
+     * @return
+     *         This Attribute object.
+     *
+     * @see #setArray(ArrayBuffer, AttrDataSize, AttrDataType, boolean, int, int)
+     */
+    public Attribute setArray3(ArrayBuffer values, boolean normalized, int stride, int offset)
+    {
+        return setArray(values, AttrDataSize.THREE, null, normalized, stride, offset);
+    }
+
+
+    /**
+     * This method is an alias of {@link #setArray(ArrayBuffer, AttrDataSize,
+     * AttrDataType, boolean, int, int) setArray}(values, {@link AttrDataSize#THREE},
+     * type, normalized, stride, 0).
+     * 
+     * @param values
+     * @param type
+     * @param normalized
+     * @param stride
+     *
+     * @return
+     *         This Attribute object.
+     *
+     * @see #setArray(ArrayBuffer, AttrDataSize, AttrDataType, boolean, int, int)
+     */
+    public Attribute setArray3(ArrayBuffer values, AttrDataType type, boolean normalized, int stride)
+    {
+        return setArray(values, AttrDataSize.THREE, type, normalized, stride, 0);
+    }
+
+
+    /**
+     * This method is an alias of {@link #setArray(ArrayBuffer, AttrDataSize,
+     * AttrDataType, boolean, int, int) setArray}(values, {@link AttrDataSize#THREE},
+     * null, normalized, stride, 0).
+     *
+     * <p>
+     * Note that data held by 'values' must be a float array. If not, other
+     * method variants having {@link AttrDataType} as an argument must be used.
+     * </p>
+     * 
+     * @param values
+     * @param normalized
+     * @param stride
+     *
+     * @return
+     *         This Attribute object.
+     *
+     * @see #setArray(ArrayBuffer, AttrDataSize, AttrDataType, boolean, int, int)
+     */
+    public Attribute setArray3(ArrayBuffer values, boolean normalized, int stride)
+    {
+        return setArray(values, AttrDataSize.THREE, null, normalized, stride, 0);
+    }
+
+
+    /**
+     * This method is an alias of {@link #setArray(ArrayBuffer, AttrDataSize,
+     * AttrDataType, boolean, int, int) setArray}(values, {@link AttrDataSize#THREE},
+     * type, normalized, 0, 0).
+     * 
+     * @param values
+     * @param type
+     * @param normalized
+     *
+     * @return
+     *         This Attribute object.
+     *
+     * @see #setArray(ArrayBuffer, AttrDataSize, AttrDataType, boolean, int, int)
+     */
+    public Attribute setArray3(ArrayBuffer values, AttrDataType type, boolean normalized)
+    {
+        return setArray(values, AttrDataSize.THREE, type, normalized, 0, 0);
+    }
+
+
+    /**
+     * This method is an alias of {@link #setArray(ArrayBuffer, AttrDataSize,
+     * AttrDataType, boolean, int, int) setArray}(values, {@link AttrDataSize#THREE},
+     * null, normalized, 0, 0).
+     *
+     * <p>
+     * Note that data held by 'values' must be a float array. If not, other
+     * method variants having {@link AttrDataType} as an argument must be used.
+     * </p>
+     * 
+     * @param values
+     * @param normalized
+     *
+     * @return
+     *         This Attribute object.
+     *
+     * @see #setArray(ArrayBuffer, AttrDataSize, AttrDataType, boolean, int, int)
+     */
+    public Attribute setArray3(ArrayBuffer values, boolean normalized)
+    {
+        return setArray(values, AttrDataSize.THREE, null, normalized, 0, 0);
+    }
+
+
+    /**
+     * This method is an alias of {@link #setArray(ArrayBuffer, AttrDataSize,
+     * AttrDataType, boolean, int, int) setArray}(values, {@link AttrDataSize#THREE},
+     * type, false, 0, 0).
+     * 
+     * @param values
+     * @param type
+     *
+     * @return
+     *         This Attribute object.
+     *
+     * @see #setArray(ArrayBuffer, AttrDataSize, AttrDataType, boolean, int, int)
+     */
+    public Attribute setArray3(ArrayBuffer values, AttrDataType type)
+    {
+        return setArray(values, AttrDataSize.THREE, type, false, 0, 0);
+    }
+
+
+    /**
+     * This method is an alias of {@link #setArray(ArrayBuffer, AttrDataSize,
+     * AttrDataType, boolean, int, int) setArray}(values, {@link AttrDataSize#THREE},
+     * null, false, 0, 0).
+     *
+     * <p>
+     * Note that data held by 'values' must be a float array. If not, other
+     * method variants having {@link AttrDataType} as an argument must be used.
+     * </p>
+     * 
+     * @param values
+     *
+     * @return
+     *         This Attribute object.
+     *
+     * @see #setArray(ArrayBuffer, AttrDataSize, AttrDataType, boolean, int, int)
+     */
+    public Attribute setArray3(ArrayBuffer values)
+    {
+        return setArray(values, AttrDataSize.THREE, null, false, 0, 0);
+    }
+
+
+    /**
+     * This method is an alias of {@link #setArray(ArrayBuffer, AttrDataSize,
+     * AttrDataType, boolean, int, int) setArray}(values, {@link AttrDataSize#FOUR},
+     * type, normalized, stride, offset).
+     *
+     * @param values
+     * @param type
+     * @param normalized
+     * @param stride
+     * @param offset
+     *
+     * @return
+     *         This Attribute object.
+     *
+     * @see #setArray(ArrayBuffer, AttrDataSize, AttrDataType, boolean, int, int)
+     */
+    public Attribute setArray4(ArrayBuffer values, AttrDataType type, boolean normalized, int stride, int offset)
+    {
+        return setArray(values, AttrDataSize.FOUR, type, normalized, stride, offset);
+    }
+
+
+    /**
+     * This method is an alias of {@link #setArray(ArrayBuffer, AttrDataSize,
+     * AttrDataType, boolean, int, int) setArray}(values, {@link AttrDataSize#FOUR},
+     * null, normalized, stride, offset).
+     *
+     * <p>
+     * Note that data held by 'values' must be a float array. If not, other
+     * method variants having {@link AttrDataType} as an argument must be used.
+     * </p>
+     *
+     * @param values
+     * @param normalized
+     * @param stride
+     * @param offset
+     *
+     * @return
+     *         This Attribute object.
+     *
+     * @see #setArray(ArrayBuffer, AttrDataSize, AttrDataType, boolean, int, int)
+     */
+    public Attribute setArray4(ArrayBuffer values, boolean normalized, int stride, int offset)
+    {
+        return setArray(values, AttrDataSize.FOUR, null, normalized, stride, offset);
+    }
+
+
+    /**
+     * This method is an alias of {@link #setArray(ArrayBuffer, AttrDataSize,
+     * AttrDataType, boolean, int, int) setArray}(values, {@link AttrDataSize#FOUR},
+     * type, normalized, stride, 0).
+     * 
+     * @param values
+     * @param type
+     * @param normalized
+     * @param stride
+     *
+     * @return
+     *         This Attribute object.
+     *
+     * @see #setArray(ArrayBuffer, AttrDataSize, AttrDataType, boolean, int, int)
+     */
+    public Attribute setArray4(ArrayBuffer values, AttrDataType type, boolean normalized, int stride)
+    {
+        return setArray(values, AttrDataSize.FOUR, type, normalized, stride, 0);
+    }
+
+
+    /**
+     * This method is an alias of {@link #setArray(ArrayBuffer, AttrDataSize,
+     * AttrDataType, boolean, int, int) setArray}(values, {@link AttrDataSize#FOUR},
+     * null, normalized, stride, 0).
+     *
+     * <p>
+     * Note that data held by 'values' must be a float array. If not, other
+     * method variants having {@link AttrDataType} as an argument must be used.
+     * </p>
+     * 
+     * @param values
+     * @param normalized
+     * @param stride
+     *
+     * @return
+     *         This Attribute object.
+     *
+     * @see #setArray(ArrayBuffer, AttrDataSize, AttrDataType, boolean, int, int)
+     */
+    public Attribute setArray4(ArrayBuffer values, boolean normalized, int stride)
+    {
+        return setArray(values, AttrDataSize.FOUR, null, normalized, stride, 0);
+    }
+
+
+    /**
+     * This method is an alias of {@link #setArray(ArrayBuffer, AttrDataSize,
+     * AttrDataType, boolean, int, int) setArray}(values, {@link AttrDataSize#FOUR},
+     * type, normalized, 0, 0).
+     * 
+     * @param values
+     * @param type
+     * @param normalized
+     *
+     * @return
+     *         This Attribute object.
+     *
+     * @see #setArray(ArrayBuffer, AttrDataSize, AttrDataType, boolean, int, int)
+     */
+    public Attribute setArray4(ArrayBuffer values, AttrDataType type, boolean normalized)
+    {
+        return setArray(values, AttrDataSize.FOUR, type, normalized, 0, 0);
+    }
+
+
+    /**
+     * This method is an alias of {@link #setArray(ArrayBuffer, AttrDataSize,
+     * AttrDataType, boolean, int, int) setArray}(values, {@link AttrDataSize#FOUR},
+     * null, normalized, 0, 0).
+     *
+     * <p>
+     * Note that data held by 'values' must be a float array. If not, other
+     * method variants having {@link AttrDataType} as an argument must be used.
+     * </p>
+     * 
+     * @param values
+     * @param normalized
+     *
+     * @return
+     *         This Attribute object.
+     *
+     * @see #setArray(ArrayBuffer, AttrDataSize, AttrDataType, boolean, int, int)
+     */
+    public Attribute setArray4(ArrayBuffer values, boolean normalized)
+    {
+        return setArray(values, AttrDataSize.FOUR, null, normalized, 0, 0);
+    }
+
+
+    /**
+     * This method is an alias of {@link #setArray(ArrayBuffer, AttrDataSize,
+     * AttrDataType, boolean, int, int) setArray}(values, {@link AttrDataSize#FOUR},
+     * type, false, 0, 0).
+     * 
+     * @param values
+     * @param type
+     *
+     * @return
+     *         This Attribute object.
+     *
+     * @see #setArray(ArrayBuffer, AttrDataSize, AttrDataType, boolean, int, int)
+     */
+    public Attribute setArray4(ArrayBuffer values, AttrDataType type)
+    {
+        return setArray(values, AttrDataSize.FOUR, type, false, 0, 0);
+    }
+
+
+    /**
+     * This method is an alias of {@link #setArray(ArrayBuffer, AttrDataSize,
+     * AttrDataType, boolean, int, int) setArray}(values, {@link AttrDataSize#FOUR},
+     * null, false, 0, 0).
+     *
+     * <p>
+     * Note that data held by 'values' must be a float array. If not, other
+     * method variants having {@link AttrDataType} as an argument must be used.
+     * </p>
+     * 
+     * @param values
+     *
+     * @return
+     *         This Attribute object.
+     *
+     * @see #setArray(ArrayBuffer, AttrDataSize, AttrDataType, boolean, int, int)
+     */
+    public Attribute setArray4(ArrayBuffer values)
+    {
+        return setArray(values, AttrDataSize.FOUR, null, false, 0, 0);
     }
 
 
