@@ -156,7 +156,7 @@ public abstract class Texture<TTexture extends Texture<TTexture>>
      *
      * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBindTexture.xml">glBindTexture</a>
      */
-    public int getTextureUnit()
+    public int getUnit()
     {
         return textureUnit;
     }
@@ -185,7 +185,7 @@ public abstract class Texture<TTexture extends Texture<TTexture>>
      * @see <a href="http://www.khronos.org/opengles/sdk/docs/man/xhtml/glBindTexture.xml">glBindTexture</a>
      */
     @SuppressWarnings("unchecked")
-    public TTexture setTextureUnit(int textureUnit)
+    public TTexture setUnit(int textureUnit)
     {
         if (textureUnit < 0 || GLESState.getMaxTextureImageUnits() <= textureUnit)
         {
@@ -237,7 +237,7 @@ public abstract class Texture<TTexture extends Texture<TTexture>>
      * <p>
      * If the current active texture unit is not the one that
      * this texture should be bound to (= the one that has been
-     * set by {@link #setTextureUnit(int)}), glActiveTexture()
+     * set by {@link #setUnit(int)}), glActiveTexture()
      * is called before glBindTexture().
      * </p>
      *

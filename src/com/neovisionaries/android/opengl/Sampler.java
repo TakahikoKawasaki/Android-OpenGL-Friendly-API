@@ -97,8 +97,8 @@ public class Sampler
      *
      * <p>
      * This method does the same thing as glUniformli({@link
-     * #getLocation()}, texture.{@link Texture#getTextureUnit()
-     * getTextureUnit()}).
+     * #getLocation()}, texture.{@link Texture#getUnit()
+     * getUnit()}).
      * </p>
      *
      * @param texture
@@ -121,7 +121,7 @@ public class Sampler
 
         // Set the number of the texture unit to the
         // uniform sampler variable.
-        GLESFactory.getInstance().glUniform1i(location, texture.getTextureUnit());
+        GLESFactory.getInstance().glUniform1i(location, texture.getUnit());
 
         return this;
     }
