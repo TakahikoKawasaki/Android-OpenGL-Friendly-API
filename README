@@ -63,6 +63,12 @@ forward compatibility and so OpenGL ES 1.1 is supported only
 partially.
 
 
+License
+-------
+
+Apache License, Version 2.0
+
+
 Current Status of Development
 -----------------------------
 
@@ -78,5 +84,5 @@ TODO
 
 
 --------------------
-2012-May-16
+2012-May-17
 Takahiko Kawasaki

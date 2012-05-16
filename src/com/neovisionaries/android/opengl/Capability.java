@@ -1,5 +1,17 @@
 /*
- * (C) 2012 Neo Visionaries Inc. All Rights Reserved.
+ * Copyright (C) 2012 Neo Visionaries Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.neovisionaries.android.opengl;
 
@@ -13,7 +25,7 @@ package com.neovisionaries.android.opengl;
  * </p>
  *
  * <pre style="background: lightgray;">
- * <span style="color: darkgreen;">// <b>E X A M P L E   1</b></span>
+ * <span style="color: darkgreen;">// <b>E X A M P L E</b></span>
  *
  * <span style="color: darkgreen;">// Enable depth test.</span>
  * <span style="color: darkgreen;">// This is equivalent to glEnable(GL_DEPTH_TEST).</span>

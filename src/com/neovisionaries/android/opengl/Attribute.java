@@ -1,5 +1,17 @@
 /*
- * (C) 2012 Neo Visionaries Inc. All Rights Reserved.
+ * Copyright (C) 2012 Neo Visionaries Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.neovisionaries.android.opengl;
 
@@ -62,7 +74,7 @@ import java.nio.FloatBuffer;
  * FloatBuffer positions = ...;
  *
  * <span style="color: darkgreen;">// Store the position data to the vertex array buffer.</span>
- * {@link ArrayBuffer} ab = new {@link ArrayBuffer#ArrayBuffer()};
+ * {@link ArrayBuffer} ab = new {@link ArrayBuffer#ArrayBuffer() ArrayBuffer()};
  * ab.{@link VertexBuffer#setData(Buffer) setData}(positions);
  *
  * <span style="color: darkgreen;">// Get an Attribute instance from somewhere.</span>
@@ -71,7 +83,7 @@ import java.nio.FloatBuffer;
  * <span style="color: darkgreen;">// Make the Attribute instance use the vertex array buffer.</span>
  * <span style="color: darkgreen;">// As side effects, the vertex array for the index of the</span>
  * <span style="color: darkgreen;">// attribute is enabled by glEnableVertexAttribArray() and</span>
- * <span style="color: darkgreen;">// the vertex array buffer is bound by callging ab.bind()</span>
+ * <span style="color: darkgreen;">// the vertex array buffer is bound by calling ab.bind()</span>
  * <span style="color: darkgreen;">// which is equivalent to glBindBuffer(GL_ARRAY_BUFFER, ab.getId()).</span>
  * <span style="color: darkgreen;">// </span>
  * <span style="color: darkgreen;">// Note that the method call below will throw UnsupportedOperationException</span>
