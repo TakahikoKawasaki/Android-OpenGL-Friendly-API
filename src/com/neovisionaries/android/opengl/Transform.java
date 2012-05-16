@@ -104,6 +104,14 @@ public class Transform
     }
 
 
+    public Transform setFrustum(float left, float right, float bottom, float top, float near, float far)
+    {
+        Matrix.frustumM(matrix, 0, left, right, bottom, top, near, far);
+
+        return this;
+    }
+
+
     public Transform perspective(float fovy, float aspect, float near, float far)
     {
         float[] projection = new float[16];
@@ -113,6 +121,14 @@ public class Transform
         Matrix.multiplyMM(temp, 0, matrix, 0, projection, 0);
 
         return copy(temp, matrix);
+    }
+
+
+    public Transform setPerspective(float fovy, float aspect, float near, float far)
+    {
+        perspectiveM(matrix, 0, fovy, aspect, near, far);
+
+        return this;
     }
 
 
@@ -131,6 +147,20 @@ public class Transform
         Matrix.multiplyMM(temp, 0, matrix, 0, camera, 0);
 
         return copy(temp, matrix);
+    }
+
+
+    public Transform setLookAt(
+            float eyeX, float eyeY, float eyeZ,
+            float centerX, float centerY, float centerZ,
+            float upX, float upY, float upZ)
+    {
+        setLookAtM(matrix, 0,
+                eyeX, eyeY, eyeZ,
+                centerX, centerY, centerZ,
+                upX, upY, upZ);
+
+        return this;
     }
 
 
