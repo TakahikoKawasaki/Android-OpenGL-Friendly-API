@@ -510,8 +510,34 @@ final class GLESHelper
      * @return
      *         A float value between 0.0f and 1.0f.
      */
-    public static float clampFrom0To1(float value)
+    public static float clampBetween0And1(float value)
     {
-        return Math.max(0, Math.min(value, 1.0f));
+        return clamp(value, 0.0f, 1.0f);
+    }
+
+
+    /**
+     * Clamp a float value between 'min' and 'max'.
+     *
+     * @param value
+     * @param min
+     * @param max
+     *
+     * @return
+     *         A float value between 'min' and 'max'.
+     */
+    public static float clamp(float value, float min, float max)
+    {
+        if (value < min)
+        {
+            return min;
+        }
+
+        if (max < value)
+        {
+            return max;
+        }
+
+        return value;
     }
 }

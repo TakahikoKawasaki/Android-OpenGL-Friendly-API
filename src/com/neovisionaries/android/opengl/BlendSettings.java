@@ -317,10 +317,10 @@ public class BlendSettings
      */
     public BlendSettings setColor(float red, float green, float blue, float alpha)
     {
-        this.constantRed = GLESHelper.clampFrom0To1(red);
-        this.constantGreen = GLESHelper.clampFrom0To1(green);
-        this.constantBlue = GLESHelper.clampFrom0To1(blue);
-        this.constantAlpha = GLESHelper.clampFrom0To1(alpha);
+        this.constantRed = GLESHelper.clampBetween0And1(red);
+        this.constantGreen = GLESHelper.clampBetween0And1(green);
+        this.constantBlue = GLESHelper.clampBetween0And1(blue);
+        this.constantAlpha = GLESHelper.clampBetween0And1(alpha);
 
         return this;
     }

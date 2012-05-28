@@ -124,6 +124,58 @@ public class GLESSurfaceView extends GLSurfaceView
 
 
     /**
+     * Inform this view that the Actvity hosting this view got paused.
+     *
+     * <p>
+     * The implementation of this method does the following.
+     * </p>
+     *
+     * <ol>
+     * <li>If the renderer is an instance of {@link GLESRenderer},
+     *     call {@link GLESRenderer#onPause(GLESSurfaceView)
+     *     onPause}(this) method of the renderer.
+     * <li>Call super.onPause().
+     * </ol>
+     */
+    @Override
+    public void onPause()
+    {
+        if (renderer instanceof GLESRenderer)
+        {
+            ((GLESRenderer)renderer).onPause(this);
+        }
+
+        super.onPause();
+    }
+
+
+    /**
+     * Inform this view that the Actvity hosting this view got resumed.
+     *
+     * <p>
+     * The implementation of this method does the following.
+     * </p>
+     *
+     * <ol>
+     * <li>Call super.onResume().
+     * <li>If the renderer is an instance of {@link GLESRenderer},
+     *     call {@link GLESRenderer#onResume(GLESSurfaceView)
+     *     onResume}(this) method of the renderer.
+     * </ol>
+     */
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+
+        if (renderer instanceof GLESRenderer)
+        {
+            ((GLESRenderer)renderer).onResume(this);
+        }
+    }
+
+
+    /**
      * Callback method for KeyDown event.
      *
      * <p>

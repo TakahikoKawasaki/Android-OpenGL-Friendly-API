@@ -139,6 +139,40 @@ public abstract class GLESRenderer implements GLSurfaceView.Renderer
 
 
     /**
+     * Callback method for 'resume' event.
+     *
+     * <p>
+     * This method is called when {@link GLESSurfaceView#onResume()
+     * onResume()} method of the {@link GLESSurfaceView} instance
+     * which this renderer is set to is called.
+     * </p>
+     *
+     * @param view
+     *         The GLESSurfaceView instance which this renderer is set to.
+     */
+    public void onResume(GLESSurfaceView view)
+    {
+    }
+
+
+    /**
+     * Callback method for 'pause' event.
+     *
+     * <p>
+     * This method is called when {@link GLESSurfaceView#onPause()
+     * onPause()} method of the {@link GLESSurfaceView} instance
+     * which this renderer is set to is called.
+     * </p>
+     *
+     * @param view
+     *         The GLESSurfaceView instance which this renderer is set to.
+     */
+    public void onPause(GLESSurfaceView view)
+    {
+    }
+
+
+    /**
      * Callback method for KeyDown event.
      *
      * <p>
